@@ -1,0 +1,120 @@
+Menu Item,Menu Type,Cost,Location
+Applewood Bacon (3),Breakfast,3,Brown's
+Breakfast Plate,Breakfast,6,Brown's
+Brown Sugar and Cinnamon Break Pudding,Breakfast,5,Brown's
+Fruit Cup,Breakfast,5,Brown's
+Green Salad with Lemon Herb Dressing,Breakfast,3,Brown's
+Milk,Breakfast,0.75,Brown's
+Orange Juice,Breakfast,4.8,Brown's
+Parfait,Breakfast,5,Brown's
+Rosemary Roasted Potatoes,Breakfast,3,Brown's
+Sauteed Beans with Garlic,Breakfast,3,Brown's
+Toast with Cinnamon Butter and Jam,Breakfast,3,Brown's
+Two Eggs,Breakfast,3,Brown's
+Beef Burger,Lunch,10,Brown's
+Chicken Burger,Lunch,10,Brown's
+Congee Bowl,Lunch,5,Brown's
+Flipped Plate,Lunch,9,Brown's
+Harloom Bean Bowl,Lunch,5,Brown's
+Harvest Salad,Lunch,8,Brown's
+Make your own Panini,Lunch,8,Brown's
+Make your own Sandwich,Lunch,8,Brown's
+Portabello Mushroom Burger,Lunch,10,Brown's
+Soup of the Day,Lunch,5,Brown's
+Siracha Tofu Burger,Lunch,8,Brown's
+Bacon (3),Breakfast,1.95,The Golden Bear Café
+Bagel w/Butter & Jam,Breakfast,2.5,The Golden Bear Café
+Bagel w/Cream Cheese or Peanut Butter,Breakfast,2.75,The Golden Bear Café
+Bagel w/the Works,Breakfast,3.25,The Golden Bear Café
+Bear Muffin,Breakfast,4.95,The Golden Bear Café
+Breakfast Burrito – Add Sausage or Bacon for +$1,Breakfast,4.25,The Golden Bear Café
+Breakfast Croissant,Breakfast,3.95,The Golden Bear Café
+Classic Breakfast,Breakfast,5.5,The Golden Bear Café
+Country Potatoes,Breakfast,5.25,The Golden Bear Café
+Golden Bear Breakfast,Breakfast,2.5,The Golden Bear Café
+Hot Oatmeal,Breakfast,5.95,The Golden Bear Café
+Organic Eggs (2),Breakfast,2.5,The Golden Bear Café
+Plain Bagel,Breakfast,2.25,The Golden Bear Café
+Sausage Patties (2),Breakfast,2.75,The Golden Bear Café
+Toast (2),Breakfast,1.25,The Golden Bear Café
+Asian Chicken Salad,Lunch,7.5,The Golden Bear Café
+Bean and Cheese Burrito,Lunch,5.95,The Golden Bear Café
+Beef or Shrimp Nachos,Lunch,8.25,The Golden Bear Café
+Cheese Quesadilla,Lunch,5.5,The Golden Bear Café
+Chicken Quesadilla,Lunch,6.5,The Golden Bear Café
+Cheese Super Nachos,Lunch,7.95,The Golden Bear Café
+Create Your Own Salad,Lunch,6.25,The Golden Bear Café
+Fruit and Nut Salad,Lunch,7.5,The Golden Bear Café
+Made to Order Beef or Shrimp Burrito or Burrito Bowl,Lunch,8.25,The Golden Bear Café
+Made to Order Chicken Burrito or Burrito Bowl,Lunch,7.95,The Golden Bear Café
+Made to Order Sandwiches and Wraps Vegetarian,Lunch,6.5,The Golden Bear Café
+Made to Order Sandwiches and Wraps w/Meat,Lunch,7.25,The Golden Bear Café
+Premade Chicken Burrito,Lunch,7.95,The Golden Bear Café
+Premade Steak Burrito,Lunch,8.25,The Golden Bear Café
+Regular Nachos,Lunch,6.95,The Golden Bear Café
+Soup of the Day,Lunch,5.25,The Golden Bear Café
+Steak Quesadilla,Lunch,6.95,The Golden Bear Café
+Veggie Burrito,Lunch,6.95,The Golden Bear Café
+1 Spread,Breakfast,1.25,The Den
+Avocado (Add-on),Breakfast,1.25,The Den
+Bacon (Add-on),Breakfast,1.95,The Den
+Bacon Maple Wrap,Breakfast,5.25,The Den
+Bagel w/Butter,Breakfast,2.2,The Den
+Bagel w/Cream Cheese,Breakfast,2.75,The Den
+Bagel w/Hummus,Breakfast,3.25,The Den
+Bagel w/Jam,Breakfast,2.2,The Den
+Bagel w/Nutella,Breakfast,3.25,The Den
+Bagel w/Peanut Butter,Breakfast,2.75,The Den
+"Bagel w/the Works (lettuce, tomato, cucumber, onion)",Breakfast,4.5,The Den
+Bananas,Breakfast,0.2,The Den
+Deluxe Breakfast Wrap,Breakfast,5.75,The Den
+Eggs (Add-on),Breakfast,1.25,The Den
+Oatmeal,Breakfast,2.5,The Den
+Pig in a Blanket Wrap,Breakfast,5.25,The Den
+Plain Bagel,Breakfast,2.2,The Den
+Smoothie (Large),Breakfast,5.95,The Den
+Smoothie (Medium),Breakfast,4.75,The Den
+Smoothie (Small),Breakfast,3.95,The Den
+Vegetarian Fiesta Wrap,Breakfast,5.25,The Den
+Avocado (Add-on),Lunch,1.25,The Den
+Bacon (Add-on),Lunch,1.95,The Den
+Beef Chilli,Lunch,4.5,The Den
+Cheese (Add-on),Lunch,1.25,The Den
+Custom Meat Wrap,Lunch,7.25,The Den
+Custom Vegetable Wrap,Lunch,6.25,The Den
+Chicken (Add-on),Lunch,2.75,The Den
+Hummus (Add-on),Lunch,1.25,The Den
+Large Meat Pizza,Lunch,16,The Den
+Large Vegetable Pizza,Lunch,14,The Den
+Mac and Cheese,Lunch,5.25,The Den
+Personal Cheese Pizza,Lunch,5.25,The Den
+Personal Pepperoni Pizza,Lunch,6.25,The Den
+Personal Vegetable Pizza,Lunch,5.75,The Den
+Sliced Deli Meat,Lunch,2.1,The Den
+Smoothie (Large),Lunch,5.95,The Den
+Smoothie (Medium),Lunch,4.75,The Den
+Smoothie (Small),Lunch,3.95,The Den
+Soup of the Day,Lunch,4.95,The Den
+Bagel w/Butter or Jam,Breakfast,2.5,Qualcomm Café
+Bagel w/Cream Cheese or Peanut Butter,Breakfast,2.75,Qualcomm Café
+Bagel w/the Works,Breakfast,4.95,Qualcomm Café
+Breakfast Wraps (Nutella / Banana / Whipped Cream),Breakfast,5.25,Qualcomm Café
+"Deluxe Wrap (Bacon, Avocado, Tomato, Cucumber, Onion)",Breakfast,5.75,Qualcomm Café
+Oatmeal,Breakfast,2.5,Qualcomm Café
+Plain Bagel,Breakfast,2.95,Qualcomm Café
+Add Chicken to Salad,Lunch,1.25,Qualcomm Café
+Avocado (Add-on),Lunch,1.25,Qualcomm Café
+Bacon (Add-on),Lunch,1.95,Qualcomm Café
+Caesar Salad,Lunch,6.25,Qualcomm Café
+Cheese (Add-on),Lunch,1.25,Qualcomm Café
+Chicken Caesar Salad,Lunch,7.5,Qualcomm Café
+Classic Green Salad,Lunch,6.25,Qualcomm Café
+Custom Wrap,Lunch,7.25,Qualcomm Café
+Greek Salad,Lunch,6.25,Qualcomm Café
+Grilled Chicken (Add on),Lunch,2.75,Qualcomm Café
+Hummus (Add-on),Lunch,1.25,Qualcomm Café
+Mac and Cheese,Lunch,5.25,Qualcomm Café
+Sliced Deli Meat,Lunch,2.1,Qualcomm Café
+Soup of the Day,Lunch,5.25,Qualcomm Café
+Spinach Salad,Lunch,7.5,Qualcomm Café
+Vegetarian Wrap,Lunch,6.5,Qualcomm Café
