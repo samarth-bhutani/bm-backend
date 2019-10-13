@@ -106,8 +106,8 @@ def scrape_menus(dining_halls):
                         current_station = i
                     else:
                         food_item = {}
-                        food_item["calories"] = 0
-                        food_item["cost"] = 0
+                        food_item["calories"] = None
+                        food_item["cost"] = None
                         food_item["food_types"] = food_restrictions[index]
                         food_item["name"] = i
                         food_item["station"] = current_station
@@ -129,13 +129,13 @@ def scrape_details(dining_halls):
     for dining_hall_name in dining_hall_names:
         dining_hall_dict = dining_halls[dining_hall_name]
 
-        dining_hall_dict["name"] = ""
-        dining_hall_dict["latitude"] = ""
-        dining_hall_dict["longitude"] = ""
-        dining_hall_dict["phone"] = ""
-        dining_hall_dict["picture"] = ""
-        dining_hall_dict["description"] = ""
-        dining_hall_dict["address"] = ""
+        dining_hall_dict["name"] = dining_hall_name
+        dining_hall_dict["latitude"] = None
+        dining_hall_dict["longitude"] = None
+        dining_hall_dict["phone"] = None
+        dining_hall_dict["picture"] = None
+        dining_hall_dict["description"] = None
+        dining_hall_dict["address"] = None
         dining_hall_dict["open_close_array"] = []
 
 

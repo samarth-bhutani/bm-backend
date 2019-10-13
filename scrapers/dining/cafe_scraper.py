@@ -23,7 +23,7 @@ def scrape_menus(cafes):
                 cafes[cafe_name][row["Menu Type"].strip()] = []
 
             food_item = {}
-            food_item["calories"] = 0
+            food_item["calories"] = None
             food_item["cost"] = row["Cost"]
             food_item["food_types"] = []
             food_item["name"] = row["Menu Item"]
@@ -39,12 +39,12 @@ def scrape_details(cafes):
         cafe_dict = cafes[cafe_name]
 
         cafe_dict["name"] = cafe_name
-        cafe_dict["latitude"] = ""
-        cafe_dict["longitude"] = ""
-        cafe_dict["phone"] = ""
-        cafe_dict["picture"] = ""
-        cafe_dict["description"] = ""
-        cafe_dict["address"] = ""
+        cafe_dict["latitude"] = None
+        cafe_dict["longitude"] = None
+        cafe_dict["phone"] = None
+        cafe_dict["picture"] = None
+        cafe_dict["description"] = None
+        cafe_dict["address"] = None
         cafe_dict["open_close_array"] = []
 
 
