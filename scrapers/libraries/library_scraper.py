@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import time 
+import json
 
 libraries = {}
 library_names = ["Anthropology Library", "Art History/Classics Library", "BAMPFA Film Library & Study Center", "Bancroft Library/University Archives", "Berkeley Law Library", "Bioscience, Natural Resources & Public Health Library", "Business Library", "Career Counseling Library",
@@ -22,22 +23,35 @@ def set_library_ids(libraries):
     Hardcoded because the JSON api arbitrarily assigns library ids. 
     '''
     libraries["Anthropology Library"]["id"] = 194
-    libraries["Art History/Classics Library"]["id"]
-    libraries["BAMPFA Film Library & Study Center"]["id"]
-    libraries["Bancroft Library/University Archives"]["id"]
-    libraries["Berkeley Law Library"]["id"]
-    libraries["Bioscience, Natural Resources & Public Health Library"]["id"]
-    libraries["Business Library"]["id"]
-    libraries["Career Counseling Library"]["id"]
-    libraries["CED Visual Resources Center]["id"]
-    libraries["Chemistry and Chemical Engineering Library"]["id"]
-    libraries["Doe Library"]["id"]
-    libraries["Earth Sciences & Map Library"]["id"]
-    libraries["East Asian Library"]["id"]
-    libraries["Engineering Library"]["id"]
-    libraries["Environmental Design Library"]["id"]
-    libraries["Ethnic Studies Library"libraries["Graduate Theological Union Library"libraries["Institute of Governmental Studies Library"libraries["Institute of Transportation Studies Library"libraries["Main (Gardner) Stacks"libraries["Mathematics Statistics Library"libraries["Moffitt Library"libraries["Morrison Library"libraries["Music Library"libraries["Newspapers & Microforms Library"libraries["Optometry and Health Sciences Library"libraries["Physics-Astronomy Library"libraries["Robbins Collection Library"libraries["Social Research Library"libraries["South/Southeast Asia Library"
-
+    libraries["Art History/Classics Library"]["id"] = 183
+    libraries["BAMPFA Film Library & Study Center"]["id"] = 251
+    libraries["Bancroft Library/University Archives"]["id"] = 196
+    libraries["Berkeley Law Library"]["id"] = 242
+    libraries["Bioscience, Natural Resources & Public Health Library"]["id"] = 198
+    libraries["Business Library"]["id"] = 200
+    libraries["Career Counseling Library"]["id"] = 259
+    libraries["CED Visual Resources Center"]["id"] = 228
+    libraries["Chemistry and Chemical Engineering Library"]["id"] = 202
+    libraries["Doe Library"]["id"] = 173
+    libraries["Earth Sciences & Map Library"]["id"] = 204
+    libraries["East Asian Library"]["id"] = 206 
+    libraries["Engineering Library"]["id"] = 210
+    libraries["Environmental Design Library"]["id"] = 212
+    libraries["Ethnic Studies Library"]["id"] = 232
+    libraries["Graduate Theological Union Library"]["id"] = 249
+    libraries["Institute of Governmental Studies Library"]["id"] = 236
+    libraries["Institute of Transportation Studies Library"]["id"] = 240
+    libraries["Main (Gardner) Stacks"]["id"] = 179 
+    libraries["Mathematics Statistics Library"]["id"] = 214
+    libraries["Moffitt Library"]["id"] = 179
+    libraries["Morrison Library"]["id"] = 200
+    libraries["Music Library"]["id"] = 216
+    libraries["Newspapers & Microforms Library"]["id"] = 191
+    libraries["Optometry and Health Sciences Library"]["id"] = 218
+    libraries["Physics-Astronomy Library"]["id"] = 220
+    libraries["Robbins Collection Library"]["id"] = 261
+    libraries["Social Research Library"]["id"] = 224
+    libraries["South/Southeast Asia Library"] = 192
 
 def scrape_library_hours(libraries): 
     '''
@@ -46,13 +60,13 @@ def scrape_library_hours(libraries):
     # testing one thing
     # anthro_lib = libraries[0]
     # library_url = library_to_url[anthro_lib]
-    library_page = requests.get(
-        "http://www.lib.berkeley.edu/libraries/anthropology-library")
-    # time.sleep(5)
-    soup = bs(library_page.content, "html.parser")
-    
-    service_hours = soup.find_all("span")
-    print(service_hours)
+    try:
+        library_page = requests.get("http://www.lib.berkeley.edu/hours/api/libraries/194?begin_date=2019-10-27&end_date=2019-11-02")
+        print(library_page.content)
+    except Exception:
+        print("Exception has occurred.")
+    # soup = bs(library_page.content, "html.parser")
+
     
     # try:
 
@@ -80,7 +94,5 @@ http://www.lib.berkeley.edu/libraries/visual-resources-center
 3. Push to JSON
 """
 
-
-
+set_library_ids(libraries)
 scrape_library_hours(library_names)
-# print(libraries)
