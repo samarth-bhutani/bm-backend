@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 import time 
 import json
 import datetime 
+import helper
 
 libraries = {}
 library_names = ["Anthropology Library", "Art History/Classics Library", "BAMPFA Film Library & Study Center", "Bancroft Library/University Archives", "Berkeley Law Library", "Bioscience, Natural Resources & Public Health Library", "Business Library", "Career Counseling Library",
@@ -52,31 +53,50 @@ def set_library_ids(libraries):
     libraries["Physics-Astronomy Library"]["id"] = 220
     libraries["Robbins Collection Library"]["id"] = 261
     libraries["Social Research Library"]["id"] = 224
-    libraries["South/Southeast Asia Library"] = 192
+    libraries["South/Southeast Asia Library"]["id"] = 192
 
 def parse_hours(day):
     '''
-    Takes in a day dictionary and returns the DateTime object representation of the hours of each day. 
+    Takes in a day dictionary and returns list of DateTime object representations of the hours of each day. 
     '''
+    datetime_object = datetime.datetime.strptime(day["day"], '%Y-%m-%d')
+    date = datetime_object.date()
+    hours_list = []
 
+    if day["start"] != None and day["end"] != None:
+        hours_list.append((
+            helper.standarize_timestring(day["start"]),
+            helper.standarize_timestring(day["end"]),
+            date))
 
+    # if day["start2"] != None and day["end2"] != None:
+    #     hours_list.append((date, day["start2"], day["end2"]))
 
+    return hours_list
+    
 
-def scrape_library_hours(libraries): 
+def scrape_library_hours(libraries, library_names): 
     '''
     Scrapes library hours from library urls and stores it into the libraries dictionary.
     '''
-    # testing one thing
+    for library_name in library_names[:1]:
+        library_dict = libraries[library_name]
     # anthro_lib = libraries[0]
     # library_url = library_to_url[anthro_lib]
+        response = requests.get("http://www.lib.berkeley.edu/hours/api/libraries/194?begin_date=2019-10-27&end_date=2019-11-02")
+
     # try:
-    response = requests.get("http://www.lib.berkeley.edu/hours/api/libraries/194?begin_date=2019-10-27&end_date=2019-11-02")
-    response_content = response.content
-    response_str = response_content.decode("utf-8")[1:-1]
-    response_json = json.loads(response_str)
-    hours_dict = response_json["hours"]
-    for day in hours_dict:
-        print(day)
+        response_content = response.content
+        response_str = response_content.decode("utf-8")[1:-1]
+        response_json = json.loads(response_str)
+        hours_dict = response_json["hours"]
+        library_dict["hours"] = []
+        for days in hours_dict:
+            day_hours = parse_hours(days["day"])
+            print(day_hours)
+            for item in day_hours:
+                print(helper.build_time_interval(*item))
+                # library_dict["hours"].append(item)
 
 
 #page.content is how to get html 
@@ -100,4 +120,4 @@ def scrape_library_hours(libraries):
 # """
 
 set_library_ids(libraries)
-scrape_library_hours(library_names)
+scrape_library_hours(libraries, library_names)
