@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import time 
 import json
+import datetime 
 
 libraries = {}
 library_names = ["Anthropology Library", "Art History/Classics Library", "BAMPFA Film Library & Study Center", "Bancroft Library/University Archives", "Berkeley Law Library", "Bioscience, Natural Resources & Public Health Library", "Business Library", "Career Counseling Library",
@@ -53,6 +54,14 @@ def set_library_ids(libraries):
     libraries["Social Research Library"]["id"] = 224
     libraries["South/Southeast Asia Library"] = 192
 
+def parse_hours(day):
+    '''
+    Takes in a day dictionary and returns the DateTime object representation of the hours of each day. 
+    '''
+
+
+
+
 def scrape_library_hours(libraries): 
     '''
     Scrapes library hours from library urls and stores it into the libraries dictionary.
@@ -60,39 +69,35 @@ def scrape_library_hours(libraries):
     # testing one thing
     # anthro_lib = libraries[0]
     # library_url = library_to_url[anthro_lib]
-    try:
-        library_page = requests.get("http://www.lib.berkeley.edu/hours/api/libraries/194?begin_date=2019-10-27&end_date=2019-11-02")
-        print(library_page.content)
-    except Exception:
-        print("Exception has occurred.")
-    # soup = bs(library_page.content, "html.parser")
-
-    
     # try:
-
-    # except: 
-    #     print("Error")
+    response = requests.get("http://www.lib.berkeley.edu/hours/api/libraries/194?begin_date=2019-10-27&end_date=2019-11-02")
+    response_content = response.content
+    response_str = response_content.decode("utf-8")[1:-1]
+    response_json = json.loads(response_str)
+    hours_dict = response_json["hours"]
+    for day in hours_dict:
+        print(day)
 
 
 #page.content is how to get html 
 
-"""
-Hours is an array of: (datetime object, open time, close time)
-Ex: (datetime object, 1pm, 5:30pm)
+# """
+# Hours is an array of: (datetime object, open time, close time)
+# Ex: (datetime object, 1pm, 5:30pm)
 
-Get last Sunday
+# Get last Sunday
 
-Hardcode dates into URLs for libraries 
-or use specific library page itself:
-http://www.lib.berkeley.edu/libraries/visual-resources-center
+# Hardcode dates into URLs for libraries 
+# or use specific library page itself:
+# http://www.lib.berkeley.edu/libraries/visual-resources-center
 
-1. Iterate through list of libraries.
-2. For each library:
-    - Pull Sunday - Saturday data from library specific website
-    - Create array of (datetime object, open time, close time)
-    - Push to libraries dictionary
-3. Push to JSON
-"""
+# 1. Iterate through list of libraries.
+# 2. For each library:
+#     - Pull Sunday - Saturday data from library specific website
+#     - Create array of (datetime object, open time, close time)
+#     - Push to libraries dictionary
+# 3. Push to JSON
+# """
 
 set_library_ids(libraries)
 scrape_library_hours(library_names)
