@@ -113,11 +113,10 @@ def scrape_library_hours(libraries, library_names):
 
             response_json = json.loads(response_str)
             hours_dict = response_json["hours"]
-            library_dict["hours"] = []
             for days in hours_dict:
                 day_hours = parse_hours(days["day"])
                 for item in day_hours:
-                    library_dict["hours"].append(helper.build_time_interval(*item))
+                    library_dict["open_close_array"].append(helper.build_time_interval(*item))
         except Exception:
             '''
             Edge cases: Library doesn't have start, end time. Has "closed" or some text? 
@@ -152,3 +151,6 @@ initialize_libraries_dict(libraries, library_names)
 set_library_ids(libraries)
 scrape_library_hours(libraries, library_names)
 print(libraries)
+
+with open("libraries.txt", "w") as outfile:
+    json.dump(libraries, outfile)
