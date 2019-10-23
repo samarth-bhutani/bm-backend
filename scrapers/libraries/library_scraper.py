@@ -8,15 +8,19 @@ import helper
 libraries = {}
 library_names = ["Anthropology Library", "Art History/Classics Library", "BAMPFA Film Library & Study Center", "Bancroft Library/University Archives", "Berkeley Law Library", "Bioscience, Natural Resources & Public Health Library", "Business Library", "Career Counseling Library",
 "CED Visual Resources Center", "Chemistry and Chemical Engineering Library", "Doe Library", "Earth Sciences & Map Library", "East Asian Library", "Engineering Library", "Environmental Design Library", "Ethnic Studies Library", "Graduate Theological Union Library", "Institute of Governmental Studies Library", "Institute of Transportation Studies Library", "Main (Gardner) Stacks", "Mathematics Statistics Library", "Moffitt Library", "Morrison Library", "Music Library", "Newspapers & Microforms Library", "Optometry and Health Sciences Library", "Physics-Astronomy Library", "Robbins Collection Library", "Social Research Library", "South/Southeast Asia Library"]
-library_urls = ["http://www.lib.berkeley.edu/libraries/anthropology-library",
-                "http://www.lib.berkeley.edu/libraries/art-history-classics-library", "http://www.lib.berkeley.edu/libraries/bampfa-library",
-                "http://www.lib.berkeley.edu/libraries/bancroft-library", "http://www.lib.berkeley.edu/libraries/law-library", "http://www.lib.berkeley.edu/libraries/bioscience-library", "http://www.lib.berkeley.edu/libraries/business-library", "http://www.lib.berkeley.edu/libraries/career-counseling-library", "http://www.lib.berkeley.edu/libraries/visual-resources-center", "http://www.lib.berkeley.edu/libraries/chemistry-library", "http://www.lib.berkeley.edu/libraries/doe-library", "http://www.lib.berkeley.edu/libraries/earth-sciences-library", "http://www.lib.berkeley.edu/libraries/east-asian-library", "http://www.lib.berkeley.edu/libraries/engineering-library", "http://www.lib.berkeley.edu/libraries/environmental-design-library", "http://www.lib.berkeley.edu/libraries/ethnic-studies-library", "http://www.lib.berkeley.edu/libraries/graduate-theological-union-library", "http://www.lib.berkeley.edu/libraries/igs-library", "http://www.lib.berkeley.edu/libraries/its-library", "http://www.lib.berkeley.edu/libraries/main-stacks", "http://www.lib.berkeley.edu/libraries/math-library", "http://www.lib.berkeley.edu/libraries/moffitt-library", "http://www.lib.berkeley.edu/libraries/morrison-library", "http://www.lib.berkeley.edu/libraries/music-library", "http://www.lib.berkeley.edu/libraries/newspaper-microform-library", "http://www.lib.berkeley.edu/libraries/optometry-library", "http://www.lib.berkeley.edu/libraries/physics-library", "http://www.lib.berkeley.edu/libraries/robbins-collection-library", "http://www.lib.berkeley.edu/libraries/social-research-library", "http://www.lib.berkeley.edu/libraries/ssea-library"]
-library_to_url = {}
-#Initializing libraries dictionary
-for i in range(len(library_names)):
-    library = library_names[i]
-    libraries[library] = {}
-    library_to_url[library] = library_urls[i]
+
+def initialize_libraries_dict(libraries, library_names):
+    for i in range(len(library_names)):
+        library = library_names[i]
+        libraries[library] = {}
+        libraries[library]["name"] = library_names[i]
+        libraries[library]["latitude"] = None
+        libraries[library]["longitude"] = None
+        libraries[library]["phone"] = None
+        libraries[library]["picture"] = None
+        libraries[library]["description"] = None
+        libraries[library]["address"] = None
+        libraries[library]["open_close_array"] = []
 
 def set_library_ids(libraries):
     '''
@@ -69,37 +73,63 @@ def parse_hours(day):
             helper.standarize_timestring(day["end"]),
             date))
 
-    # if day["start2"] != None and day["end2"] != None:
-    #     hours_list.append((date, day["start2"], day["end2"]))
-
+    if day["start2"] != None and day["end2"] != None:
+        hours_list.append((
+            helper.standarize_timestring(day["start2"]),
+            helper.standarize_timestring(day["end2"]),
+            date))
     return hours_list
     
+def get_library_url(library_id): 
+    '''
+    Returns the JSON api url of the given library, identified by library_id, for the current week.
+    '''
+    curr_week_dates = helper.get_this_week_dates()
+    sunday_datetime = curr_week_dates[0]
+    saturday_datetime = curr_week_dates[-1]
+
+    url_p1 = "http://www.lib.berkeley.edu/hours/api/libraries/"
+    url_p2 = str(library_id)
+    url_p3 = "?begin_date="
+    begin_date = str(sunday_datetime.year) + "-" + str(sunday_datetime.month) + "-" + str(sunday_datetime.day)
+    url_p4 = "&end_date="
+    end_date = str(saturday_datetime.year) + "-" + str(saturday_datetime.month) + "-" + str(saturday_datetime.day)
+    url = url_p1 + url_p2 + url_p3 + begin_date + url_p4 + end_date
+    return url
 
 def scrape_library_hours(libraries, library_names): 
     '''
     Scrapes library hours from library urls and stores it into the libraries dictionary.
     '''
-    for library_name in library_names[:1]:
+    for library_name in library_names:
         library_dict = libraries[library_name]
-    # anthro_lib = libraries[0]
-    # library_url = library_to_url[anthro_lib]
-        response = requests.get("http://www.lib.berkeley.edu/hours/api/libraries/194?begin_date=2019-10-27&end_date=2019-11-02")
+        library_id = library_dict["id"]
+        url = get_library_url(library_id)
+        try:
+            response = requests.get(url)
+            response_content = response.content
+            response_str = response_content.decode("utf-8")[1:-1]
+        # need some processing to response_str because json doesn't like multiple dictionaries in response_str
 
-    # try:
-        response_content = response.content
-        response_str = response_content.decode("utf-8")[1:-1]
-        response_json = json.loads(response_str)
-        hours_dict = response_json["hours"]
-        library_dict["hours"] = []
-        for days in hours_dict:
-            day_hours = parse_hours(days["day"])
-            print(day_hours)
-            for item in day_hours:
-                print(helper.build_time_interval(*item))
-                # library_dict["hours"].append(item)
+            response_json = json.loads(response_str)
+            hours_dict = response_json["hours"]
+            library_dict["hours"] = []
+            for days in hours_dict:
+                day_hours = parse_hours(days["day"])
+                for item in day_hours:
+                    library_dict["hours"].append(helper.build_time_interval(*item))
+        except Exception:
+            '''
+            Edge cases: Library doesn't have start, end time. Has "closed" or some text? 
+            
+            Library JSON API url has multiple dictionaries >>> json.loads() doesn't like that. 
+            '''
 
+            print("Exception has occurred for library with id: {0}.".format(library_id))
+      
+        
+        # print(library_dict["hours"])
 
-#page.content is how to get html 
 
 # """
 # Hours is an array of: (datetime object, open time, close time)
@@ -118,6 +148,7 @@ def scrape_library_hours(libraries, library_names):
 #     - Push to libraries dictionary
 # 3. Push to JSON
 # """
-
+initialize_libraries_dict(libraries, library_names)
 set_library_ids(libraries)
 scrape_library_hours(libraries, library_names)
+print(libraries)
