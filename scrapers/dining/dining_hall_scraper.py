@@ -150,4 +150,6 @@ dining_halls_information = {
 scrape_menus(dining_halls_information)
 scrape_details(dining_halls_information)
 
-print(dining_halls_information)
+f = open("cafes.json", "w+")
+f.write(str(dining_halls_information))
+f.close()
