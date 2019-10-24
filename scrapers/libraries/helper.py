@@ -192,8 +192,13 @@ def convert_to_posix(time, day, month, year):
 Builds a POSIX-timestamp based interval object that adheres to BM Backend Standardization (ref-link:    ) 
 Returns a tuple with opening time in POSIX format, closing time in POSIX format, notes about a place
 '''
-def build_time_interval(open, close, date, notes=""):
-    return {"open_time":convert_to_posix(open, date.day, date.month, date.year),
+def build_time_interval(open, close, date, notes="", is_closed=False):
+    if is_closed:
+        return {"open_time":convert_to_posix("00:00", date.day, date.month, date.year),
+            "close_time":convert_to_posix("00:00", date.day, date.month, date.year),
+            "notes":notes}
+    else:
+        return {"open_time":convert_to_posix(open, date.day, date.month, date.year),
             "close_time":convert_to_posix(close, date.day, date.month, date.year),
             "notes":notes}
 

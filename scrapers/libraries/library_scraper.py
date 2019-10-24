@@ -66,6 +66,26 @@ def parse_hours(day):
     datetime_object = datetime.datetime.strptime(day["day"], '%Y-%m-%d')
     date = datetime_object.date()
     hours_list = []
+    is_closed = day["closed"] 
+    print("error is here") 
+    if not is_closed: 
+        if day["start"] == None:
+            day["start"] = "00:00"
+        
+        # if day["start2"] == None:
+        #     day["start2"] = "00:00"
+
+        if day["end"] == None:
+            day["end"] = "23:59"
+        
+        if day["start2"] != None and day["end2"] == None:
+            day["end2"] = "23:59"
+
+    if is_closed:
+        day["start"] = "00:00"
+        day["start2"] = None
+        day["end"] = "00:00"
+        day["end2"] = None
 
     if day["start"] != None and day["end"] != None:
         hours_list.append((
@@ -78,6 +98,7 @@ def parse_hours(day):
             helper.standarize_timestring(day["start2"]),
             helper.standarize_timestring(day["end2"]),
             date))
+
     return hours_list
     
 def get_library_url(library_id): 
@@ -101,29 +122,30 @@ def scrape_library_hours(libraries, library_names):
     '''
     Scrapes library hours from library urls and stores it into the libraries dictionary.
     '''
-    for library_name in library_names:
+    for library_name in library_names[:1]:
         library_dict = libraries[library_name]
         library_id = library_dict["id"]
-        url = get_library_url(library_id)
+        url = get_library_url(212)
         try:
             response = requests.get(url)
-            response_content = response.content
-            response_str = response_content.decode("utf-8")[1:-1]
-        # need some processing to response_str because json doesn't like multiple dictionaries in response_str
-
-            response_json = json.loads(response_str)
+            response_page_json = response.json()
+            response_json = response_page_json[0]
             hours_dict = response_json["hours"]
+            print(len(hours_dict))
             for days in hours_dict:
-                day_hours = parse_hours(days["day"])
-                for item in day_hours:
-                    library_dict["open_close_array"].append(helper.build_time_interval(*item))
-        except Exception:
+                print(days)
+
+                # day_hours = parse_hours(days["day"])
+                # for item in day_hours:
+                #     # print(item)
+                #     library_dict["open_close_array"].append(helper.build_time_interval(*item))
+        except Exception as e:
             '''
             Edge cases: Library doesn't have start, end time. Has "closed" or some text? 
             
             Library JSON API url has multiple dictionaries >>> json.loads() doesn't like that. 
             '''
-
+            print(str(e))
             print("Exception has occurred for library with id: {0}.".format(library_id))
       
         
@@ -150,7 +172,12 @@ def scrape_library_hours(libraries, library_names):
 initialize_libraries_dict(libraries, library_names)
 set_library_ids(libraries)
 scrape_library_hours(libraries, library_names)
-print(libraries)
 
-with open("libraries.txt", "w") as outfile:
+with open("libraries.json", "w") as outfile:
     json.dump(libraries, outfile)
+
+
+'''
+Kevin: moffitt library special scraper 
+        differentiate between different floors 
+'''
