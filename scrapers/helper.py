@@ -1,5 +1,3 @@
-
-
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Date Retreival
@@ -83,7 +81,15 @@ The function takes in a timestring in AM/PM format (7am or 7:30pm or 17:00) and 
 '''
 def standarize_timestring(time_string):
     if not ("am" in time_string or "pm" in time_string):
-        return time_string
+        if ":" in time_string:
+            return time_string
+        elif "." in time_string:
+            time_string = time_string.split(".")
+            return time_string[0] + ":" + time_string[1]
+        else:
+            if len(time_string) == 3:
+                return time_string[0] + ":" + time_string[-2:]
+            return time_string[0:2] + ":" + time_string[-2:]
 
     time_string = time_string.split(",")[0]
 
@@ -186,10 +192,15 @@ def convert_to_posix(time, day, month, year):
 Builds a POSIX-timestamp based interval object that adheres to BM Backend Standardization (ref-link:    ) 
 Returns a tuple with opening time in POSIX format, closing time in POSIX format, notes about a place
 '''
-def build_time_interval(open, close, date, notes):
-    return (convert_to_posix(open, date.day, date.month, date.year),
-            convert_to_posix(close, date.day, date.month, date.year),
-            notes)
+def build_time_interval(open, close, date, notes="", is_closed=False):
+    if is_closed:
+        return {"open_time":convert_to_posix("00:00", date.day, date.month, date.year),
+            "close_time":convert_to_posix("00:00", date.day, date.month, date.year),
+            "notes":notes}
+    else:
+        return {"open_time":convert_to_posix(open, date.day, date.month, date.year),
+            "close_time":convert_to_posix(close, date.day, date.month, date.year),
+            "notes":notes}
 
 
 '''
