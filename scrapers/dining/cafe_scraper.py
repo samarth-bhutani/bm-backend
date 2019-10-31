@@ -56,4 +56,6 @@ for cafe_name in cafe_names:
 scrape_menus(cafes_information)
 scrape_details(cafes_information)
 
-print(cafes_information)
+f = open("cafes.json", "w+")
+f.write(str(cafes_information))
+f.close()
