@@ -47,7 +47,7 @@ def set_library_ids(libraries):
     libraries["Graduate Theological Union Library"]["id"] = 249
     libraries["Institute of Governmental Studies Library"]["id"] = 236
     libraries["Institute of Transportation Studies Library"]["id"] = 240
-    libraries["Main (Gardner) Stacks"]["id"] = 179 
+    libraries["Main (Gardner) Stacks"]["id"] = 174 
     libraries["Mathematics Statistics Library"]["id"] = 214
     libraries["Moffitt Library"]["id"] = 179
     libraries["Morrison Library"]["id"] = 200
@@ -67,14 +67,9 @@ def parse_hours(day):
     date = datetime_object.date()
     hours_list = []
     is_closed = day["closed"] 
-    # print("error is here") 
     if not is_closed: 
         if day["start"] == None:
             day["start"] = "00:00"
-        
-        # if day["start2"] == None:
-        #     day["start2"] = "00:00"
-
         if day["end"] == None:
             day["end"] = "23:59"
         
@@ -147,37 +142,15 @@ def scrape_library_hours(libraries, library_names):
             '''
             print(str(e))
             print("Exception has occurred for library with id: {0}.".format(library_id))
-      
-        
-        # print(library_dict["hours"])
-
-
-# """
-# Hours is an array of: (datetime object, open time, close time)
-# Ex: (datetime object, 1pm, 5:30pm)
-
-# Get last Sunday
-
-# Hardcode dates into URLs for libraries 
-# or use specific library page itself:
-# http://www.lib.berkeley.edu/libraries/visual-resources-center
-
-# 1. Iterate through list of libraries.
-# 2. For each library:
-#     - Pull Sunday - Saturday data from library specific website
-#     - Create array of (datetime object, open time, close time)
-#     - Push to libraries dictionary
-# 3. Push to JSON
-# """
+"""
+    1. Initilize libraries dictionary
+    2. Set the library ids for each library id. Hardcoded values because the ids are unique.
+    3. Go through the JSON API for each library page and get data from the JSON. 
+    4. Output a JSON file with all the values.
+"""
 initialize_libraries_dict(libraries, library_names)
 set_library_ids(libraries)
 scrape_library_hours(libraries, library_names)
 
 with open("libraries.json", "w") as outfile:
     json.dump(libraries, outfile)
-
-
-'''
-Kevin: moffitt library special scraper 
-        differentiate between different floors 
-'''
