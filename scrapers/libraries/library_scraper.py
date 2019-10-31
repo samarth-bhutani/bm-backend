@@ -67,7 +67,7 @@ def parse_hours(day):
     date = datetime_object.date()
     hours_list = []
     is_closed = day["closed"] 
-    print("error is here") 
+    # print("error is here") 
     if not is_closed: 
         if day["start"] == None:
             day["start"] = "00:00"
@@ -87,13 +87,13 @@ def parse_hours(day):
         day["end"] = "00:00"
         day["end2"] = None
 
-    if day["start"] != None and day["end"] != None:
+    if day["start"] != None and day["start"] != '' and day["end"] != None and day["end"] != '':
         hours_list.append((
             helper.standarize_timestring(day["start"]),
             helper.standarize_timestring(day["end"]),
             date))
 
-    if day["start2"] != None and day["end2"] != None:
+    if day["start2"] != None and day["start2"] != '' and day["end2"] != None and day["start2"] != '':
         hours_list.append((
             helper.standarize_timestring(day["start2"]),
             helper.standarize_timestring(day["end2"]),
@@ -122,23 +122,23 @@ def scrape_library_hours(libraries, library_names):
     '''
     Scrapes library hours from library urls and stores it into the libraries dictionary.
     '''
-    for library_name in library_names[:1]:
+    for library_name in library_names:
         library_dict = libraries[library_name]
         library_id = library_dict["id"]
-        url = get_library_url(212)
+        url = get_library_url(206)
         try:
             response = requests.get(url)
             response_page_json = response.json()
             response_json = response_page_json[0]
             hours_dict = response_json["hours"]
-            print(len(hours_dict))
+            # print(len(hours_dict))
             for days in hours_dict:
-                print(days)
+                # print(days)
 
-                # day_hours = parse_hours(days["day"])
-                # for item in day_hours:
-                #     # print(item)
-                #     library_dict["open_close_array"].append(helper.build_time_interval(*item))
+                day_hours = parse_hours(days["day"])
+                for item in day_hours:
+                    # print(item)
+                    library_dict["open_close_array"].append(helper.build_time_interval(*item))
         except Exception as e:
             '''
             Edge cases: Library doesn't have start, end time. Has "closed" or some text? 
