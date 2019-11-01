@@ -5,7 +5,7 @@ Food Pantry,Campus Resource,"2495 Bancroft Way, Berkeley, CA 94720",Room 68 MLK 
 Gender Equity and Resource Center,Campus Resource,"202 Cesar Chavez, Berkeley, CA 94705",Cesar Chavez Student Center,No,geneq@berkeley.edu,37.869911,-122.260266,Yes,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,(510) 642-4786,
 Office for the Prevention of Harassment & Discrimination,Campus Resource,"2111 Bancroft Way, Suite 300. Berkeley, CA 94720-1120",Office of the Chancellor,Yes,ask_ophd@berkeley.edu,37.868198,-122.266918,No,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,510) 643-7985,
 Office of the Registrar,Campus Resource,120 Sproul Hall,120 Sproul Hall,No,orres@berkeley.edu,37.869622,-122.25876,Yes,Closed,Cloased,10am-12pm,2pm-4pm,2pm-4pm,10am-12pm,Closed,510-664-9181,
-Ombuds Office,Campus Resource,"2350 Bowditch Street, Berkeley, California",Fox Cottage,Yes,,37.869475,-122.256267,No,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Cloed,(510) 642-7823,
+Ombuds Office,Campus Resource,"2350 Bowditch Street, Berkeley, California",Fox Cottage,Yes,,37.869475,-122.256267,No,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,(510) 642-7823,
 Path to Care (Confidential Care Advocates),Campus Resource,,PATH to Care Center,No,pathtocare@berkeley.edu,,,Yes,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,510-643-2005,
 Student Advocate Office,Campus Resource,"2465 Bancroft Way, Berkeley, CA, 94704","Eshleman Hall, Office 412B",Yes,help@berkeleysao.org,37.868994,-122.250377,Yes,Closed,10am-5pm,10am-5pm,10am-5pm,10am-5pm,10am-5pm,Closed,(510) 642-6912,
 Student Legal Services,Campus Resource,"Barrow Ln, Berkeley, CA 94704",102 Sproul Hall,Yes,https://ucberkeley-sls.youcanbook.me/,37.869811,-122.258765,Yes,Closed,10am-5pm,10am-5pm,10am-5pm,10am-5pm,10am-5pm,Closed,,
@@ -16,20 +16,20 @@ UCPD,Campus Resource,"1 Cross-Sproul Path, Berkeley, CA 94720",UC Police Departm
 Mental Health Resource 1,Mental Health,Graduate Assembly Wellness Office,444D Eshelman Hall,No,businessoffice@ga.berkeley.edu,,,Yes,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,510-642-2175,
 , ,,,,,,,,,,,,,,,,
 Mental Health Resource 2,Mental Health,Haas School of Business,"Haas, Room F408
-Haas students only, (510) 642-4853",,,37.871465,-122.253445,,,,,,,,,,
+Haas students only, (510) 642-4853",Yes,dcapone@berkeley.edu,37.871465,-122.253445,Yes,Closed,Closed,8am-5pm,8am-5pm,8am-5pm,Closed,Closed,510-642-4853,
 Mental Health Resource 3,Mental Health,Wurster Hall,"Room 220
-All students, (510) 642-6633",,,37.870735,-122.254893,,,,,,,,,,
+All students, (510) 642-6633",No,du@berkeley.edu,37.870735,-122.254893,Yes,Closed,Closed,Closed,Closed,1:15pm-3pm,Closed,Closed,(510) 643-5738,
 Mental Health Resource 4,Mental Health,Hildebrand Hall,"Room B52
-CoC students only, (510) 664-7723",,,37.872536,-122.255726,,,,,,,,,,
+CoC students only, (510) 664-7723",No,,37.872536,-122.255726,Yes,Closed,Closed,2pm-4pm,Closed,Closed,10am-12pm,Closed,(510) 664-7723 ,
 Mental Health Resource 5,Mental Health,Bechtel Engineering Center,"Room 241
-Engineering students",,,37.874026,-122.258391,,,,,,,,,,
+Engineering students",No,,37.874026,-122.258391,Yes,Closed,Closed,2pm-4pm,Closed,Closed,Closed,Closed,(510) 643-7850 ,
 Mental Health Resource 6,Mental Health,Cesar E. Chavez Student Center,"Room 150
-All UC Berkeley students, (510) 643-5738",,,37.869774,-122.260036,,,,,,,,,,
+All UC Berkeley students, (510) 643-5738",No,,37.869774,-122.260036,Yes,Closed,11am-5pm,"1-2pm, 3pm-5pm",2pm-4pm,2pm-6pm,Closed,Closed,(510) 642-9494,
 Mental Health Resource 7,Mental Health,Anna Head Alumnae Hall,"Building E
-All UC Berkeley students, (510) 642-9494",,,37.8663273,-122.259784,,,,,,,,,,
-Mental Health Resource 8,Mental Health,Boalt Law School,"Law students only, (510) 643-5447",,,37.869909,-122.2550077,,,,,,,,,,
+All UC Berkeley students, (510) 642-9494",Yes,,37.8663273,-122.259784,Yes,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,(510) 642-9494,
+Mental Health Resource 8,Mental Health,Boalt Law School,"Law students only, (510) 643-5447",Yes,ctchang@berkeley.ed,37.869909,-122.2550077,Yes,10am-4pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,(510) 642-9494,
 Mental Health Resource 9,Mental Health,Tang Urgent Counseling ,"Floor 3
-All UC Berkeley students",,,37.8676679,-122.2664745,,,,,,,,,,
+All UC Berkeley students",No,,37.8676679,-122.2664745,Yes,Closed,8am-6pm,8am-6pm,8am-6pm,8am-6pm,8am-6pm,10am-4pm,(510) 642-3188,
 Microwave 1,Microwave,GBC,,,,37.869844,-122.259645,,,,,,,,,,
 Microwave 2,Microwave,RSF Pro Shop,,,,37.868552,-122.262814,,,,,,,,,,
 Microwave 3,Microwave,Micro Yali's at VLSB,50 cent cost,,,37.871608,-122.261804,,,,,,,,,,
@@ -39,7 +39,7 @@ Microwave 6,Microwave,Stiles Hall,Basement of MLK,,,37.86922,-122.259673,,,,,,,,
 Microwave 7,Microwave,Soda Hall,"311, 562, 678, 728",,,37.875594,-122.258786,,,,,,,,,,
 Microwave 8,Microwave,Cory TeaOne,,,,37.875036,-122.257324,,,,,,,,,,
 Microwave 9,Microwave,Foothill Dining Center,TV Room,,,37.875178,-122.255851,,,,,,,,,,
-Microwave 10,Microwave,Terrace Cafe,,,,37.874136,-122.258393,,,day ,open, close,,,,,
+Microwave 10,Microwave,Terrace Cafe,,,,37.874136,-122.258393,,,,,,,,,,
 Microwave 11,Microwave,Common Grounds,Top Floor of Dwinelle Hall,,,37.870593,-122.260463,,,,,,,,,,
 Nap Pod 1,Nap Pod,Tang Center,2 Massage Chairs,,,37.867668,-122.264286,,Closed,"8am-12pm, 2pm-5pm",Closed,8am-5pm,9am-12pm,9am-12pm,Closed,,
 Nap Pod 2,Nap Pod,RSF,3 Massage Chairs,,,37.868552,-122.262814,,Closed,Closed,8am-5pm,8am-5pm,8am-5pm,Closed,Closed,,
