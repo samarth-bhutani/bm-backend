@@ -1,6 +1,6 @@
 import requests
 import bs4 as bs
-
+import datetime
 
 dining_halls = {}
 dining_halls["Crossroads"] = {}
@@ -126,7 +126,9 @@ def scrape_menus(dining_halls):
 The function scrape_details takes a dictionary in as a parameter, and details about each dining hall location are stored in it
 '''
 def scrape_details(dining_halls):
+    index = 0
     for dining_hall_name in dining_hall_names:
+
         dining_hall_dict = dining_halls[dining_hall_name]
 
         dining_hall_dict["name"] = dining_hall_name
@@ -136,20 +138,55 @@ def scrape_details(dining_halls):
         dining_hall_dict["picture"] = None
         dining_hall_dict["description"] = None
         dining_hall_dict["address"] = None
-        dining_hall_dict["open_close_array"] = []
+        dining_hall_dict["open_close_array"] = scrape_times(index)
+        index+=1
 
+def scrape_times(index):
+    '''Objective: Scrape the data on convenience stores and campus restaurants.
+       Format: Has 2 dictionaries with arrays appended in the format (Open, Close, Breakfast/Lunch/Dinner, DatetimeObject)
+       How-to: Find all tables, goes through rows. Goes through all the tr, finds whether it's Breakfast/Lunch/Dinner and appends it with the opening closing time, adding
+       a datetime object using helper functions"
+       Contributed by Varun A'''
+    url = "https://caldining.berkeley.edu/locations/hours-operation/week-of-oct13"
+    source = requests.get(url)
+    soup = bs.BeautifulSoup(source.content, features='html.parser')
+    #return as format [(Open, close, date, Breakfast/lunch/dinner), (Open, close, date, Breakfast/lunch/dinner)]
+    data = [] #This is where we'll store data
+    tables = soup.find_all('table', {'class':'spacefortablecells'})
+    tab = tables[index] #Selects table based on index
+    table_body = tab.find('tbody')
+    rows = table_body.find_all('tr')
+
+    for row in rows:
+        cols = row.find_all('td')
+        cols = [ele.text.strip() for ele in cols]
+        for j in range(0, len(cols)):
+            if j == 0:
+                meal = cols[j]
+                continue
+            if cols[j] == "Closed":
+                a, b = 0, 0
+            else:
+                times = cols[j].split(',')
+                times2 = times[0].split('-')
+                a, b = standarize_timestring(times2[0]), standarize_timestring(times2[1])
+                bam = get_last_sunday()
+                x = bam + timedelta(days=j)
+                #Maybe call build_time internval here on (a,b,x)
+                current = (a, b, x, meal)
+                data.append(current)
+    data.pop(0)
+    print(data)
 
 
 dining_halls_information = {
-    "Crossroads":{},
     "Cafe 3":{},
     "Clark Kerr":{},
+    "Crossroads":{},
     "Foothill":{}
 }
 
-scrape_menus(dining_halls_information)
+#scrape_menus(dining_halls_information)
 scrape_details(dining_halls_information)
-
-f = open("cafes.json", "w+")
-f.write(str(dining_halls_information))
-f.close()
+#scrape_others()
+#print(dining_halls_information)
