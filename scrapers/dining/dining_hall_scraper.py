@@ -1,6 +1,7 @@
 import requests
 import bs4 as bs
 import datetime
+from helper import *
 
 dining_halls = {}
 dining_halls["Crossroads"] = {}
@@ -147,7 +148,12 @@ def scrape_times(index):
        How-to: Find all tables, goes through rows. Goes through all the tr, finds whether it's Breakfast/Lunch/Dinner and appends it with the opening closing time, adding
        a datetime object using helper functions"
        Contributed by Varun A'''
-    url = "https://caldining.berkeley.edu/locations/hours-operation/week-of-oct13"
+    months = {1:"jan", 2:"feb", 3:"march", 4:"april", 5:"may", 6:"june", 7:"july", 8:"august",9:"nov",10:"oct", 11:"nov", 12:"dec"}
+    day = str(get_last_sunday().day)
+    monthnum = get_last_sunday().month
+    month = months[monthnum]
+    url = "https://caldining.berkeley.edu/locations/hours-operation/week-of-" + month + day
+    
     source = requests.get(url)
     soup = bs.BeautifulSoup(source.content, features='html.parser')
     #return as format [(Open, close, date, Breakfast/lunch/dinner), (Open, close, date, Breakfast/lunch/dinner)]
@@ -171,11 +177,11 @@ def scrape_times(index):
                 times2 = times[0].split('-')
                 a, b = standarize_timestring(times2[0]), standarize_timestring(times2[1])
                 bam = get_last_sunday()
-                x = bam + timedelta(days=j)
+                x = bam + datetime.timedelta(days=j)
+                current_time = build_time_interval(a,b,x)
                 #Maybe call build_time internval here on (a,b,x)
-                current = (a, b, x, meal)
+                current = (current_time, meal)
                 data.append(current)
-    data.pop(0)
     print(data)
 
 
