@@ -59,6 +59,14 @@ def set_library_ids(libraries):
     libraries["Social Research Library"]["id"] = 224
     libraries["South/Southeast Asia Library"]["id"] = 192
 
+def remove_library_ids(libraries, library_names):
+    '''
+    Remove "id" field from each library dictionary. The final json cannot contain ids because of the schema.
+    '''
+    for library in library_names:
+        curr_library_dict = libraries[library] 
+        curr_library_dict.pop('id', None)
+
 def parse_hours(day):
     '''
     Takes in a day dictionary and returns list of DateTime object representations of the hours of each day. 
@@ -120,7 +128,7 @@ def scrape_library_hours(libraries, library_names):
     for library_name in library_names:
         library_dict = libraries[library_name]
         library_id = library_dict["id"]
-        url = get_library_url(206)
+        url = get_library_url(library_id)
         try:
             response = requests.get(url)
             response_page_json = response.json()
@@ -142,15 +150,18 @@ def scrape_library_hours(libraries, library_names):
             '''
             print(str(e))
             print("Exception has occurred for library with id: {0}.".format(library_id))
+            
 """
     1. Initilize libraries dictionary
     2. Set the library ids for each library id. Hardcoded values because the ids are unique.
     3. Go through the JSON API for each library page and get data from the JSON. 
     4. Output a JSON file with all the values.
 """
+
 initialize_libraries_dict(libraries, library_names)
 set_library_ids(libraries)
 scrape_library_hours(libraries, library_names)
+remove_library_ids(libraries, library_names)
 
 with open("libraries.json", "w") as outfile:
     json.dump(libraries, outfile)
