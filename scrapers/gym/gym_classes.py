@@ -2,6 +2,11 @@ from selenium import webdriver
 from models import GymClass
 import time
 import json
+
+import os, sys
+
+from os.path import dirname, join, abspath
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 from helper import *
 import datetime
 
