@@ -47,7 +47,67 @@ def scrape_details(cafes):
         cafe_dict["address"] = None
         cafe_dict["open_close_array"] = []
 
-
+def scrape_others():
+    '''Objective: Scrape the data on convenience stores and campus restaurants.
+       Format: Has 2 dictionaries with arrays appended in the format (Open, Close, DatetimeObject)
+       How-to: Find all tables, goes through rows. Goes through all the tr, finds the restaurant, matches it with the key in the corresponding dictionary and appends it 
+       with the opening closing time. 
+       a datetime object using helper functions"
+       Contributed by Varun A'''
+    conv_stores = {"Bear Market (Café 3)":[], "CKCub\n\t\t\t(Clark Kerr)":[],"Cub Market (Foothill)":[], "The Den, featuring Peet'\x80\x99s Coffee & Tea (Crossroads)":[]}
+    campus_rests = {"The Golden Bear Café":[], "Brown's":[], "Terrace Café":[], "Common Grounds":[],"The Pro Shop":[]}
+    url = "https://caldining.berkeley.edu/locations/hours-operation/week-of-oct13"
+    source = requests.get(url)
+    soup = bs.BeautifulSoup(source.content, features='html.parser')
+    tables = soup.find_all('table', {'class':'spacefortablecells'})
+    for i in range(4, 6):
+        tab = tables[i] 
+        table_body = tab.find('tbody')
+        rows = table_body.find_all('tr')
+        rows = rows[1:]
+        for row in rows:
+            cols = row.find_all('td')
+            cols = [ele.text.strip() for ele in cols]
+            if len(cols) == 0:
+                continue
+            key = cols[0]
+            for j in range(1, len(cols)):
+                if (i == 4):
+                    if cols[j] == "Closed":
+                        a, b = 0, 0
+                    else:
+                        times = cols[j].split(',')
+                        if len(times) == 1:
+                            times2 = times[0].split('-')
+                            a, b = times2[0], times2[1]
+                        else:
+                            times2 = times[0].split('-')
+                            times3 = times[1].split('-')
+                            c,d,a,b = times3[0],times3[1],times2[0],times2[1]
+                            x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
+                            current = (c, d, x)
+                            conv_stores[key].append(current)
+                    x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
+                    current = (a, b, x)
+                    conv_stores[key].append(current)
+                if (i == 5):
+                    if cols[j] == "Closed":
+                        a, b = 0, 0
+                    else:
+                        times = cols[j].split(',')
+                        if len(times) == 1:
+                            times2 = times[0].split('-')
+                            a, b = times2[0], times2[1]
+                        else:
+                            times2 = times[0].split('-')
+                            times3 = times[1].split('-')
+                            c,d,a,b = times3[0],times3[1],times2[0],times2[1]
+                            x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
+                            current = (c, d, x)
+                            campus_rests[key].append(current)
+                    x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
+                    current = (a, b, x)
+                    campus_rests[key].append(current)
 
 cafes_information = {}
 for cafe_name in cafe_names:
@@ -56,6 +116,4 @@ for cafe_name in cafe_names:
 scrape_menus(cafes_information)
 scrape_details(cafes_information)
 
-f = open("cafes.json", "w+")
-f.write(str(cafes_information))
-f.close()
+print(cafes_information)
