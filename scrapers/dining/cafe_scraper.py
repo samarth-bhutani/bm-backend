@@ -56,7 +56,11 @@ def scrape_others():
        Contributed by Varun A'''
     conv_stores = {"Bear Market (Café 3)":[], "CKCub\n\t\t\t(Clark Kerr)":[],"Cub Market (Foothill)":[], "The Den, featuring Peet'\x80\x99s Coffee & Tea (Crossroads)":[]}
     campus_rests = {"The Golden Bear Café":[], "Brown's":[], "Terrace Café":[], "Common Grounds":[],"The Pro Shop":[]}
-    url = "https://caldining.berkeley.edu/locations/hours-operation/week-of-oct13"
+    months = {1:"jan", 2:"feb", 3:"march", 4:"april", 5:"may", 6:"june", 7:"july", 8:"august",9:"nov",10:"oct", 11:"nov", 12:"dec"}
+    day = str(get_last_sunday().day)
+    monthnum = get_last_sunday().month
+    month = months[monthnum]
+    url = "https://caldining.berkeley.edu/locations/hours-operation/week-of-" + month + day
     source = requests.get(url)
     soup = bs.BeautifulSoup(source.content, features='html.parser')
     tables = soup.find_all('table', {'class':'spacefortablecells'})
@@ -83,12 +87,14 @@ def scrape_others():
                         else:
                             times2 = times[0].split('-')
                             times3 = times[1].split('-')
-                            c,d,a,b = times3[0],times3[1],times2[0],times2[1]
-                            x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
-                            current = (c, d, x)
+                            c,d,a,b = standarize_timestring(times3[0]),standarize_timestring(times3[1]),standarize_timestring(times2[0]),standarize_timestring(times2[1])
+                            bam = get_last_sunday()
+                            x = bam + datetime.timedelta(days=j) #get_last_sunday() + 
+                            current = build_time_interval(c,d,x)
                             conv_stores[key].append(current)
-                    x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
-                    current = (a, b, x)
+                    bam = get_last_sunday()
+                    x = bam + datetime.timedelta(days=j)
+                    current = build_time_interval(a,b,x)
                     conv_stores[key].append(current)
                 if (i == 5):
                     if cols[j] == "Closed":
@@ -101,12 +107,14 @@ def scrape_others():
                         else:
                             times2 = times[0].split('-')
                             times3 = times[1].split('-')
-                            c,d,a,b = times3[0],times3[1],times2[0],times2[1]
-                            x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
-                            current = (c, d, x)
+                            c,d,a,b = standarize_timestring(times3[0]),standarize_timestring(times3[1]),standarize_timestring(times2[0]),standarize_timestring(times2[1])
+                            bam = get_last_sunday()
+                            x = bam + datetime.timedelta(days=j) #get_last_sunday() + 
+                            current = build_time_interval(c,d,x)
                             campus_rests[key].append(current)
-                    x = datetime.timedelta(24*j,0,0) #get_last_sunday() + 
-                    current = (a, b, x)
+                    bam = get_last_sunday()
+                    x = bam + datetime.timedelta(days=j) #get_last_sunday() + 
+                    current = build_time_interval(a,b,x)
                     campus_rests[key].append(current)
 
 cafes_information = {}
@@ -114,6 +122,6 @@ for cafe_name in cafe_names:
     cafes_information[cafe_name] = {}
 
 scrape_menus(cafes_information)
-scrape_details(cafes_information)
+scrape_others()
 
 print(cafes_information)
