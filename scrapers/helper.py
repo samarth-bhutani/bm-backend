@@ -128,6 +128,7 @@ def fix_phone_number(phone, delimeters=["(", ")", "-", ".", " "]):
 Given a time, day, month and year, the function converts it to a datetime object timestamp
 '''
 def convert_to_timestamp(time, day, month, year):
+    time = standarize_timestring(time)
     hours = int(time.split(":")[0])
     mins = int(time.split(":")[1])
 
