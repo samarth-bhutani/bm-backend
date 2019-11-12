@@ -1,0 +1,43 @@
+{
+    "name": "Moffit Library"
+}{
+    "open_close_array": [
+        {
+            "open_time": 1573372800.0,
+            "close_time": 1573372800.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1573459200.0,
+            "close_time": 1573545540.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1573545600.0,
+            "close_time": 1573545600.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1573632000.0,
+            "close_time": 1573718340.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1573718400.0,
+            "close_time": 1573804740.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1573804800.0,
+            "close_time": 1573804800.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1573891200.0,
+            "close_time": 1573891200.0,
+            "notes": ""
+        }
+    ]
+}{
+    "id": "179"
+}
