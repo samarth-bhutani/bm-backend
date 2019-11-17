@@ -90,12 +90,21 @@ def scrapper():
         output = helper.build_time_interval(start_time,end_time,date_converted)
         output_array.append(output)
 
-    JSON_array.append({"name":"Moffit Library"})
+
+
+    JSON_array.append({"name":"Moffitt Library"})
+    JSON_array.append({"latitude":"37.87277"})
+    JSON_array.append({"longitude":"-122.260244"})
+    JSON_array.append({"phone":"510-642-5072"})
+    JSON_array.append({"picture":None})
+    JSON_array.append({"phone":"510-642-5072"})
+    JSON_array.append({"description":None})
+    JSON_array.append({"address":"350 Moffitt Library, Berkeley, CA 94720"})
     JSON_array.append({"open_close_array":output_array})
-    JSON_array.append({"id":"179"})
+    
 
     #Calls output_to_json file
-    output_to_json(JSON_array)
+    #output_to_json(JSON_array)
 
 
 
