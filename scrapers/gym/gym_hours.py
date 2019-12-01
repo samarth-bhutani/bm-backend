@@ -8,6 +8,7 @@ import os, sys
 from os.path import dirname, join, abspath
 sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 from helper import *
+
 import json
 
 RSF_HOURS = 'https://recsports.berkeley.edu/rsf-hours/'
