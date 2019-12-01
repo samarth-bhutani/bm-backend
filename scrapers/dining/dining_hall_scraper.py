@@ -1,5 +1,7 @@
 import requests
 import bs4 as bs
+import os
+import pandas as pd
 import datetime
 from scrapers.helper import *
 
@@ -105,19 +107,28 @@ class DiningHallScraper:
     The function scrape_details takes a dictionary in as a parameter, and details about each dining hall location are stored in it
     '''
     def scrape_details(self, dining_halls, dining_hall_names):
+        path = os.path.dirname(__file__).split('/')[:-2]
+        pathS = ""
+
+        for p in path:
+            pathS += p + '/'
+
+        data1 = pd.read_csv(pathS + "csv_data/latitude_longitudes.csv")
+        data2 = pd.read_csv(pathS + "csv_data/images.csv")
+
         index = 0
         for dining_hall_name in dining_hall_names:
 
             dining_hall_dict = dining_halls[dining_hall_name]
 
             dining_hall_dict["name"] = dining_hall_name
-            dining_hall_dict["latitude"] = None
-            dining_hall_dict["longitude"] = None
+            dining_hall_dict["latitude"] = list(data1[data1['name'] == dining_hall_name]['latitude'])[0]
+            dining_hall_dict["longitude"] = list(data1[data1['name'] == dining_hall_name]['longitude'])[0]
             dining_hall_dict["phone"] = None
             dining_hall_dict["menu"] = None
-            dining_hall_dict["picture"] = None
+            dining_hall_dict["picture"] = list(data2[data2['name'] == dining_hall_name]['imageurl'])[0]
             dining_hall_dict["description"] = None
-            dining_hall_dict["address"] = None
+            dining_hall_dict["address"] = list(data1[data1['name'] == dining_hall_name]['address'])[0]
             dining_hall_dict["open_close_array"] = self.scrape_times(index)
             dining_hall_dict["menu"] = {}
 

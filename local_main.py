@@ -7,7 +7,7 @@ from scrapers.dining.cafe_scraper import CafeScraper
 from scrapers.dining.dining_hall_scraper import DiningHallScraper
 from scrapers.resources.resources_scraper import ResourcesScraper
 
-LibraryScraper().scrape()
+print(LibraryScraper().scrape())
 MoffitLibraryScraper().scrape()
 GymScraper().scrape()
 CafeScraper().scrape()

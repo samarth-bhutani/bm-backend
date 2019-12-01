@@ -1,4 +1,4 @@
-location,imageurl
+name,imageurl
 Anthropology Library,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FAnthropology_Library.jpg?alt=media&token=6c431bb2-d284-4efe-bf59-f4dba195136b
 Art History/Classics Library,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FArt_History_Classics_Library.jpg?alt=media&token=d4a2cd37-c36e-4b06-a819-aa9e319c6cb6
 BAMPFA Film Library & Study Center,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FBAMPFA_Film_Library_Study_Center.jpg?alt=media&token=e22851b0-30c7-4eac-9b44-00ef124946b0
@@ -52,7 +52,7 @@ Optometry and Health Sciences Library,https://firebasestorage.googleapis.com/v0/
 Path to Care (Confidential Care Advocates),
 Physics-Astronomy Library,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FPhysics_Astronomy_Library.jpg?alt=media&token=12edc75e-cf52-4b1b-b7a9-8dbe766feacc
 Privileges Desk,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FPrivileges_Desk.jpg?alt=media&token=16c76227-7749-4489-8f15-ca1d7420d806
-Qualcomm Caf�,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2Fba8441de0e0aa39dced9185f7eaafd7875153f24-640x360.jpg?alt=media&token=7c3b6164-0164-46ae-9c2a-cdd04174ebfb
+Qualcomm Cafe,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2Fba8441de0e0aa39dced9185f7eaafd7875153f24-640x360.jpg?alt=media&token=7c3b6164-0164-46ae-9c2a-cdd04174ebfb
 Recreational Sports Facility,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FRSF.jpg?alt=media&token=e0fa3925-cd42-4098-93a0-6dc2d7b247e5
 Robbins Collection Library,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FRobbins_Collection_Library.jpg?alt=media&token=6cc15f60-430a-4274-a03c-93b405cc9c9c
 RSF,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FRSF.jpg?alt=media&token=e0fa3925-cd42-4098-93a0-6dc2d7b247e5
@@ -66,7 +66,7 @@ Suicide Prevention Resource Center,
 Tang Center,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2Ftang%20center.jpg?alt=media&token=f749c3c0-bd6b-45b8-a977-deffcea3cad6
 The Center for Student Conduct,
 The Den,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FThe_Den.jpg?alt=media&token=819bdcd8-9a35-4d7a-96f7-eb52297eb5d7
-The Golden Bear Caf�,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FGolden_Bear_Cafe.jpg?alt=media&token=8d0aaea2-7db9-42c6-8108-ec95eb51573e
+The Golden Bear Cafe,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FGolden_Bear_Cafe.jpg?alt=media&token=8d0aaea2-7db9-42c6-8108-ec95eb51573e
 Tolman Hall,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FTolman_Hall%2C_University_of_California%2C_Berkeley_Graduate_School_of_Education.jpg?alt=media&token=f65383cb-773d-4563-ad04-01089169d18a
 Tolman Hall Tech Lounge,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2FTolman_Hall%2C_University_of_California%2C_Berkeley_Graduate_School_of_Education.jpg?alt=media&token=f65383cb-773d-4563-ad04-01089169d18a
 UC Berkeley Food Pantry,https://firebasestorage.googleapis.com/v0/b/berkeley-mobile.appspot.com/o/images%2Ffood%20pantry.jpg?alt=media&token=907a8c8a-8a4d-4a5d-8f49-d770430be8ab

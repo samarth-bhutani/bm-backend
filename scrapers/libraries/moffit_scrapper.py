@@ -49,8 +49,6 @@ class MoffitLibraryScraper:
         # Array will hold all the scrapped open/close times.
         output_array = []
 
-        #Array will hold all the data that will need to be exported to JSON format.
-        JSON_array = []
 
         #Scrapped master list of open/close times, stored in array.
         master_list = data[0]["hours"]
@@ -93,14 +91,13 @@ class MoffitLibraryScraper:
 
 
 
-        JSON_array.append({"name":"Moffitt Library"})
-        JSON_array.append({"latitude":"37.87277"})
-        JSON_array.append({"longitude":"-122.260244"})
-        JSON_array.append({"phone":"510-642-5072"})
-        JSON_array.append({"picture":None})
-        JSON_array.append({"phone":"510-642-5072"})
-        JSON_array.append({"description":None})
-        JSON_array.append({"address":"350 Moffitt Library, Berkeley, CA 94720"})
-        JSON_array.append({"open_close_array":output_array})
+        out = {"name":"Moffitt Library",
+               "latitude":"37.87277",
+               "longitude":"-122.260244",
+               "phone":"510-642-5072",
+               "picture":None,
+               "description":None,
+               "address":"350 Moffitt Library, Berkeley, CA 94720",
+               "open_close_array":output_array}
 
-        return JSON_array
+        return out

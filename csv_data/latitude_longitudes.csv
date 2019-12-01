@@ -1,4 +1,4 @@
-location,address,latitude,longitude
+name,address,latitude,longitude
 Cafe 3,"2436 Durant Ave, Berkeley, CA 94704",37.867157,-122.260367
 Clark Kerr,"2601 Warring St, Berkeley, CA 94720",37.8637645,-122.2499039
 Crossroads,"2415 Bowditch St, Berkeley, CA 94720",37.8669091,-122.256178
@@ -70,6 +70,6 @@ Tolman Hall Tech Lounge,,37.874087,-122.263879
 University Village,,37.883588,-122.304965
 College of Chemistry,,37.873089,-122.256075
 Brown's,"2255 Hearst Ave, Berkeley, CA 94709",37.873374,-122.264974
-The Golden Bear Café,"Sather Rd, Berkeley, CA 94720",37.869833,-122.259652
+The Golden Bear Cafe,"Sather Rd, Berkeley, CA 94720",37.869833,-122.259652
 The Den,"2415 Bowditch St, Berkeley, CA 94720",37.866936,-122.256203
-Qualcomm Café,"2594 Hearst Ave, Berkeley, CA 94709",37.874443,-122.258493
+Qualcomm Cafe,"2594 Hearst Ave, Berkeley, CA 94709",37.874443,-122.258493
