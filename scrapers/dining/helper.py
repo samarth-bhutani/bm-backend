@@ -5,44 +5,54 @@
 Gets the Sunday that happened during the start of this week. If today is a Monday/Tuesday..../Saturday, it would be
 the Sunday before today. If it is Sunday today, it will return today.
 '''
+
+
 def get_last_sunday():
     import datetime
-    
+
     today = datetime.date.today()
     idx = (today.weekday() + 1) % 7  # MON = 0, SUN = 6 -> SUN = 0 .. SAT = 6
     sun = today - datetime.timedelta(idx)
     return sun
 
+
 '''
 Gets the Sunday that will happen during the start of next week. If today is a Monday/Tuesday..../Saturday, it would be 
 the Sunday after today. If it is Sunday today, it will return next Sunday.
 '''
+
+
 def get_next_sunday():
     import datetime
-    
+
     today = datetime.date.today()
     idx = (today.weekday() + 1) % 7  # MON = 0, SUN = 6 -> SUN = 0 .. SAT = 6
     sun = today + datetime.timedelta(7 - idx)
     return sun
 
+
 '''
 Gets the entire week's worth of dates starting from get_last_sunday()
 '''
+
+
 def get_this_week_dates():
     sunday = get_last_sunday()
     from datetime import timedelta
-    
+
     dates_array = []
-    
+
     for i in range(7):
         dates_array.append(sunday + timedelta(days=i))
-        
+
     return dates_array
 
 
 '''
 Gets the entire next week's worth of dates starting from get_next_sunday()
 '''
+
+
 def get_next_week_dates():
     sunday = get_next_sunday()
     from datetime import timedelta
@@ -58,6 +68,8 @@ def get_next_week_dates():
 '''
 Gets the next seven days worth of dates starting from today
 '''
+
+
 def get_next_7_days():
     import datetime
 
@@ -79,6 +91,8 @@ def get_next_7_days():
 '''
 The function takes in a timestring in AM/PM format (7am or 7:30pm or 17:00) and changes it to HH:MM format (17:00)
 '''
+
+
 def standarize_timestring(time_string):
     if not ("am" in time_string or "pm" in time_string):
         if ":" in time_string:
@@ -106,10 +120,13 @@ def standarize_timestring(time_string):
     else:
         return str(int(time_string_data[0]) + 12).zfill(2) + ":" + str(time_string_data[1]).zfill(2)
 
+
 '''
 Standardizes phone numbers to a (xxx) xxx - xxxx format; It has an optional parameter delimeters, which takes in an array of 
 possible delimeters that can be used to to process the input. By default it is ["(", ")", "-", ".", " "]
 '''
+
+
 def fix_phone_number(phone, delimeters=["(", ")", "-", ".", " "]):
     if phone is None:
         return
@@ -127,7 +144,10 @@ def fix_phone_number(phone, delimeters=["(", ")", "-", ".", " "]):
 '''
 Given a time, day, month and year, the function converts it to a datetime object timestamp
 '''
+
+
 def convert_to_timestamp(time, day, month, year):
+    time = standarize_timestring(time)
     hours = int(time.split(":")[0])
     mins = int(time.split(":")[1])
 
@@ -170,9 +190,12 @@ def convert_to_timestamp(time, day, month, year):
         str(mins).zfill(2)
     )
 
+
 '''
 Given a time, day, month and year, the function converts it to a POSIX timestamp; uses convert_to_timestamp in the conversion process
 '''
+
+
 def convert_to_posix(time, day, month, year):
     if ":" not in time:
         time = "00:00"
@@ -189,22 +212,41 @@ def convert_to_posix(time, day, month, year):
 
 
 '''
+Converts a string date in format 'Month Day" (e.g. December 1) to Datetime format
+
+Known issue:
+- If the year of the date changes in the scope of scraping (i.e. I start scraping on December 27 (of year 2019), and I am trying to convert 'January 1' (of year 2020))
+  we will return the wrong year for the dates where the year has changed (i.e. we will return 1/1/2019 instead of 1/1/2020)
+'''
+
+
+def convert_stringdate_to_datetime(string):
+    from datetime import datetime
+
+    return datetime.strptime(string + " " + str(datetime.now().year), "%B %d %Y")
+
+
+'''
 Builds a POSIX-timestamp based interval object that adheres to BM Backend Standardization (ref-link:    ) 
 Returns a tuple with opening time in POSIX format, closing time in POSIX format, notes about a place
 '''
+
+
 def build_time_interval(open, close, date, notes="", is_closed=False):
     if is_closed:
-        return {"open_time":convert_to_posix("00:00", date.day, date.month, date.year),
-            "close_time":convert_to_posix("00:00", date.day, date.month, date.year),
-            "notes":notes}
+        return {"open_time": convert_to_posix("00:00", date.day, date.month, date.year),
+                "close_time": convert_to_posix("00:00", date.day, date.month, date.year),
+                "notes": notes}
     else:
-        return {"open_time":convert_to_posix(open, date.day, date.month, date.year),
-            "close_time":convert_to_posix(close, date.day, date.month, date.year),
-            "notes":notes}
+        return {"open_time": convert_to_posix(open, date.day, date.month, date.year),
+                "close_time": convert_to_posix(close, date.day, date.month, date.year),
+                "notes": notes}
 
 
 '''
 Uses build_time_interval to convert an array of (open, close, date, notes) into format that adheres to BM Backend Standardization (ref-link:    )
 '''
+
+
 def convert_array_of_time_intervals(arr):
     return [build_time_interval(*x) for x in arr]
