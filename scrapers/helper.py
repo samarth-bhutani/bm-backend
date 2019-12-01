@@ -188,6 +188,17 @@ def convert_to_posix(time, day, month, year):
 
     return dt.timestamp()
 
+'''
+Converts a string date in format 'Month Day" (e.g. December 1) to Datetime format
+
+Known issue:
+- If the year of the date changes in the scope of scraping (i.e. I start scraping on December 27 (of year 2019), and I am trying to convert 'January 1' (of year 2020))
+  we will return the wrong year for the dates where the year has changed (i.e. we will return 1/1/2019 instead of 1/1/2020)
+'''
+def convert_stringdate_to_datetime(string):
+    from datetime import datetime
+
+    return datetime.strptime(string + " " + str(datetime.now().year), "%B %d %Y")
 
 '''
 Builds a POSIX-timestamp based interval object that adheres to BM Backend Standardization (ref-link:    ) 

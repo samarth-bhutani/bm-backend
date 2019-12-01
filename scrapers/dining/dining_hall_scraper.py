@@ -118,9 +118,7 @@ def scrape_menus(dining_halls):
                         index += 1
 
             get_late_night_menu(menu)
-
-
-            dining_halls[dining_hall_name][date] = menu
+            dining_halls[dining_hall_name]["menu"][convert_stringdate_to_datetime(date)] = menu
 
 
 '''
@@ -136,11 +134,14 @@ def scrape_details(dining_halls):
         dining_hall_dict["latitude"] = None
         dining_hall_dict["longitude"] = None
         dining_hall_dict["phone"] = None
+        dining_hall_dict["menu"] = None
         dining_hall_dict["picture"] = None
         dining_hall_dict["description"] = None
         dining_hall_dict["address"] = None
         dining_hall_dict["open_close_array"] = scrape_times(index)
-        index+=1
+        dining_hall_dict["menu"] = {}
+
+        index += 1
 
 def scrape_times(index):
     '''Objective: Scrape the data on convenience stores and campus restaurants.
@@ -182,7 +183,6 @@ def scrape_times(index):
                 #Maybe call build_time internval here on (a,b,x)
                 current = (current_time, meal)
                 data.append(current)
-    print(data)
 
 
 dining_halls_information = {
@@ -192,7 +192,6 @@ dining_halls_information = {
     "Foothill":{}
 }
 
-#scrape_menus(dining_halls_information)
 scrape_details(dining_halls_information)
-#scrape_others()
-#print(dining_halls_information)
+scrape_menus(dining_halls_information)
+print(dining_halls_information)
