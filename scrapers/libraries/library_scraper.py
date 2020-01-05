@@ -1,23 +1,34 @@
 import requests
 from bs4 import BeautifulSoup as bs
-import time 
+import time
+import pandas as pd
 import json
+import os
 import datetime
 
 from scrapers import helper
 
 class LibraryScraper():
     def initialize_libraries_dict(self, libraries, library_names):
+        path = os.path.dirname(__file__).split('/')[:-2]
+        pathS = ""
+
+        for p in path:
+            pathS += p + '/'
+
+        data1 = pd.read_csv(pathS+"csv_data/latitude_longitudes.csv")
+        data2 = pd.read_csv(pathS + "csv_data/images.csv")
+
         for i in range(len(library_names)):
             library = library_names[i]
             libraries[library] = {}
             libraries[library]["name"] = library_names[i]
-            libraries[library]["latitude"] = None
-            libraries[library]["longitude"] = None
+            libraries[library]["latitude"] = list(data1[data1['name'] == library_names[i]]['latitude'])[0]
+            libraries[library]["longitude"] = list(data1[data1['name'] == library_names[i]]['longitude'])[0]
+            libraries[library]["picture"] = list(data2[data2['name'] == library_names[i]]['imageurl'])[0]
             libraries[library]["phone"] = None
-            libraries[library]["picture"] = None
             libraries[library]["description"] = None
-            libraries[library]["address"] = None
+            libraries[library]["address"] = list(data1[data1['name'] == library_names[i]]['address'])[0]
             libraries[library]["open_close_array"] = []
 
     def set_library_ids(self, libraries):
@@ -177,3 +188,4 @@ class LibraryScraper():
         self.remove_library_ids(libraries, library_names)
 
         return libraries
+

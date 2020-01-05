@@ -29,16 +29,25 @@ class CafeScraper:
     The function scrape_details takes a dictionary in as a parameter, and details about each dining hall location are stored in it
     '''
     def scrape_details(self, cafes, cafe_names):
+        path = os.path.dirname(__file__).split('/')[:-2]
+        pathS = ""
+
+        for p in path:
+            pathS += p + '/'
+
+        data1 = pd.read_csv(pathS + "csv_data/latitude_longitudes.csv")
+        data2 = pd.read_csv(pathS + "csv_data/images.csv")
+
         for cafe_name in cafe_names:
             cafe_dict = cafes[cafe_name]
 
             cafe_dict["name"] = cafe_name
-            cafe_dict["latitude"] = None
-            cafe_dict["longitude"] = None
+            cafe_dict["latitude"] = list(data1[data1['name'] == cafe_name]['latitude'])[0]
+            cafe_dict["longitude"] = list(data1[data1['name'] == cafe_name]['longitude'])[0]
             cafe_dict["phone"] = None
-            cafe_dict["picture"] = None
+            cafe_dict["picture"] = list(data2[data2['name'] == cafe_name]['imageurl'])[0]
             cafe_dict["description"] = None
-            cafe_dict["address"] = None
+            cafe_dict["address"] = list(data1[data1['name'] == cafe_name]['address'])[0]
             cafe_dict["open_close_array"] = []
 
     def scrape_others(self):
