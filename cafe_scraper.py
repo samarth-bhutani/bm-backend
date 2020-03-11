@@ -156,7 +156,7 @@ def scrape_others():
                     current = helper.build_time_interval(a,b,x)
                     campus_rests[key].append(current)
        
-
+#call this to actually return the dictionary"
 def scrape():
     path = os.path.dirname(__file__).split('/')[:-2]
     pathS = ""

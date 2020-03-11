@@ -182,7 +182,7 @@ def scrape_times(index):
                 data.append(current)
         #print(data, "\n")
        
-
+#call this to actually return the dictionary"
 def scrape():
     dining_halls = {}
     dining_halls["Crossroads"] = {}
