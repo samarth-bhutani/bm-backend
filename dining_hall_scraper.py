@@ -210,9 +210,3 @@ def scrape():
     scrape_menus(dining_halls_information, menu_urls, dining_hall_names)
 
     return dining_halls_information
-
-
-
-
-
-print(scrape())
