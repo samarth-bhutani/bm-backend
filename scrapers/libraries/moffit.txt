@@ -1,0 +1,55 @@
+{
+    "name": "Moffitt Library"
+}{
+    "latitude": "37.87277"
+}{
+    "longitude": "-122.260244"
+}{
+    "phone": "510-642-5072"
+}{
+    "picture": null
+}{
+    "phone": "510-642-5072"
+}{
+    "description": null
+}{
+    "address": "350 Moffitt Library, Berkeley, CA 94720"
+}{
+    "open_close_array": [
+        {
+            "open_time": 1583049600.0,
+            "close_time": 1583135940.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1583136000.0,
+            "close_time": 1583222340.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1583222400.0,
+            "close_time": 1583308740.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1583308800.0,
+            "close_time": 1583395140.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1583395200.0,
+            "close_time": 1583481540.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1583481600.0,
+            "close_time": 1583481600.0,
+            "notes": ""
+        },
+        {
+            "open_time": 1583568000.0,
+            "close_time": 1583568000.0,
+            "notes": ""
+        }
+    ]
+}

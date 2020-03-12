@@ -14,7 +14,7 @@ class Date:
         self.year = int(date_array[0])
 
 
-def get_library_url(library_id): 
+def get_library_url(library_id):
 # '''
 # Returns the JSON api url of the given library, identified by library_id, for the current week.
 # '''
@@ -38,13 +38,9 @@ def output_to_json(array_of_times):
         for i in array_of_times:
             json.dump(i,json_file, indent = 4, sort_keys = False)
 
-def json_to_python(JSON_array):
-    y = json.load(JSON_array)
-    print(y)
-
 def scrapper():
     ## Moffit scrapper function, extracts data online.
- 
+
     url = get_library_url(179)
     data = json.load(urllib.request.urlopen(url))
 
@@ -52,11 +48,11 @@ def scrapper():
     output_array = []
 
     #Array will hold all the data that will need to be exported to JSON format.
-    JSON_array = {}
- 
+    JSON_array = []
+
     #Scrapped master list of open/close times, stored in array.
     master_list = data[0]["hours"]
- 
+
     # Master list of hours, will loop through it.
     for i in master_list:
 
@@ -65,8 +61,8 @@ def scrapper():
         end_time = i["day"]["end"]
         date = i["day"]["day"]
         date_converted = Date(date)
-      
-        
+
+
         #Edge Case 1: When start time is none, '9am - '
         if (start_time == None):
             start_time = i["day"]["note"]
@@ -87,7 +83,7 @@ def scrapper():
         if (start_time == None and end_time == '11:59 pm'):
             start_time = "11:59 pm"
 
-        ## Edge Case 4B Library is closed, closed on next day.    
+        ## Edge Case 4B Library is closed, closed on next day.
         if (start_time == None and end_time == None):
             start_time = "11:59 pm"
             end_time = "11:59 pm"
@@ -98,30 +94,28 @@ def scrapper():
             start_time = "12:00 am"
             end_time = time_parsing[1]
 
-      
+
         output = helper.build_time_interval(start_time,end_time,date_converted)
         output_array.append(output)
 
 
 
-    JSON_array.update({"name":"Moffitt Library"})
-    JSON_array.update({"latitude":"37.87277"})
-    JSON_array.update({"longitude":"-122.260244"})
-    JSON_array.update({"phone":"510-642-5072"})
-    JSON_array.update({"picture":None})
-    JSON_array.update({"phone":"510-642-5072"})
-    JSON_array.update({"description":None})
-    JSON_array.update({"address":"350 Moffitt Library, Berkeley, CA 94720"})
-    JSON_array.update({"open_close_array":output_array})
-    
-    print(JSON_array)
-    #json_to_python(JSON_array)
+    JSON_array.append({"name":"Moffitt Library"})
+    JSON_array.append({"latitude":"37.87277"})
+    JSON_array.append({"longitude":"-122.260244"})
+    JSON_array.append({"phone":"510-642-5072"})
+    JSON_array.append({"picture":None})
+    JSON_array.append({"phone":"510-642-5072"})
+    JSON_array.append({"description":None})
+    JSON_array.append({"address":"350 Moffitt Library, Berkeley, CA 94720"})
+    JSON_array.append({"open_close_array":output_array})
+
+
     #Calls output_to_json file
     #output_to_json(JSON_array)
+    print(JSON_array)
 
 
 
 if __name__ == "__main__":
     scrapper()
-
- 
