@@ -1,10 +1,8 @@
-import requests
+import requests, datetime, os
 import bs4 as bs
-import os
 import pandas as pd
-import datetime
 import helper
-
+from os.path import dirname, abspath
 
 def scrape_menus(dining_halls, menu_urls, dining_hall_names):
     def get_late_night_menu(menu):
@@ -104,14 +102,9 @@ def scrape_menus(dining_halls, menu_urls, dining_hall_names):
 The function scrape_details takes a dictionary in as a parameter, and details about each dining hall location are stored in it
 '''
 def scrape_details(dining_halls, dining_hall_names):
-    path = os.path.dirname(__file__).split('/')[:-2]
-    pathS = ""
-
-    for p in path:
-        pathS += p + '/'
-
-    data1 = pd.read_csv("csv_data/latitude_longitudes.csv")
-    data2 = pd.read_csv(pathS + "csv_data/images.csv")
+    parent_working_directory = os.path.dirname((abspath(__file__)))
+    data1 = pd.read_csv(parent_working_directory + "/csv_data/latitude_longitudes.csv")
+    data2 = pd.read_csv(parent_working_directory + "/csv_data/images.csv")
 
     index = 0
     for dining_hall_name in dining_hall_names:
@@ -217,8 +210,3 @@ def scrape():
     scrape_menus(dining_halls_information, menu_urls, dining_hall_names)
 
     return dining_halls_information
-
-
-
-
-

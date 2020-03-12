@@ -178,5 +178,3 @@ def scrape():
     scrape_library_hours(libraries, library_names)
     remove_library_ids(libraries, library_names)
     return libraries
-
-print(scrape())
