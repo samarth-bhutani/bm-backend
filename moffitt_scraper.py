@@ -38,11 +38,7 @@ def output_to_json(array_of_times):
         for i in array_of_times:
             json.dump(i,json_file, indent = 4, sort_keys = False)
 
-def json_to_python(JSON_array):
-    y = json.load(JSON_array)
-    print(y)
-
-def scrapper():
+def scrape():
     ## Moffit scrapper function, extracts data online.
  
     url = get_library_url(179)
@@ -98,11 +94,8 @@ def scrapper():
             start_time = "12:00 am"
             end_time = time_parsing[1]
 
-      
         output = helper.build_time_interval(start_time,end_time,date_converted)
         output_array.append(output)
-
-
 
     JSON_array.update({"name":"Moffitt Library"})
     JSON_array.update({"latitude":"37.87277"})
@@ -113,15 +106,5 @@ def scrapper():
     JSON_array.update({"description":None})
     JSON_array.update({"address":"350 Moffitt Library, Berkeley, CA 94720"})
     JSON_array.update({"open_close_array":output_array})
-    
-    print(JSON_array)
-    #json_to_python(JSON_array)
-    #Calls output_to_json file
-    #output_to_json(JSON_array)
-
-
-
-if __name__ == "__main__":
-    scrapper()
-
+    return JSON_array
  
