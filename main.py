@@ -19,4 +19,3 @@ def scrape_all(request):
     blob = bucket.blob(destination_blob_name)
     blob.upload_from_string(str(scraped))
 
-
