@@ -1,4 +1,4 @@
-import cafe_scraper, dining_hall_scraper, library_scraper, moffitt_scraper
+import cafe_scraper, dining_hall_scraper, library_scraper, moffitt_scraper, firebase_push
 from google.cloud import storage
 
 def scrape_all(request):
@@ -19,3 +19,7 @@ def scrape_all(request):
     blob = bucket.blob(destination_blob_name)
     blob.upload_from_string(str(scraped))
 
+def scrape_and_push(request):
+    """
+        Runs all the scrapers and pushes the data to Firebase. 
+    """
