@@ -8,7 +8,7 @@ def scrape():
     #Read data from file "resources.csv"
     parent_working_directory = os.path.dirname((abspath(__file__)))
 
-    data =  pd.read_csv(parent_working_directory + "/csv_data/latitude_longitudes.csv")
+    data =  pd.read_csv(parent_working_directory + "/csv_data/resources.csv")
 
     #Extract column names
     fields = data.columns.values
