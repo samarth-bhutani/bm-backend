@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import urllib
-from scrapers import helper
+import helper
 
 class Date:
     ## Creates date object so correct type is passed into helper functions.
@@ -38,7 +38,7 @@ def output_to_json(array_of_times):
         for i in array_of_times:
             json.dump(i,json_file, indent = 4, sort_keys = False)
 
-def scrapper():
+def scrape():
     ## Moffit scrapper function, extracts data online.
  
     url = get_library_url(179)
@@ -109,14 +109,4 @@ def scrapper():
     JSON_array.append({"description":None})
     JSON_array.append({"address":"350 Moffitt Library, Berkeley, CA 94720"})
     JSON_array.append({"open_close_array":output_array})
-    
-
-    #Calls output_to_json file
-    #output_to_json(JSON_array)
-
-
-
-if __name__ == "__main__":
-    scrapper()
-
- 
+    return JSON_array
