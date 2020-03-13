@@ -1,26 +1,45 @@
-import json, re, requests
-from datetime import datetime
+import json, helper, re, requests
+from datetime import datetime, timedelta
 import unidecode as u
 from bs4 import BeautifulSoup
 
 EVENTS_URL = "http://events.berkeley.edu/"
 
-# Number of weeks of events to fetch
-NUM_WEEKS = 3
+# Number of days of events to fetch
+NUM_DAYS = 28
 
-def get_events_url(offset=0):
+def get_date(offset=0):
     """
-    Get the event url of the current week or OFFSET weeks from now.
-
     Args:
-        offset (int) - optional: how many weeks from now the event URL should represent
+        offset (int) - optional: how many days from now the date should
+        correspond to.
+    Returns:
+        Datetime object
+    """
+    now = datetime.now()
+    return now + timedelta(days=offset)
+
+def format_date(date):
+    """
+    Args:
+        date (datetime object)
+    Returns:
+        Date formatted in year-month-day
+    """
+    return "{year}-{month}-{day}".format(year=date.year, month=date.month, day=date.day)
+
+def get_events_url(date):
+
+    """
+    Get the event url for a given date.
+    Args:
+        (datetime object) The day the date should correspond to
     Returns:
         (str) the page url of the events
     """
-    now = datetime.now()
 
-    url_p2 = "?view=summary&timeframe=week&date="
-    curr_date = "{year}-{month}-{day}".format(year=now.year, month=now.month, day=now.day)
+    url_p2 = "?view=summary&timeframe=day&date="
+    curr_date = format_date(date)
     url_p4 = "&tab=all_events"
     url = EVENTS_URL + url_p2 + curr_date + url_p4
     return url
@@ -105,7 +124,7 @@ def parse_paragraphs(paragraphs, event_link, event):
             links = p.find_all('a', href=True)
             if links and links[-1]["href"] == event_link:
                 # Event description is truncated and ends with 'More >'
-                event["description"]["text"] = clean_str(p.text[0:-6])
+                event["description"]["text"] = clean_str(p.text)[0:-6].strip()
                 event["description"]["truncated"] = True
             else:
                 event["description"]["text"] = clean_str(p.text)
@@ -161,7 +180,7 @@ def parse_event(event_row):
 def get_events(url):
     """
     Args:
-        url: (str) the page url of the events to fetch for a given week.
+        url: (str) the page url of the events to fetch.
     Returns:
         A list of the event JSON objects.
     """
@@ -190,7 +209,9 @@ def get_events(url):
 
 def scrape(req):
     result = {}
-    result["events"] = get_events(get_events_url())
+    for i in range(NUM_DAYS):
+        date = get_date(i)
+        result[format_date(date)] = get_events(get_events_url(date))
     print(json.dumps(result, indent=2))
     return result
 
