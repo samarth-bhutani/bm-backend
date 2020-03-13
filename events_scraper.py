@@ -11,29 +11,30 @@ NUM_DAYS = 28
 def get_date(offset=0):
     """
     Args:
-        offset (int) - optional: how many days from now the date should
-        correspond to.
+        offset (int): Number of days from now the date returned should correspond to
     Returns:
         Datetime object
     """
     now = datetime.now()
     return now + timedelta(days=offset)
 
+
 def format_date(date):
     """
     Args:
-        date (datetime object)
+        date (datetime object): the date to format
     Returns:
-        Date formatted in year-month-day
+        (str) date formatted in year-month-day
     """
     return "{year}-{month}-{day}".format(year=date.year, month=date.month, day=date.day)
+
 
 def get_events_url(date):
 
     """
     Get the event url for a given date.
     Args:
-        (datetime object) The day the date should correspond to
+        date (datetime object): The day the date should correspond to
     Returns:
         (str) the page url of the events
     """
@@ -52,7 +53,7 @@ def clean_str(string):
     Args: 
         string (str): The string to clean
     Returns:
-        A new copy of the cleaned string.
+        (str) A new copy of the cleaned string.
     """
     decoded = u.unidecode(string)
     return re.sub('\s+', ' ', decoded).strip()
@@ -62,7 +63,7 @@ def parse_subtitles(subtitles, event):
     """
     Parses SUBTITLES and assigns them to the correct attribute in EVENT.
     Args:
-        subtitles (list[str]): list of subtitle items: Category, Date, Time (optional), Location
+        subtitles (list<str>): list of subtitle items: Category, Date, Time (optional), Location
         event (dict): JSON object representing event
     Returns:
         None
@@ -78,21 +79,19 @@ def parse_subtitles(subtitles, event):
     date = re.sub(',\s*', ', ', date)
     event["date"] = date
 
-    if len(subtitles) == 3:
-        event["location"] = subtitles[2]
-    else:
+    if len(subtitles) > 3:
         event["time"] = subtitles[2]
         event["location"] = subtitles[3]
+    else:
+        event["location"] = subtitles[2]
 
 
-def parse_paragraphs(paragraphs, event_link, event):
+def parse_paragraphs(paragraphs, event):
     """
         Parses paragraph tags in an event row to populate description and labels fields in event.
         Args:
-            paragraphs (list<bs4.element.Tag>) List of paragraphs in event row
-            event_link (str) The attributes of an event link following 'events.berkeley.edu/'
-                e.g. '?event_ID=132387&date=2020-03-29&filter=tab&filtersel=all_events'
-            event (dict) The event JSON object
+            paragraphs (list<bs4.element.Tag>): List of paragraphs in event row
+            event (dict): The event JSON object
         Returns:
             None
     """
@@ -109,21 +108,20 @@ def parse_paragraphs(paragraphs, event_link, event):
         if status_alert:
             event["status"] = clean_str(status_alert.text)
         if label:
-            if re.search('Sponsor', label.text):
+            if re.search('sponsor', label.text.lower()):
                 sponsors = p.find_all('a', href=True)
                 labels["sponsors"] = {}
                 for sponsor in sponsors:
                     sponsor_name = clean_str(sponsor.text)
                     labels["sponsors"][sponsor_name] = sponsor['href']
-            elif re.search('Speaker', label.text):
+            elif re.search('speaker', label.text.lower()):
                 labels["speakers"] = clean_str(p.find(text=True, recursive=False))
             else:
                 labels["other"] = clean_str(p.text)
         else:
             # Parse event description
             links = p.find_all('a', href=True)
-            if links and links[-1]["href"] == event_link:
-                # Event description is truncated and ends with 'More >'
+            if links and re.search('More >', clean_str(links[-1].text)):
                 event["description"]["text"] = clean_str(p.text)[0:-6].strip()
                 event["description"]["truncated"] = True
             else:
@@ -165,7 +163,7 @@ def parse_event(event_row):
         subtitles = paragraphs[0].text.split("|")
         parse_subtitles(subtitles, event)
     if len(paragraphs) > 1:
-        parse_paragraphs(paragraphs[1:], title["href"], event)
+        parse_paragraphs(paragraphs[1:], event)
     img_src = event_row.find('img', class_='cc-image', src=True)
     if img_src:
         if re.match('/*images/', img_src["src"]):
@@ -180,7 +178,7 @@ def parse_event(event_row):
 def get_events(url):
     """
     Args:
-        url: (str) the page url of the events to fetch.
+        url (str): the page url of the events to fetch.
     Returns:
         A list of the event JSON objects.
     """
