@@ -1,7 +1,5 @@
-import requests
-import json
+import json, re, requests
 from datetime import datetime
-import re
 import unidecode as u
 from bs4 import BeautifulSoup
 
@@ -21,7 +19,7 @@ def get_curr_week_events_url():
 def clean_str(string):
     """
     Decodes unicode characters, replaces duplicate whitespace with single whitespace, and 
-    strips trailing whitespace.
+    strips trailing and beginning whitespace.
     Args: 
         string (str): The string to clean
     Returns:
@@ -56,21 +54,45 @@ def parse_subtitles(subtitles, event):
         event["time"] = subtitles[2]
         event["location"] = subtitles[3]
 
-def parse_paragraphs(paragraphs, event):
+def parse_paragraphs(paragraphs, event_link, event):
+    """
+        Parses paragraph tags in an event row to populate description and labels fields in event.
+        Args:
+            paragraphs (list<bs4.element.Tag>) List of paragraphs in event row
+            event_link (str) The attributes of an event link following 'events.berkeley.edu/'
+                e.g. '?event_ID=132387&date=2020-03-29&filter=tab&filtersel=all_events'
+            event (dict) The event JSON object
+        Returns:
+            None
+    """
+
     labels = {}
-    event["description"] = []
+    labels["other"] = []
+    event["description"] = {}
+    event["description"]["text"] = ""
+    event["description"]["truncated"] = False
     for p in paragraphs:
         label = p.find('label')
-        if label and re.search('Sponsor', label.text):
-            sponsors = p.find_all('a', href=True)
-            labels["sponsors"] = {}
-            for sponsor in sponsors:
-                sponsor_name = clean_str(sponsor.text)
-                labels["sponsors"][sponsor_name] = sponsor['href']
-        elif label and re.search('Speaker', label.text):
-            labels["speakers"] = clean_str(p.find(text=True, recursive=False))
+        if label:
+            if re.search('Sponsor', label.text):
+                sponsors = p.find_all('a', href=True)
+                labels["sponsors"] = {}
+                for sponsor in sponsors:
+                    sponsor_name = clean_str(sponsor.text)
+                    labels["sponsors"][sponsor_name] = sponsor['href']
+            elif re.search('Speaker', label.text):
+                labels["speakers"] = clean_str(p.find(text=True, recursive=False))
+            else:
+                labels["other"] = clean_str(p.text)
         else:
-            event["description"].append(clean_str(p.text))
+            # Parse event description
+            links = p.find_all('a', href=True)
+            if links and links[-1]["href"] == event_link:
+                # Event description is truncated and ends with 'More >'
+                event["description"]["text"] = clean_str(p.text[0:-6])
+                event["description"]["truncated"] = True
+            else:
+                event["description"]["text"] = clean_str(p.text)
     event["labels"] = labels
 
 def find_event_status(event):
@@ -91,13 +113,14 @@ def parse_event(event_row):
             - time: event time or null if all-day
             - location: event location
             - status: status alert, if available (e.g. canceled)
-            - labels: JSON object of accompanying event labels (e.g. sponsors, performers, etc.)
+            - labels: JSON object of accompanying sponsor/speaker labels
                 - sponsors:
                     - sponsor: link to sponsor details
                 - speakers: string of speakers and performers
-                - other:
-                    - label: description
-            - description: (list[str]) event details
+                - other: (list<str>) event details with a label
+            - description:
+                - truncated: (bool) True if description is truncated
+                - text: (str) event details
             - link: event detail link
             - image: event image url, if available
     """
@@ -110,7 +133,7 @@ def parse_event(event_row):
         subtitles = paragraphs[0].text.split("|")
         parse_subtitles(subtitles, event)
     if len(paragraphs) > 1:
-        parse_paragraphs(paragraphs[1:], event)
+        parse_paragraphs(paragraphs[1:], title["href"], event)
     event["status"] = find_event_status(event_row)
     event["image"] = None
     return event
