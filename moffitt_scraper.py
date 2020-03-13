@@ -103,7 +103,7 @@ def scrape():
     JSON_array.update({"phone":"510-642-5072"})
     JSON_array.update({"picture":None})
     JSON_array.update({"phone":"510-642-5072"})
-    JSON_array.update({"description":None})
+    JSON_array.update({"description": "Moffitt Library, located next to Memorial Glade, is one of the busiest campus libraries with undergraduate course reserves, computer lab, makerspace, media center, copy center, campus classrooms, and convenient access to the research collections in the Main (Gardner) Stacks.  Moffitt floors 4 & 5, accessed through the east entrance are open 24 hours during the fall and spring semester and are snack and drink friendly. Reserved for UC Berkeley students and faculty, Moffitt serves students of all majors and is open the longest hours.  Campus visitors are welcome at the Free Speech Movement (FSM) Café and popular Newspaper Display Wall near the 3rd floor south entrance."})
     JSON_array.update({"address":"350 Moffitt Library, Berkeley, CA 94720"})
     JSON_array.update({"open_close_array":output_array})
     return JSON_array
