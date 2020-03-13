@@ -3,18 +3,28 @@ from datetime import datetime
 import unidecode as u
 from bs4 import BeautifulSoup
 
-def get_curr_week_events_url():
+EVENTS_URL = "http://events.berkeley.edu/"
+
+# Number of weeks of events to fetch
+NUM_WEEKS = 3
+
+def get_events_url(offset=0):
     """
+    Get the event url of the current week or OFFSET weeks from now.
+
+    Args:
+        offset (int) - optional: how many weeks from now the event URL should represent
     Returns:
-        (str) the page url of the events for the current week.
+        (str) the page url of the events
     """
     now = datetime.now()
 
-    url_p1 = "http://events.berkeley.edu/?view=summary&timeframe=month&date="
+    url_p2 = "?view=summary&timeframe=week&date="
     curr_date = "{year}-{month}-{day}".format(year=now.year, month=now.month, day=now.day)
-    url_p3 = "&tab=all_events"
-    url = url_p1 + curr_date + url_p3
+    url_p4 = "&tab=all_events"
+    url = EVENTS_URL + url_p2 + curr_date + url_p4
     return url
+
 
 def clean_str(string):
     """
@@ -27,6 +37,7 @@ def clean_str(string):
     """
     decoded = u.unidecode(string)
     return re.sub('\s+', ' ', decoded).strip()
+
 
 def parse_subtitles(subtitles, event):
     """
@@ -54,6 +65,7 @@ def parse_subtitles(subtitles, event):
         event["time"] = subtitles[2]
         event["location"] = subtitles[3]
 
+
 def parse_paragraphs(paragraphs, event_link, event):
     """
         Parses paragraph tags in an event row to populate description and labels fields in event.
@@ -69,10 +81,14 @@ def parse_paragraphs(paragraphs, event_link, event):
     labels = {}
     labels["other"] = []
     event["description"] = {}
-    event["description"]["text"] = ""
+    event["description"]["text"] = None
     event["description"]["truncated"] = False
+    event["status"] = None
     for p in paragraphs:
         label = p.find('label')
+        status_alert = p.find('span', class_='statusAlert')
+        if status_alert:
+            event["status"] = clean_str(status_alert.text)
         if label:
             if re.search('Sponsor', label.text):
                 sponsors = p.find_all('a', href=True)
@@ -95,9 +111,6 @@ def parse_paragraphs(paragraphs, event_link, event):
                 event["description"]["text"] = clean_str(p.text)
     event["labels"] = labels
 
-def find_event_status(event):
-    # FIXME
-    return None
 
 def parse_event(event_row):
     """
@@ -105,57 +118,79 @@ def parse_event(event_row):
         event_row (bs4.element.Tag): BeautifulSoup Tag object with the class 'event-row' 
         corresponding to an event.
     Returns:
-        JSON object representing EVENT. All attributes are strings.
+        JSON object representing EVENT. 
         Schema:
-            - title: event title
-            - category: event category
-            - date: event date
-            - time: event time or null if all-day
-            - location: event location
-            - status: status alert, if available (e.g. canceled)
-            - labels: JSON object of accompanying sponsor/speaker labels
+            - title (str): event title
+            - category (str): event category
+            - date (str): event date
+            - time (str): event time or null if all-day
+            - location (str): event location
+            - status (str): status alert, if available (e.g. canceled)
+            - labels: (dict)
                 - sponsors:
                     - sponsor: link to sponsor details
                 - speakers: string of speakers and performers
                 - other: (list<str>) event details with a label
-            - description:
+            - description (dict):
                 - truncated: (bool) True if description is truncated
                 - text: (str) event details
-            - link: event detail link
-            - image: event image url, if available
+            - link (str): event detail link
+            - image (str): event image url, if available
     """
     event = {}
     title = event_row.find('h3', class_='event-title').find('a', href=True)
     paragraphs = event_row.find_all('p')
     event["title"] = clean_str(title.text)
-    event["link"] = "http://events.berkeley.edu/" + title['href']
+    event["link"] = EVENTS_URL + title['href']
     if paragraphs:
         subtitles = paragraphs[0].text.split("|")
         parse_subtitles(subtitles, event)
     if len(paragraphs) > 1:
         parse_paragraphs(paragraphs[1:], title["href"], event)
-    event["status"] = find_event_status(event_row)
-    event["image"] = None
+    img_src = event_row.find('img', class_='cc-image', src=True)
+    if img_src:
+        if re.match('/*images/', img_src["src"]):
+            event["image"] = EVENTS_URL + img_src["src"]
+        else:
+            event["image"] = img_src["src"]
+    else:
+        event["image"] = None
     return event
+
 
 def get_events(url):
     """
     Args:
-        url: (str) the page url of the events for the current week.
+        url: (str) the page url of the events to fetch for a given week.
     Returns:
         A list of the event JSON objects.
     """
     events = []
-    response = requests.get(url)
-    html = BeautifulSoup(response.text.encode('utf-16','ignore'), 'html.parser')
-    event_rows = html.find_all('div', class_='event row')
-    for event in event_rows:
-        events.append(parse_event(event))
+    search = True
+    while search:
+        response = requests.get(url)
+        html = BeautifulSoup(response.text.encode('utf-16','ignore'), 'html.parser')
+        event_rows = html.find_all('div', class_='event row')
+        for event in event_rows:
+            events.append(parse_event(event))
+        prev_next_page = html.find('div', class_='previousNextPage')
+
+        # If there are more pages, get link of next page
+        if prev_next_page:
+            links = prev_next_page.find_all('a', href=True)
+            if len(links) == 2:
+                url = EVENTS_URL + links[1]["href"]
+            else:
+                search = False
+        else:
+            search = False
+
     return events
+
 
 def scrape(req):
     result = {}
-    result["events"] = get_events(get_curr_week_events_url())
+    result["events"] = get_events(get_events_url())
     print(json.dumps(result, indent=2))
     return result
 
