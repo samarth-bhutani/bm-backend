@@ -173,8 +173,8 @@ def scrape_times(index):
                 #Maybe call build_time internval here on (a,b,x)
                 current = (current_time, meal)
                 data.append(current)
-        #print(data, "\n")
-       
+    return data 
+
 #call this to actually return the dictionary"
 def scrape():
     dining_halls = {}
