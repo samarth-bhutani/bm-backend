@@ -3,12 +3,13 @@ const puppeteer = require('puppeteer');
 (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const MOFFITT_URL = "https://www.google.com/maps/place/Moffitt+Library/@37.8725782,-122.2629367,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x159239deb2d2cfe3!8m2!3d37.8725742!4d-122.2607484"
+    const MOFFITT_URL = "https://www.google.com/maps/place/Moffitt+Library/@37.872574,-122.260748,15z/data=!4m5!3m4!1s0x0:0x159239deb2d2cfe3!8m2!3d37.872574!4d-122.260748"
     await page.goto(MOFFITT_URL);
-    var popularTimesHistogram = await page.evaluate(() => {
+    await page.waitForSelector('.section-popular-times-graph');
+    let popularTimesHistogram = await page.evaluate(() => {
         const graphs = {};
         const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-        var dayGraphs = [...document.querySelectorAll('.section-popular-times-graph')].forEach((graph, i) => {
+        [...document.querySelectorAll('.section-popular-times-graph')].forEach((graph, i) => {
             const day = days[i];
             graphs[day] = [];
             // Finds where x axis starts
@@ -32,7 +33,7 @@ const puppeteer = require('puppeteer');
                 }
             });
         });
-        return graphs
+        return graphs;
     });
     console.log(popularTimesHistogram);
     await browser.close();
