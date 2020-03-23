@@ -5,6 +5,7 @@ from datetime import datetime
 from dateutil.parser import parse
 import pandas as pd
 import helper
+import unidecode
 
 
 def scrapper():
@@ -37,10 +38,12 @@ def scrapper():
         day = datetime.strptime(day,'"%Y-%m-%d').date()
 
         ##Class Type
-        class_type = i.find(class_="visit_type").get_text().rstrip('\n')
+        class_type = unidecode.unidecode(i.find(class_="visit_type").get_text())
+        class_type = class_type.replace("\n","")
 
-        ##Trainer's name
-        class_trainer = i.find(class_="trainer").get_text().rstrip('\n')
+        ##Trainer's name 
+        class_trainer = unidecode.unidecode(i.find(class_="trainer").get_text())
+        class_trainer = class_trainer.replace("\n","")
 
     
         ##Class name and location
@@ -57,7 +60,7 @@ def scrapper():
         soup_content = BeautifulSoup(content_detail.content,'html.parser')
 
         ##Class description
-        class_description = soup_content.find(class_="class_description").get_text().rstrip('\n')
+        class_description = unidecode.unidecode(soup_content.find(class_="class_description").get_text().rstrip('\n'))
        
         ##Class start time, multiple cases needed due to inconsistent formatting.
         class_time_frame = class_time.get_text()
@@ -86,27 +89,35 @@ def scrapper():
         output.append(class_dictionary)
 
 
+
     ## Data Processing: Getting Data into requested schema.
     for i in output:
-        date_key = i.get("date")
+        date_key = i.get("date").strftime("%Y %m %d")
         if (date_dictionary.get(date_key) == None):
             date_dictionary[date_key] = [i]
         else:
             date_dictionary[date_key].append(i)
-    list_of_keys = date_dictionary.keys()
-    # Final output dictionary
-    output_dict = {}
-    for k in list_of_keys:
-        array_of_classes = date_dictionary.get(k)
-        date_dict = {}
-        for c in array_of_classes:
-            class_name_2 = c.get("class")
-            date_dict[class_name_2] = c
-        output_dict[k] = date_dict
+    return date_dictionary
 
-        
-    return output_dict
-        
+
+    ### Commented Out: Original data processing scheme.
+    # Data Processing: Getting Data into requested schema.
+    # for i in output:
+    #     date_key = i.get("date")
+    #     if (date_dictionary.get(date_key) == None):
+    #         date_dictionary[date_key] = [i]
+    #     else:
+    #         date_dictionary[date_key].append(i)
+    # list_of_keys = date_dictionary.keys()
+    # # Final output dictionary
+    # output_dict = {}
+    # for k in list_of_keys:
+    #     array_of_classes = date_dictionary.get(k)
+    #     date_dict = {}
+    #     for c in array_of_classes:
+    #         class_name_2 = c.get("class")
+    #         date_dict[class_name_2] = c
+    #     output_dict[k] = date_dict
 
 
 
