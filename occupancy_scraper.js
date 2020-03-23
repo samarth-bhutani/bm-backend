@@ -40,7 +40,7 @@ async function getHistogram(url) {
         for (let i = 0; i < msg.args().length; ++i)
             console.log(`${i}: ${msg.args()[i]}`);
     });
-    
+
     const popularTimesHistogram = await page.evaluate(() => {
         const graphs = {};
         const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -91,7 +91,7 @@ async function getHistogram(url) {
     return popularTimesHistogram;
 }
 
-async function scrape(req) {
+async function getData() {
     /**
      * Returns data in the following schema:
      * location (string): {
@@ -110,8 +110,13 @@ async function scrape(req) {
                     result[locations[i]] = histogram;
                 });
         }
+        console.log("Completed.");
         return result;
     } catch (e) {
         console.error(e);
     }
+}
+
+exports.scrape = (req, res) => {
+    getData().then(result => res.send(result));
 }
