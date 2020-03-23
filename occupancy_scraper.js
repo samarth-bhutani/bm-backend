@@ -1,11 +1,38 @@
 const puppeteer = require('puppeteer');
 
-(async () => {
+const locations = [
+    "Bioscience & Natural Resources Library", 
+    "Business School Library",
+    "Doe Memorial Library",
+    "C. V. Starr East Asian Library",
+    "Kresge Engineering Library",
+    "Environmental Design Library",
+    "Moffitt Library",
+    "Jean Gray Hargrove Music Library",
+    "Recreational Sports Facility"
+]
+
+// Google place IDs provided by 'https://developers.google.com/places/web-service/place-id'.
+const ids = [
+    "ChIJ_____-B-hYARkH8qFkVlQZA",
+    "ChIJmY7BsDp8hYARfG23CBRdZdU",
+    "ChIJAQAAADl8hYARaxyuchGHTCw",
+    "ChIJAQCwhiZ8hYARhe-BsmCY4VI",
+    "ChIJF4BsiyN8hYARLZ1vIPraljI",
+    "ChIJLVUAUCV8hYARvXQnG_cbi4w",
+    "ChIJxWEsuCZ8hYAR48_Sst45khU",
+    "ChIJ__-_ciV8hYARxgPm1ycRiEQ",
+    "ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"
+]
+
+async function getHistogram(url) {
+    /** 
+     * Given the url of a location, returns the occupancy data for each day of the week. 
+     */
+
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const MOFFITT_URL = "https://www.google.com/maps/place/Moffitt+Library/@37.872574,-122.260748,15z/data=!4m5!3m4!1s0x0:0x159239deb2d2cfe3!8m2!3d37.872574!4d-122.260748"
-    const RSF_URL = "https://www.google.com/maps/place/Recreational+Sports+Facility/@37.8685989,-122.262751,15z/data=!4m5!3m4!1s0x0:0x13657f86e249d525!8m2!3d37.8685989!4d-122.262751?hl=en"
-    await page.goto(RSF_URL);
+    await page.goto(url);
     await page.waitForSelector('.section-popular-times-graph');
 
     // Catches console.log messages in page.evaluate() for debugging purposes
@@ -13,8 +40,8 @@ const puppeteer = require('puppeteer');
         for (let i = 0; i < msg.args().length; ++i)
             console.log(`${i}: ${msg.args()[i]}`);
     });
-
-    let popularTimesHistogram = await page.evaluate(() => {
+    
+    const popularTimesHistogram = await page.evaluate(() => {
         const graphs = {};
         const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
         [...document.querySelectorAll('.section-popular-times-graph')].forEach((graph, i) => {
@@ -60,6 +87,31 @@ const puppeteer = require('puppeteer');
         });
         return graphs;
     });
-    console.log(JSON.stringify(popularTimesHistogram, null, 4));
     await browser.close();
-})().catch( e => { console.error(e) } );
+    return popularTimesHistogram;
+}
+
+async function scrape(req) {
+    /**
+     * Returns data in the following schema:
+     * location (string): {
+        - day of week (string) : {
+            - live: {hour, occupancy %}
+            - usual: array of {hour, occupancy %}
+        }    
+     }
+     */
+    try {
+        result = {}
+        const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id="
+        for (i = 0; i < locations.length; i++) {
+            const url = URL_BASE + ids[i];
+            await getHistogram(url).then((histogram) => {
+                    result[locations[i]] = histogram;
+                });
+        }
+        return result;
+    } catch (e) {
+        console.error(e);
+    }
+}
