@@ -2,6 +2,8 @@ const puppeteer = require('puppeteer');
 const Promise = require('bluebird');
 const {Storage} = require('@google-cloud/storage');
 
+"use strict";
+
 const locations = [
     "Bioscience & Natural Resources Library", 
     "Business School Library",
