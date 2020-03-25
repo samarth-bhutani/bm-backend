@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const Promise = require('bluebird');
 
 const locations = [
     "Bioscience & Natural Resources Library", 
@@ -25,13 +26,10 @@ const ids = [
     "ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"
 ]
 
-async function getHistogram(url) {
+async function getHistogram(url, page) {
     /** 
      * Given the url of a location, returns the occupancy data for each day of the week. 
      */
-
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
     await page.goto(url);
     await page.waitForSelector('.section-popular-times-graph');
 
@@ -87,7 +85,6 @@ async function getHistogram(url) {
         });
         return graphs;
     });
-    await browser.close();
     return popularTimesHistogram;
 }
 
@@ -104,13 +101,19 @@ async function getData() {
     try {
         result = {}
         const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id="
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox'],
+            headless: true
+        });
+        const page = await browser.newPage();
         for (i = 0; i < locations.length; i++) {
             const url = URL_BASE + ids[i];
-            await getHistogram(url).then((histogram) => {
+            await getHistogram(url, page).then((histogram) => {
                     result[locations[i]] = histogram;
                 });
         }
-        console.log("Completed.");
+        await page.close();
+        await browser.close();
         return result;
     } catch (e) {
         console.error(e);
@@ -118,5 +121,7 @@ async function getData() {
 }
 
 exports.scrape = (req, res) => {
-    getData().then(result => res.send(result));
+    getData().then((result) => {
+        res.status(200).send(result);
+    });
 }
