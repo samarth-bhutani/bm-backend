@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const Promise = require('bluebird');
+const {Storage} = require('@google-cloud/storage');
 
 const locations = [
     "Bioscience & Natural Resources Library", 
@@ -122,6 +123,16 @@ async function getData() {
 
 exports.scrape = (req, res) => {
     getData().then((result) => {
-        res.status(200).send(result);
+        const storage = new Storage();
+        const bucket = storage.bucket('bm-backend-scrap');
+        const file = bucket.file('occupancy.json');
+        const contents = JSON.stringify(result);
+        file.save(contents, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).send('Completed.');
+            }
+        });
     });
 }
