@@ -16,7 +16,18 @@ const ids = [
     {name:"Environmental Design Library", id:"ChIJLVUAUCV8hYARvXQnG_cbi4w"},
     {name:"Moffitt Library", id:"ChIJxWEsuCZ8hYAR48_Sst45khU"},
     {name:"Jean Gray Hargrove Music Library", id:"ChIJ__-_ciV8hYARxgPm1ycRiEQ"},
-    {name:"Recreational Sports Facility", id:"ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"}
+    {name:"Recreational Sports Facility", id:"ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"},
+    {name:"Crossroads", id:"ChIJLyHpUS58hYAR-oxYbGr1Apg"},
+    {name:"Hearst Gym Pool", id:"ChIJkaIwgCV8hYAREuqCJDO_BQc"},
+    {name:"Spieker Aquatic Complex", id:"ChIJA-r4zCd8hYAR59QrukWWDhc"},
+    {name:"Anthropology Library", id:"ChIJl2AF9C98hYARKec1ZTLyN7E"},
+    {name:"The Bancroft Library", id:"ChIJoZpCSCV8hYARAEbWLD-SHhk"},
+    {name:"Career Counseling Library", id:"ChIJATeQ7yd8hYARtIL0y4SiJIg"},
+    {name:"Earth Sciences & Map Library", id:"ChIJlQ-QyDHsa4cRn5bWMGC7Qfc"},
+    {name:"Ethnic Studies Library", id:"ChIJ7_YgsCV8hYARBreZ04Yc3N8"},
+    {name:"Northern Regional Library Facility", id:"ChIJfaEr8F54hYARTaAjFURNejA"},
+    {name:"Physics Astronomy Library", id:"ChIJQ4uQWSR8hYAREh0HC7_5oeY"},
+    {name:"The Golden Bear Cafe", id:"ChIJHeudCiZ8hYARcYHT4f8yWsg"}
 ];
 
 async function getHistogram(url, page) {
@@ -92,27 +103,27 @@ async function getData() {
         }    
      }
      */
-    try {
-        const result = {};
-        const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=";
-        const browser = await puppeteer.launch({
-            args: ["--no-sandbox"],
-            headless: true
-        });
-        const page = await browser.newPage();
-        for (let i = 0; i < ids.length; i++) {
-            const url = URL_BASE + ids[i].id;
+    const browser = await puppeteer.launch({
+        args: ["--no-sandbox"],
+        headless: true
+    });
+    const page = await browser.newPage();
+    const result = {};
+    const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=";
+    for (let i = 0; i < ids.length; i++) {
+        const url = URL_BASE + ids[i].id;
+        try {
             const histogram = await getHistogram(url, page);
             if (histogram) {
                 result[ids[i].name] = histogram;
             }
+        } catch (e) {
+            console.error(e);
         }
-        await page.close();
-        await browser.close();
-        return result;
-    } catch (e) {
-        console.error(e);
     }
+    await page.close();
+    await browser.close();
+    return result;
 }
 
 exports.scrape = (req, res) => {
@@ -130,15 +141,3 @@ exports.scrape = (req, res) => {
         });
     });
 };
-
-getData().then((result) => {
-        const storage = new Storage();
-        const bucket = storage.bucket("bm-backend-scrap");
-        const file = bucket.file("occupancy.json");
-        const contents = JSON.stringify(result);
-        file.save(contents, function(err) {
-            if (err) {
-                console.log(err);
-            }
-        });
-    });
