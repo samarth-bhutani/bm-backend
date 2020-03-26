@@ -4,31 +4,19 @@ const puppeteer = require("puppeteer");
 const Promise = require("bluebird");
 const {Storage} = require("@google-cloud/storage");
 
-const locations = [
-    "Bioscience & Natural Resources Library",
-    "Business School Library",
-    "Doe Memorial Library",
-    "C. V. Starr East Asian Library",
-    "Kresge Engineering Library",
-    "Environmental Design Library",
-    "Moffitt Library",
-    "Jean Gray Hargrove Music Library",
-    "Recreational Sports Facility"
-];
-
 /** Google place IDs provided by
  * "https://developers.google.com/places/web-service/place-id".
  */
 const ids = [
-    "ChIJ_____-B-hYARkH8qFkVlQZA",
-    "ChIJmY7BsDp8hYARfG23CBRdZdU",
-    "ChIJAQAAADl8hYARaxyuchGHTCw",
-    "ChIJAQCwhiZ8hYARhe-BsmCY4VI",
-    "ChIJF4BsiyN8hYARLZ1vIPraljI",
-    "ChIJLVUAUCV8hYARvXQnG_cbi4w",
-    "ChIJxWEsuCZ8hYAR48_Sst45khU",
-    "ChIJ__-_ciV8hYARxgPm1ycRiEQ",
-    "ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"
+    {name:"Bioscience & Natural Resources Library", id:"ChIJ_____-B-hYARkH8qFkVlQZA"},
+    {name:"Business School Library", id:"ChIJmY7BsDp8hYARfG23CBRdZdU"},
+    {name:"Doe Memorial Library", id:"ChIJAQAAADl8hYARaxyuchGHTCw"},
+    {name:"C. V. Starr East Asian Library", id:"ChIJAQCwhiZ8hYARhe-BsmCY4VI"},
+    {name:"Kresge Engineering Library", id:"ChIJF4BsiyN8hYARLZ1vIPraljI"},
+    {name:"Environmental Design Library", id:"ChIJLVUAUCV8hYARvXQnG_cbi4w"},
+    {name:"Moffitt Library", id:"ChIJxWEsuCZ8hYAR48_Sst45khU"},
+    {name:"Jean Gray Hargrove Music Library", id:"ChIJ__-_ciV8hYARxgPm1ycRiEQ"},
+    {name:"Recreational Sports Facility", id:"ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"}
 ];
 
 async function getHistogram(url, page) {
@@ -112,11 +100,11 @@ async function getData() {
             headless: true
         });
         const page = await browser.newPage();
-        for (let i = 0; i < locations.length; i++) {
-            const url = URL_BASE + ids[i];
+        for (let i = 0; i < ids.length; i++) {
+            const url = URL_BASE + ids[i].id;
             const histogram = await getHistogram(url, page);
             if (histogram) {
-                result[locations[i]] = histogram;
+                result[ids[i].name] = histogram;
             }
         }
         await page.close();
@@ -142,3 +130,15 @@ exports.scrape = (req, res) => {
         });
     });
 };
+
+getData().then((result) => {
+        const storage = new Storage();
+        const bucket = storage.bucket("bm-backend-scrap");
+        const file = bucket.file("occupancy.json");
+        const contents = JSON.stringify(result);
+        file.save(contents, function(err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+    });
