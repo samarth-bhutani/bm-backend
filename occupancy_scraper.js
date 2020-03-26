@@ -38,12 +38,6 @@ async function getHistogram(url, page) {
     await page.goto(url);
     await page.waitForSelector(".section-popular-times-graph");
 
-    // Catches console.log messages in page.evaluate() for debugging purposes
-    page.on("console", function (msg) {
-        for (let i = 0; i < msg.args().length; ++i)
-            console.log(`${i}: ${msg.args()[i]}`);
-    });
-
     const popularTimesHistogram = await page.evaluate(() => {
         const graphs = {};
         const days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
@@ -51,8 +45,7 @@ async function getHistogram(url, page) {
         [...document.querySelectorAll(".section-popular-times-graph")]
             .forEach((graph, i) => {
                 const day = days[i];
-                graphs[day] = {};
-                graphs[day].usual = [];
+                graphs[day] = [];
                 // Finds where x axis starts
                 let graphStartFromHour;
                 [...graph.querySelectorAll(".section-popular-times-label")]
@@ -75,12 +68,12 @@ async function getHistogram(url, page) {
                                         : maybeHour;
                         if (liveOccupancyMatch && liveOccupancyMatch.length) {
                             live = parseInt(liveOccupancyMatch[1]);
-                            graphs[day].usual.push({
+                            graphs[day].push({
                                 hour: hour,
                                 occupancyPercent: parseInt(liveOccupancyMatch[4])
                             });
                         } else if (occupancyMatch && occupancyMatch.length) {
-                            graphs[day].usual.push({
+                            graphs[day].push({
                                 hour: hour,
                                 occupancyPercent: parseInt(occupancyMatch[0])
                             });
@@ -97,9 +90,8 @@ async function getData() {
     /**
      * Returns data in the following schema:
      * location (string): {
-        - day of week (string) : {
-            - live: {hour, occupancy %}
-            - usual: array of {hour, occupancy %}
+        - live: occupancy %
+        - day of week (string) : [array of {hour, occupancy %}]
         }    
      }
      */
@@ -108,6 +100,13 @@ async function getData() {
         headless: true
     });
     const page = await browser.newPage();
+
+    // Catches console.log messages in page.evaluate() for debugging purposes
+    page.on("console", function (msg) {
+        for (let i = 0; i < msg.args().length; ++i)
+            console.log(`${i}: ${msg.args()[i]}`);
+    });
+
     const result = {};
     const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=";
     for (let i = 0; i < ids.length; i++) {
