@@ -17,7 +17,7 @@ const locations = [
 ];
 
 /** Google place IDs provided by
- * 'https://developers.google.com/places/web-service/place-id'.
+ * "https://developers.google.com/places/web-service/place-id".
  */
 const ids = [
     "ChIJ_____-B-hYARkH8qFkVlQZA",
@@ -48,11 +48,11 @@ async function getHistogram(url, page) {
     const popularTimesHistogram = await page.evaluate(() => {
         const graphs = {};
         const days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+        let live = null;
         [...document.querySelectorAll(".section-popular-times-graph")]
             .forEach((graph, i) => {
                 const day = days[i];
                 graphs[day] = {};
-                graphs[day].live = null;
                 graphs[day].usual = [];
                 // Finds where x axis starts
                 let graphStartFromHour;
@@ -60,7 +60,7 @@ async function getHistogram(url, page) {
                     .forEach((label, labelIndex) => {
                         if (graphStartFromHour) return;
                         const hourText = label.textContent.trim();
-                        graphStartFromHour = hourText.includes("p") ? 12 + (parseInt(hourText) - labelIndex) 
+                        graphStartFromHour = hourText.includes("p") ? 12 + (parseInt(hourText) - labelIndex)
                                                 : parseInt(hourText) - labelIndex;
                     });
                 // Finds values from y axis
@@ -75,10 +75,7 @@ async function getHistogram(url, page) {
                         const hour = maybeHour > 24 ? maybeHour - 24
                                         : maybeHour;
                         if (liveOccupancyMatch && liveOccupancyMatch.length) {
-                            graphs[day].live = {
-                                hour: hour,
-                                occupancyPercent: parseInt(liveOccupancyMatch[1])
-                            };
+                            live = parseInt(liveOccupancyMatch[1]);
                             graphs[day].usual.push({
                                 hour: hour,
                                 occupancyPercent: parseInt(liveOccupancyMatch[4])
@@ -91,6 +88,7 @@ async function getHistogram(url, page) {
                         }
                     });
             });
+        graphs.live = live;
         return graphs;
     });
     return popularTimesHistogram;
