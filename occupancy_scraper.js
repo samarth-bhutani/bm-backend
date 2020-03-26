@@ -127,6 +127,15 @@ async function getData() {
 
 exports.scrape = (req, res) => {
     getData().then((result) => {
+        const admin = require('firebase-admin');
+        const functions = require('firebase-functions');
+        admin.initializeApp(functions.config().firebase);
+        let db = admin.firestore();
+
+        for (let place in result) {
+            let occupancy_doc = db.collection('Occupancy').doc(place);
+            occupancy_doc.set(result[place]);
+        }
         const storage = new Storage();
         const bucket = storage.bucket("bm-backend-scrap");
         const file = bucket.file("occupancy.json");
@@ -134,6 +143,7 @@ exports.scrape = (req, res) => {
         file.save(contents, function(err) {
             if (err) {
                 console.log(err);
+                res.status(404).send("Error.");
             } else {
                 res.status(200).send("Completed.");
             }
