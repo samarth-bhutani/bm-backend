@@ -111,8 +111,9 @@ async function getData() {
     const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=";
     for (let i = 0; i < ids.length; i++) {
         const url = URL_BASE + ids[i].id;
-        const histogram = await new Promise(function(resolve, reject) {
-            getHistogram(url, page).then((val)=> {resolve(val);}).catch((e) => {reject(e);});
+        await new Promise(function(resolve, reject) {
+            getHistogram(url, page).then((val) => { resolve(val); })
+                .catch((e) => { reject(e); });
         }).timeout(10000).then((val) => {
             result[ids[i].name] = val;
         }).catch((e) => {
