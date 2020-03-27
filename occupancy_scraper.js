@@ -19,6 +19,7 @@ const ids = [
     {name:"Recreational Sports Facility", id:"ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"},
     {name:"Crossroads", id:"ChIJLyHpUS58hYAR-oxYbGr1Apg"},
     {name:"Hearst Gym Pool", id:"ChIJkaIwgCV8hYAREuqCJDO_BQc"},
+    {name:"The Golden Bear Cafe", id:"ChIJHeudCiZ8hYARcYHT4f8yWsg"},
     {name:"Spieker Aquatic Complex", id:"ChIJA-r4zCd8hYAR59QrukWWDhc"},
     {name:"Anthropology Library", id:"ChIJl2AF9C98hYARKec1ZTLyN7E"},
     {name:"The Bancroft Library", id:"ChIJoZpCSCV8hYARAEbWLD-SHhk"},
@@ -26,8 +27,7 @@ const ids = [
     {name:"Earth Sciences & Map Library", id:"ChIJlQ-QyDHsa4cRn5bWMGC7Qfc"},
     {name:"Ethnic Studies Library", id:"ChIJ7_YgsCV8hYARBreZ04Yc3N8"},
     {name:"Northern Regional Library Facility", id:"ChIJfaEr8F54hYARTaAjFURNejA"},
-    {name:"Physics Astronomy Library", id:"ChIJQ4uQWSR8hYAREh0HC7_5oeY"},
-    {name:"The Golden Bear Cafe", id:"ChIJHeudCiZ8hYARcYHT4f8yWsg"}
+    {name:"Physics Astronomy Library", id:"ChIJQ4uQWSR8hYAREh0HC7_5oeY"}
 ];
 
 async function getHistogram(url, page) {
@@ -111,14 +111,13 @@ async function getData() {
     const URL_BASE = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=";
     for (let i = 0; i < ids.length; i++) {
         const url = URL_BASE + ids[i].id;
-        try {
-            const histogram = await getHistogram(url, page);
-            if (histogram) {
-                result[ids[i].name] = histogram;
-            }
-        } catch (e) {
-            console.error(e);
-        }
+        const histogram = await new Promise(function(resolve, reject) {
+            getHistogram(url, page).then((val)=> {resolve(val);}).catch((e) => {reject(e);});
+        }).timeout(10000).then((val) => {
+            result[ids[i].name] = val;
+        }).catch((e) => {
+            console.log("Scraping " + ids[i].name + " timed out.");
+        });
     }
     await page.close();
     await browser.close();
@@ -126,27 +125,29 @@ async function getData() {
 }
 
 exports.scrape = (req, res) => {
-    getData().then((result) => {
-        const admin = require('firebase-admin');
-        const functions = require('firebase-functions');
-        admin.initializeApp(functions.config().firebase);
-        let db = admin.firestore();
-
-        for (let place in result) {
-            let occupancy_doc = db.collection('Occupancy').doc(place);
-            occupancy_doc.set(result[place]);
-        }
-        const storage = new Storage();
-        const bucket = storage.bucket("bm-backend-scrap");
-        const file = bucket.file("occupancy.json");
-        const contents = JSON.stringify(result);
-        file.save(contents, function(err) {
-            if (err) {
-                console.log(err);
-                res.status(404).send("Error.");
-            } else {
-                res.status(200).send("Completed.");
+    try {
+        getData().then((result) => {
+            const admin = require('firebase-admin');
+            const functions = require('firebase-functions');
+            admin.initializeApp(functions.config().firebase);
+            const db = admin.firestore();
+            const storage = new Storage();
+            const bucket = storage.bucket("bm-backend-scrap");
+            for (let place in result) {
+                db.collection('Occupancy').doc(place).set(result[place]);
             }
+            const file = bucket.file("occupancy.json");
+            const contents = JSON.stringify(result);
+            file.save(contents, function(err) {
+                if (err) {
+                    console.log(err);
+                    res.status(404).send("Error.");
+                } else {
+                    res.status(200).send("Completed.");
+                }
+            });
         });
-    });
+    } catch (e) {
+        res.status(404).send("Error.");
+    }
 };
