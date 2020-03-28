@@ -3,6 +3,9 @@
 const puppeteer = require("puppeteer");
 const Promise = require("bluebird");
 const {Storage} = require("@google-cloud/storage");
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
+admin.initializeApp(functions.config().firebase);
 
 /** Google place IDs provided by
  * "https://developers.google.com/places/web-service/place-id".
@@ -128,9 +131,6 @@ async function getData() {
 exports.scrape = (req, res) => {
     try {
         getData().then((result) => {
-            const admin = require('firebase-admin');
-            const functions = require('firebase-functions');
-            admin.initializeApp(functions.config().firebase);
             const db = admin.firestore();
             const storage = new Storage();
             const bucket = storage.bucket("bm-backend-scrap");
