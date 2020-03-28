@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import urllib
-from scrapers import helper
+import helper
 
 class Date:
     ## Creates date object so correct type is passed into helper functions.
@@ -38,7 +38,7 @@ def output_to_json(array_of_times):
         for i in array_of_times:
             json.dump(i,json_file, indent = 4, sort_keys = False)
 
-def scrapper():
+def scrape():
     ## Moffit scrapper function, extracts data online.
  
     url = get_library_url(179)
@@ -48,7 +48,7 @@ def scrapper():
     output_array = []
 
     #Array will hold all the data that will need to be exported to JSON format.
-    JSON_array = []
+    JSON_array = {}
  
     #Scrapped master list of open/close times, stored in array.
     master_list = data[0]["hours"]
@@ -94,29 +94,17 @@ def scrapper():
             start_time = "12:00 am"
             end_time = time_parsing[1]
 
-      
         output = helper.build_time_interval(start_time,end_time,date_converted)
         output_array.append(output)
 
-
-
-    JSON_array.append({"name":"Moffitt Library"})
-    JSON_array.append({"latitude":"37.87277"})
-    JSON_array.append({"longitude":"-122.260244"})
-    JSON_array.append({"phone":"510-642-5072"})
-    JSON_array.append({"picture":None})
-    JSON_array.append({"phone":"510-642-5072"})
-    JSON_array.append({"description":None})
-    JSON_array.append({"address":"350 Moffitt Library, Berkeley, CA 94720"})
-    JSON_array.append({"open_close_array":output_array})
-    
-
-    #Calls output_to_json file
-    #output_to_json(JSON_array)
-
-
-
-if __name__ == "__main__":
-    scrapper()
-
+    JSON_array.update({"name":"Moffitt Library"})
+    JSON_array.update({"latitude":"37.87277"})
+    JSON_array.update({"longitude":"-122.260244"})
+    JSON_array.update({"phone":"510-642-5072"})
+    JSON_array.update({"picture":None})
+    JSON_array.update({"phone":"510-642-5072"})
+    JSON_array.update({"description": "Moffitt Library, located next to Memorial Glade, is one of the busiest campus libraries with undergraduate course reserves, computer lab, makerspace, media center, copy center, campus classrooms, and convenient access to the research collections in the Main (Gardner) Stacks.  Moffitt floors 4 & 5, accessed through the east entrance are open 24 hours during the fall and spring semester and are snack and drink friendly. Reserved for UC Berkeley students and faculty, Moffitt serves students of all majors and is open the longest hours.  Campus visitors are welcome at the Free Speech Movement (FSM) Café and popular Newspaper Display Wall near the 3rd floor south entrance."})
+    JSON_array.update({"address":"350 Moffitt Library, Berkeley, CA 94720"})
+    JSON_array.update({"open_close_array":output_array})
+    return JSON_array
  
