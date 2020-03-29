@@ -10,7 +10,7 @@ def initialize_libraries_dict(libraries, library_names):
     parent_working_directory = os.path.dirname((abspath(__file__)))
     data1 = pd.read_csv(parent_working_directory + "/csv_data/latitude_longitudes.csv")
     data2 = pd.read_csv(parent_working_directory + "/csv_data/images.csv")
-    data3 = pd.read_csv(parent_working_directory + "/csv_data/library_phone_numbers.csv")
+    data3 = pd.read_csv(parent_working_directory + "/csv_data/library_phone_numbers_and_descriptions.csv")
 
     for i in range(len(library_names)):
         library = library_names[i]
@@ -20,7 +20,7 @@ def initialize_libraries_dict(libraries, library_names):
         libraries[library]["longitude"] = list(data1[data1['name'] == library_names[i]]['longitude'])[0]
         libraries[library]["picture"] = list(data2[data2['name'] == library_names[i]]['imageurl'])[0]
         libraries[library]["phone"] = list(data3[data3['library_name'] == library_names[i]]['phone_number'])[0]
-        libraries[library]["description"] = None
+        libraries[library]["description"] = list(data3[data3['library_name'] == library_names[i]]['description'])[0]
         libraries[library]["address"] = list(data1[data1['name'] == library_names[i]]['address'])[0]
         libraries[library]["open_close_array"] = []
 
@@ -178,5 +178,3 @@ def scrape():
     scrape_library_hours(libraries, library_names)
     remove_library_ids(libraries, library_names)
     return libraries
-
-print(scrape())

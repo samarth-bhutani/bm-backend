@@ -1,26 +1,20 @@
-# import os, sys
-# from os.path import dirname, join, abspath
-# sys.path.insert(0, abspath(join(dirname(__file__), '.')))
-
-import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, scrapers.helper, datetime
+import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, datetime
 from firebase_admin import credentials, firestore
+import cafe_scraper, dining_hall_scraper, library_scraper, moffitt_scraper, resources_scraper, helper
 # from post_processing import post_processor
 # from integration_test import Testing
 
 # integration_test = Testing()
 
 #update credentials
-cred = credentials.Certificate("/Users/sudarshan/Github/asuc-backend/firebase/backend-key.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+# cred = credentials.Certificate("/Users/sudarshan/Github/asuc-backend/firebase/backend-key.json")
+# firebase_admin.initialize_app(cred)
+# db = firestore.client()
 
 """
     Helper functions
 """
-def scrape_dining_hall_information():
-    from scrapers.dining import dining_scraper
-    dining_hall_scraper = dining_scraper.DiningHallScraper()
-    
+def scrape_dining_hall_information():    
     dining_halls = dining_hall_scraper.scrape()
     for key in dining_halls.keys():
         dining_hall_dates = db.collection(u'Dining Halls and Cafes').document("Dining Halls").collection(str(key))
@@ -32,9 +26,7 @@ def scrape_cafe_information():
     '''
         Run the cafe scraper and updates Firebase with new data
     '''
-    from scrapers.dining import cafe_scraper
-    cafe = cafe.CafeScraper()
-    cafes = cafe.scrape()
+    cafes = cafe_scraper.scrape()
     for key in cafes.keys():
         db.collection(u'Dining Halls and Cafes').document(key).set(cafes[key])
 
@@ -42,11 +34,8 @@ def scrape_library_information():
     '''
         Runs the library scrapers and updates Firebase with new data 
     '''
-    from scrapers.libraries import library_scraper
-    from scrapers.libraries import moffit_scrapper
-    lib_scraper = library_scraper.LibraryScraper()
-    libraries = lib_scraper.scrape()
-    moffitt = moffit_scrapper.scrapper()
+    libraries = library_scraper.scrape()
+    moffitt = moffit_scrapper.scrape()
     # Adds moffitt to the libraries dictionary 
     libraries.update(moffitt) 
     
@@ -106,14 +95,14 @@ def scrape_library_information():
 '''
     Running scrapers and pushing to firebase 
 '''
-print("Updating Dining Hall Information...")
-scrape_dining_hall_information()
+# print("Updating Dining Hall Information...")
+# scrape_dining_hall_information()
 
-print("Updating Cafe Information...")
-scrape_cafe_information()
+# print("Updating Cafe Information...")
+# scrape_cafe_information()
 
-print("Updating Library Information...")
-scrape_library_information()
+# print("Updating Library Information...")
+# scrape_library_information()
 
 # print("Scraping Gyms Information...")
 # scrape_gym_information()
