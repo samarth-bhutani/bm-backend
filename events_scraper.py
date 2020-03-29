@@ -8,7 +8,7 @@ EVENTS_URL = "http://events.berkeley.edu/"
 # Number of days of events to fetch
 NUM_DAYS = 28
 
-def get_date(offset=0):
+def get_date(offset):
     """
     Args:
         offset (int): Number of days from now the date returned should correspond to
@@ -17,16 +17,6 @@ def get_date(offset=0):
     """
     now = datetime.now()
     return now + timedelta(days=offset)
-
-
-def format_date(date):
-    """
-    Args:
-        date (datetime object): the date to format
-    Returns:
-        (str) date formatted in year-month-day
-    """
-    return "{year}-{month}-{day}".format(year=date.year, month=date.month, day=date.day)
 
 
 def get_events_url(date):
@@ -40,7 +30,7 @@ def get_events_url(date):
     """
 
     url_p2 = "?view=summary&timeframe=day&date="
-    curr_date = format_date(date)
+    curr_date = date.strftime("%Y-%m-%d")
     url_p4 = "&tab=all_events"
     url = EVENTS_URL + url_p2 + curr_date + url_p4
     return url
@@ -59,17 +49,30 @@ def clean_str(string):
     return re.sub('\s+', ' ', decoded).strip()
 
 
-def parse_subtitles(subtitles, event):
+def parse_subtitles(p, event):
     """
-    Parses SUBTITLES and assigns them to the correct attribute in EVENT.
+    Parses P and assigns subtitles to correct attribute in EVENT.
     Args:
-        subtitles (list<str>): list of subtitle items: Category, Date, Time (optional), Location
+        p (bs4.element.Tag): paragraph with subtitle items:
+            Category, Date, Time (optional), Location, Status Alert
         event (dict): JSON object representing event
     Returns:
         None
     """
+    event["status"] = None
+    event["time"] = None
+    event["location"] = None
+    event["date"] = None
+
+    status_alert = p.find('span', class_='statusAlert')
+    subtitles = p.text.split("|")
+
     if len(subtitles) < 2:
         return
+
+    if status_alert:
+        event["status"] = clean_str(status_alert.text)
+        subtitles.pop()
 
     subtitles = list(map(clean_str, subtitles))
     event["category"] = subtitles[0]
@@ -101,12 +104,8 @@ def parse_paragraphs(paragraphs, event):
     event["description"] = {}
     event["description"]["text"] = None
     event["description"]["truncated"] = False
-    event["status"] = None
     for p in paragraphs:
         label = p.find('label')
-        status_alert = p.find('span', class_='statusAlert')
-        if status_alert:
-            event["status"] = clean_str(status_alert.text)
         if label:
             if re.search('sponsor', label.text.lower()):
                 sponsors = p.find_all('a', href=True)
@@ -161,7 +160,7 @@ def parse_event(event_row):
     event["link"] = EVENTS_URL + title['href']
     if paragraphs:
         subtitles = paragraphs[0].text.split("|")
-        parse_subtitles(subtitles, event)
+        parse_subtitles(paragraphs[0], event)
     if len(paragraphs) > 1:
         parse_paragraphs(paragraphs[1:], event)
     img_src = event_row.find('img', class_='cc-image', src=True)
@@ -186,7 +185,7 @@ def get_events(url):
     search = True
     while search:
         response = requests.get(url)
-        html = BeautifulSoup(response.text.encode('utf-16','ignore'), 'html.parser')
+        html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
         event_rows = html.find_all('div', class_='event row')
         for event in event_rows:
             events.append(parse_event(event))
@@ -209,9 +208,7 @@ def scrape(req):
     result = {}
     for i in range(NUM_DAYS):
         date = get_date(i)
-        result[format_date(date)] = get_events(get_events_url(date))
+        result[date.strftime("%Y-%m-%d")] = get_events(get_events_url(date))
     print(json.dumps(result, indent=2))
     return result
-
-scrape('placeholder')
 
