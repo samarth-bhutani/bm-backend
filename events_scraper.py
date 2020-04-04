@@ -1,4 +1,4 @@
-import json, helper, re, requests
+import re, requests
 from datetime import datetime, timedelta
 import unidecode as u
 from bs4 import BeautifulSoup
@@ -222,4 +222,5 @@ def scrape(req):
         date = get_date(i)
         result[date.strftime("%Y-%m-%d")] = get_events(get_events_url(date))
     return result
-    
+
+scrape('a')
