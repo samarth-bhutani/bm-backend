@@ -46,6 +46,10 @@ def scrape_and_push(request):
     firebase_push.scrape_resources_information(db)
     print("Resources update complete!")
     
+    print("Updating events...")
+    firebase_push.scrape_events_information(db)
+    print("Events update complete!")
+
     # print("Updating gyms...")
     # firebase_push.scrape_gym_information(db) 
     # print("Gym update complete!")
