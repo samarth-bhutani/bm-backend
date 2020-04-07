@@ -1,7 +1,7 @@
 import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, datetime
 from os.path import dirname, abspath
 from firebase_admin import credentials, firestore
-import cafe_scraper, dining_hall_scraper, library_scraper, moffitt_scraper, resources_scraper, helper
+import cafe_scraper, dining_hall_scraper, events_scraper, library_scraper, moffitt_scraper, resources_scraper, helper
 from datetime import datetime
 import pytz
 # from post_processing import post_processor

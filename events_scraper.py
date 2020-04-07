@@ -216,7 +216,7 @@ def get_events(url):
     return events
 
 
-def scrape(req):
+def scrape():
     result = {}
     for i in range(NUM_DAYS):
         date = get_date(i)
