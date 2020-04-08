@@ -10,7 +10,7 @@ def initialize_libraries_dict(libraries, library_names):
     parent_working_directory = os.path.dirname((abspath(__file__)))
     data1 = pd.read_csv(parent_working_directory + "/csv_data/latitude_longitudes.csv")
     data2 = pd.read_csv(parent_working_directory + "/csv_data/images.csv")
-    data3 = pd.read_csv(parent_working_directory + "/csv_data/library_phone_numbers_and_descriptions.csv")
+    data3 = pd.read_csv(parent_working_directory + "/csv_data/library_information.csv")
 
     for i in range(len(library_names)):
         library = library_names[i]
@@ -21,7 +21,7 @@ def initialize_libraries_dict(libraries, library_names):
         libraries[library]["picture"] = list(data2[data2['name'] == library_names[i]]['imageurl'])[0]
         libraries[library]["phone"] = list(data3[data3['library_name'] == library_names[i]]['phone_number'])[0]
         libraries[library]["description"] = list(data3[data3['library_name'] == library_names[i]]['description'])[0]
-        libraries[library]["address"] = list(data1[data1['name'] == library_names[i]]['address'])[0]
+        libraries[library]["address"] = list(data3[data3['library_name'] == library_names[i]]['address'])[0]
         libraries[library]["open_close_array"] = []
 
 def set_library_ids(libraries):
@@ -77,6 +77,7 @@ def parse_hours(day):
     date = datetime_object.date()
     hours_list = []
     is_closed = day["closed"]
+    notes = ""
     if not is_closed:
         if day["start"] == None:
             day["start"] = "00:00"
@@ -91,6 +92,7 @@ def parse_hours(day):
         day["start2"] = None
         day["end"] = "00:00"
         day["end2"] = None
+        notes = "Closed"
 
     if day["start"] != None and day["start"] != '' and day["end"] != None and day["end"] != '':
         hours_list.append((
@@ -104,7 +106,7 @@ def parse_hours(day):
             helper.standarize_timestring(day["end2"]),
             date))
 
-    return hours_list
+    return hours_list, notes
 
 def get_library_url(library_id):
     '''
@@ -140,10 +142,13 @@ def scrape_library_hours(libraries, library_names):
             for days in hours_dict:
                 # print(days)
 
-                day_hours = parse_hours(days["day"])
+                day_hours, notes = parse_hours(days["day"])
                 for item in day_hours:
-                    # print(item)
                     library_dict["open_close_array"].append(helper.build_time_interval(*item))
+                    last_entry = library_dict["open_close_array"].pop()
+                    last_entry["notes"] = notes
+                    library_dict["open_close_array"].append(last_entry)
+
         except Exception as e:
             '''
             Edge cases: Library doesn't have start, end time. Has "closed" or some text? 
