@@ -1,7 +1,7 @@
 import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, datetime
 from os.path import dirname, abspath
 from firebase_admin import credentials, firestore
-import cafe_scraper, dining_hall_scraper, library_scraper, moffitt_scraper, resources_scraper, helper
+import cafe_scraper, dining_hall_scraper, events_scraper, library_scraper, moffitt_scraper, resources_scraper, helper
 from datetime import datetime
 import pytz
 # from post_processing import post_processor
@@ -77,7 +77,7 @@ def scrape_library_information(db):
 
 def scrape_resources_information(db):
     '''
-        Run the resources scraper and updates Firebase with new data
+        Runs the resources scraper and updates Firebase with new data
     '''
     resources = resources_scraper.scrape()
     for resource_types in resources:
@@ -85,6 +85,15 @@ def scrape_resources_information(db):
         for resource in resources[resource_types]:
             resource_collection.document(str(resource)).set(resources[resource_types][resource])
         
+def scrape_events_information(db):
+    '''
+        Runs the events scraper and updates Firebase with new data
+    '''
+    events = events_scraper.scrape()
+    event_collection = db.collection(u'Events')
+    for day in events:
+        events_collection.document(day).set(events[day])
+
 def log_time(db):
     '''
         Logs the last time firebase has been updated
