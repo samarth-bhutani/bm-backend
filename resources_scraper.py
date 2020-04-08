@@ -44,14 +44,9 @@ def scrape():
                             intervals.append(helper.build_time_interval(open="Closed", close="Closed", date=date))
                         else:
                             time = time.split("-")
-                            print("TIME:", time)
                             open = helper.standarize_timestring(time[0])
                             close = helper.standarize_timestring(time[1])
-
-                            print(open, close)
-                            
                             intervals.append(helper.build_time_interval(open=open, close=close, date=date))
-                            print("\n")
                                 
                 if isinstance(new_resource["by_appointment"], str) and "Yes" in new_resource["by_appointment"]:
                     new_resource["by_appointment"] = True
@@ -71,5 +66,3 @@ def scrape():
         all_resources[category] = category_resources
 
     return all_resources
-
-print(scrape())
