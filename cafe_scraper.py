@@ -176,4 +176,3 @@ def scrape():
     scrape_others()
 
     return cafes_information
-
