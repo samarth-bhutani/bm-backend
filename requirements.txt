@@ -6,3 +6,4 @@ protobuf==3.11.3
 pandas==0.25.2
 google-cloud-storage==1.26.0
 google-cloud-firestore==1.6.2
+Unidecode==1.1.1
