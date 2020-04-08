@@ -197,7 +197,7 @@ Given a time, day, month and year, the function converts it to a POSIX timestamp
 
 
 def convert_to_posix(time, day, month, year):
-    if ":" not in time:
+    if ":" not in str(time):
         time = "00:00"
 
     import datetime, pytz
