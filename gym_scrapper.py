@@ -42,7 +42,7 @@ def rsf_scrapper():
     output_dictionary.update({"description": "The Recreational Sports Facility (RSF) is the University’s largest, most complete fitness center with over 100,000 square feet of activity space, including an Olympic-sized swimming pool, 3 weight rooms, seven basketball courts, seven racquetball/handball courts, six squash courts, treadmills, elliptical trainers, stairmasters, rowing machines and stationary bikes. "})
     output_dictionary.update({"address":" 2301 Bancroft Way, Berkeley, CA 94720"})
     output_dictionary.update({"open_close_array":open_close_array})
-    return output_dictionary
+    print (output_dictionary)
  
  
 def memorial_scrapper():
@@ -59,6 +59,7 @@ def memorial_scrapper():
    
     
     for i in content_iterable:
+        
         day_iterable = i.findAll("td")
         day = str(datetime.strptime(str(day_iterable[0].get_text().replace(",","")), '%a %b %d')).replace("1900",str(datetime.now().year)).split(" ")[0]
         day_converted = datetime.strptime(day,'%Y-%m-%d').date()
@@ -81,15 +82,112 @@ def memorial_scrapper():
     output_dictionary.update({"open_close_array":open_close_array})
     return output_dictionary
            
+def event_helper(event):
+    if "Closure" in event:
+        return False
+    if "No" in event:
+        return False
+    else:
+        return True
 
-def pool_scrapper():
+
+def secondary_scrapper(facility,url):
+   
+
+    open_close_array = []
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content,"html.parser")
+    content = soup.find(class_="entry-content")
+    list_of_days = content.findAll(class_="fancy_header")
+    content = soup.findAll(class_="minimal_table")
+
+    for i, d in zip(content, list_of_days):
+        date = d.find(class_="slategrey").get_text()
+        revised_date = datetime.strptime(date,"%A, %B %d").date()
+        revised_date = revised_date.replace(int(datetime.now().year))
+
+        content_iterable = i.findAll("tr")
+        for x in content_iterable:
+            if (x.findAll("td") == []):
+                continue
+            day_iterable = x.findAll("td")
+            time = day_iterable[0].get_text().split("-")
+            start_time = re.sub(r"([0-9:]+(\.[0-9]+)?)",r" \1 ", time[0]).strip()
+            end_time = re.sub(r"([0-9:]+(\.[0-9]+)?)",r" \1 ", time[1]).strip()
+            open_close_time = helper.build_time_interval(start_time,end_time,revised_date)
+            location = day_iterable[1].get_text()
+            event = day_iterable[2].get_text()
+            if (location == facility):
+                #open_close_array.append(open_close_time)
+                if (event_helper(event) == True):
+                    open_close_array.append(open_close_time)
+
+    return open_close_array
+
+def hearst_pool_scrapper():
     url_pool = "https://recsports.berkeley.edu/lap-swim/"
+    output_dictionary = {}
+    location = 'Hearst North Pool'
+    open_close_array = secondary_scrapper(location,url_pool)
+    output_dictionary.update({"name":"Hearst North Pool"})
+    output_dictionary.update({"latitude":"37.8697646"})
+    output_dictionary.update({"longitude":"-122.256941"})
+    output_dictionary.update({"phone":"(510)-642-3894"})
+    output_dictionary.update({"picture":None})
+    output_dictionary.update({"description": "Hearst Pool offers regular lap swim hours and includes amenities such as locker rooms, hot showers, day locks, swim suit spinners, and towel service."})
+    output_dictionary.update({"address":" Bancroft Way & Bowditch St, Berkeley, CA 94704"})
+    output_dictionary.update({"open_close_array":open_close_array})
+    return output_dictionary
+    
+def grbc_pool_scrapper():
+    url_pool = "https://recsports.berkeley.edu/lap-swim/"
+    output_dictionary = {}
+    location = 'GBRC'
+    open_close_array = secondary_scrapper(location,url_pool)
+    output_dictionary.update({"name":"GRBC Pool"})
+    output_dictionary.update({"latitude":"37.86865280"})
+    output_dictionary.update({"longitude":"-122.247158"})
+    output_dictionary.update({"phone":"(510)-643-9021"})
+    output_dictionary.update({"picture":None})
+    output_dictionary.update({"description": "The pool includes six lanes that are 25 yards in length with water temperature kept at 80-81 degrees F. The shallow end is three and a half feet deep and the deep end is ten feet deep. Open recreation lap swim only. Amenities include locker rooms, hot showers, lockers (bring your own lock), swimsuit spinners, and kickboards. No towel service is available."})
+    output_dictionary.update({"address":"25 Sports Ln, Berkeley, CA 94720"})
+    output_dictionary.update({"open_close_array":open_close_array})
+    return output_dictionary
+
+def spieker_pool_scrapper():
+    url_pool = "https://recsports.berkeley.edu/lap-swim/"
+    output_dictionary = {}
+    location = 'Spieker Pool'
+    open_close_array = secondary_scrapper(location,url_pool)
+    output_dictionary.update({"name":"Spieker Pool"})
+    output_dictionary.update({"latitude":"37.869229"})
+    output_dictionary.update({"longitude":"-122.262111"})
+    output_dictionary.update({"phone":"(510)-643-8038"})
+    output_dictionary.update({"picture":None})
+    output_dictionary.update({"description": "Spieker is used for lap swimming, team practice, swim meets and water polo matches. Amenities include locker rooms, hot showers, day locks, swimsuit spinners, kickboards, a pool lift for those needing assistance getting into the pool, wheelchair access to locker rooms, and towel service."})
+    output_dictionary.update({"address":" 2301 Bancroft Way, Berkeley, CA 94704"})
+    output_dictionary.update({"open_close_array":open_close_array})
+    return output_dictionary
+
+
 
 def track_scrapper():
     url_track = "https://recsports.berkeley.edu/tracks/"
+    output_dictionary = {}
+    location = 'Edwards Track'
+    open_close_array = secondary_scrapper(location,url_track)
+    output_dictionary.update({"name":"Edwards Track"})
+    output_dictionary.update({"latitude":"37.869495"})
+    output_dictionary.update({"longitude":"-122.264633"})
+    output_dictionary.update({"phone":"(510)-643-8038"})
+    output_dictionary.update({"picture":None})
+    output_dictionary.update({"description": "Edwards Track is an eight-lane running track that is open for recreational use by Rec Sports members when not being used by the Track & Field team."})
+    output_dictionary.update({"address":" 2223 Fulton St, Berkeley, CA 94704"})
+    output_dictionary.update({"open_close_array":open_close_array})
+    return output_dictionary
 
 
 if __name__ == "__main__":
-    memorial_scrapper()
+    track_scrapper()
 
  
