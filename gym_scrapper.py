@@ -8,14 +8,12 @@ import helper
 import re
 
 
-def rsf_scrapper():
+def primary_scrapper(url):
+    ## This is the primary scrapper for athletic facilites. It is used
+    ## when a only a SINGLE facility is loaded per webpage/table.
+
     open_close_array = []
-    output_dictionary = {}
-
-    url_rsf = "https://recsports.berkeley.edu/rsf-hours/"
-    
-
-    page = requests.get(url_rsf)
+    page = requests.get(url)
     soup = BeautifulSoup(page.content,"html.parser")
     content = soup.find(class_="minimal_table")
     content_iterable = content.findAll("tr")
@@ -28,61 +26,18 @@ def rsf_scrapper():
         if (day_iterable[1].get_text() == "CLOSED"):
             start_time = "11:59 pm"
             end_time = "11:59 pm"
+            continue ## If the facility is closed, then we are not adding a time interval into the array.
         else: 
             start_time = re.sub("^0", "", datetime.strptime(day_iterable[1].get_text().split("-")[0],'%I%p ').time().strftime( '%I:%M %p' ))
             end_time = re.sub("^0", "", datetime.strptime(day_iterable[1].get_text().split("-")[1],' %I%p').time().strftime( '%I:%M %p' ))
         open_close_time = helper.build_time_interval(start_time.lower(),end_time.lower(),day_converted)
         open_close_array.append(open_close_time)
 
-    output_dictionary.update({"name":"RSF"})
-    output_dictionary.update({"latitude":"37.8685702"})
-    output_dictionary.update({"longitude":"-122.2627233"})
-    output_dictionary.update({"phone":"510-642-5072"})
-    output_dictionary.update({"picture":None})
-    output_dictionary.update({"description": "The Recreational Sports Facility (RSF) is the University’s largest, most complete fitness center with over 100,000 square feet of activity space, including an Olympic-sized swimming pool, 3 weight rooms, seven basketball courts, seven racquetball/handball courts, six squash courts, treadmills, elliptical trainers, stairmasters, rowing machines and stationary bikes. "})
-    output_dictionary.update({"address":" 2301 Bancroft Way, Berkeley, CA 94720"})
-    output_dictionary.update({"open_close_array":open_close_array})
-    print (output_dictionary)
- 
- 
-def memorial_scrapper():
-    open_close_array = []
-    output_dictionary = {}
-
-
-    url_memorial = "https://recsports.berkeley.edu/stadium-fitness-center-hours/"
-
-    page = requests.get(url_memorial)
-    soup = BeautifulSoup(page.content,"html.parser")
-    content = soup.find(class_="minimal_table")
-    content_iterable = content.findAll("tr")
-   
-    
-    for i in content_iterable:
-        
-        day_iterable = i.findAll("td")
-        day = str(datetime.strptime(str(day_iterable[0].get_text().replace(",","")), '%a %b %d')).replace("1900",str(datetime.now().year)).split(" ")[0]
-        day_converted = datetime.strptime(day,'%Y-%m-%d').date()
-        if (day_iterable[1].get_text() == "CLOSED"):
-            start_time = "11:59 pm"
-            end_time = "11:59 pm"
-        else: 
-            start_time = re.sub("^0", "", datetime.strptime(day_iterable[1].get_text().split("-")[0],'%I%p ').time().strftime( '%I:%M %p' ))
-            end_time = re.sub("^0", "", datetime.strptime(day_iterable[1].get_text().split("-")[1],' %I%p').time().strftime( '%I:%M %p' ))
-        open_close_time = helper.build_time_interval(start_time.lower(),end_time.lower(),day_converted)
-        open_close_array.append(open_close_time)
-
-    output_dictionary.update({"name":"Memorial Stadium Fitness Center"})
-    output_dictionary.update({"latitude":"37.8703831"})
-    output_dictionary.update({"longitude":"-122.2513493"})
-    output_dictionary.update({"picture":None})
-    output_dictionary.update({"phone":"510-642-7796"})
-    output_dictionary.update({"description": "The Rec Sports Stadium Fitness Center at Memorial Stadium is a 5,000 square foot workout space located on the west side of the stadium, between Gates 2 and 5. "})
-    output_dictionary.update({"address":" 210 Stadium Rim Way, Berkeley, CA 94704"})
-    output_dictionary.update({"open_close_array":open_close_array})
-    return output_dictionary
+    return open_close_array
            
 def event_helper(event):
+    ## This is a helper function that analyzes text to determine if a facility is open.
+
     if "Closure" in event:
         return False
     if "No" in event:
@@ -90,9 +45,9 @@ def event_helper(event):
     else:
         return True
 
-
 def secondary_scrapper(facility,url):
-   
+   ## This is the seconary scrapper, used when MULTIPLE facilities are loaded
+   ## on a table/per page.
 
     open_close_array = []
     page = requests.get(url)
@@ -123,6 +78,35 @@ def secondary_scrapper(facility,url):
                     open_close_array.append(open_close_time)
 
     return open_close_array
+
+def memorial_scrapper():
+    open_close_array = []
+    output_dictionary = {}
+    open_close_array = primary_scrapper("https://recsports.berkeley.edu/stadium-fitness-center-hours/")
+    output_dictionary.update({"name":"Memorial Stadium Fitness Center"})
+    output_dictionary.update({"latitude":"37.8703831"})
+    output_dictionary.update({"longitude":"-122.2513493"})
+    output_dictionary.update({"picture":None})
+    output_dictionary.update({"phone":"510-642-7796"})
+    output_dictionary.update({"description": "The Rec Sports Stadium Fitness Center at Memorial Stadium is a 5,000 square foot workout space located on the west side of the stadium, between Gates 2 and 5. "})
+    output_dictionary.update({"address":" 210 Stadium Rim Way, Berkeley, CA 94704"})
+    output_dictionary.update({"open_close_array":open_close_array})
+    return output_dictionary
+
+def rsf_scrapper():
+
+    open_close_array = []
+    output_dictionary = {}
+    open_close_array = primary_scrapper("https://recsports.berkeley.edu/stadium-fitness-center-hours/")
+    output_dictionary.update({"name":"RSF"})
+    output_dictionary.update({"latitude":"37.8685702"})
+    output_dictionary.update({"longitude":"-122.2627233"})
+    output_dictionary.update({"phone":"510-642-5072"})
+    output_dictionary.update({"picture":None})
+    output_dictionary.update({"description": "The Recreational Sports Facility (RSF) is the University’s largest, most complete fitness center with over 100,000 square feet of activity space, including an Olympic-sized swimming pool, 3 weight rooms, seven basketball courts, seven racquetball/handball courts, six squash courts, treadmills, elliptical trainers, stairmasters, rowing machines and stationary bikes. "})
+    output_dictionary.update({"address":" 2301 Bancroft Way, Berkeley, CA 94720"})
+    output_dictionary.update({"open_close_array":open_close_array})
+    return output_dictionary
 
 def hearst_pool_scrapper():
     url_pool = "https://recsports.berkeley.edu/lap-swim/"
@@ -169,8 +153,6 @@ def spieker_pool_scrapper():
     output_dictionary.update({"open_close_array":open_close_array})
     return output_dictionary
 
-
-
 def track_scrapper():
     url_track = "https://recsports.berkeley.edu/tracks/"
     output_dictionary = {}
@@ -186,8 +168,19 @@ def track_scrapper():
     output_dictionary.update({"open_close_array":open_close_array})
     return output_dictionary
 
+def run_all_scrapper():
+    array_of_results = []
+    array_of_results.append(memorial_scrapper())
+    array_of_results.append(rsf_scrapper())
+    array_of_results.append(hearst_pool_scrapper())
+    array_of_results.append(grbc_pool_scrapper())
+    array_of_results.append(spieker_pool_scrapper())
+    array_of_results.append(track_scrapper())
+
+    return array_of_results
+
 
 if __name__ == "__main__":
-    track_scrapper()
+    print(run_all_scrapper())
 
  
