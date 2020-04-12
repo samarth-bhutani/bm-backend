@@ -181,6 +181,6 @@ def run_all_scrapper():
 
 
 if __name__ == "__main__":
-    print(run_all_scrapper())
+    run_all_scrapper()
 
  
