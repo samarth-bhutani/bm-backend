@@ -1,7 +1,7 @@
 import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, datetime
 from os.path import dirname, abspath
 from firebase_admin import credentials, firestore
-import cafe_scraper, dining_hall_scraper, events_scraper, library_scraper, moffitt_scraper, resources_scraper, helper
+import cafe_scraper, dining_hall_scraper, events_scraper, library_scraper, moffitt_scraper, resources_scraper, gym_scraper, gym_classes_scraper, helper
 from datetime import datetime
 import pytz
 # from post_processing import post_processor
@@ -93,7 +93,25 @@ def scrape_events_information(db):
     event_collection = db.collection(u'Events')
     for day in events:
         events_collection.document(day).set(events[day])
-        
+
+def scrape_gym_information(db):
+    '''
+        Runs the gym scraper and updates Firebase with new data
+    '''
+    gym_classes = gym_scraper.scrape()
+    gym_collection = db.collection(u'Gyms')
+    for gym in gyms:
+        gym_collection.document(gym["name"]).set(gym)
+
+def scrape_gym_classes_information(db):
+    '''
+        Runs the gym classes scraper and updates Firebase with new data
+    '''
+    gym_classes = gym_classes_scraper.scrape()
+    gym_classes_collection = db.collection(u'Gym Classes')
+    for day in gym_classes:
+        gym_collection.document(day).set(gym_classes[day])
+
 def log_time(db):
     '''
         Logs the last time firebase has been updated
@@ -104,47 +122,3 @@ def log_time(db):
     dictionary = {} 
     dictionary["timestamp"] = dt_string
     db.collection(u'Logs').document("Last Updated").set(dictionary)
-
-# def scrape_gym_information(db):
-#     gyms = post_processor.process_gyms()
-#     gyms_ref = db.collection("Gyms")
-#     for resource in gyms:
-#         resource.pop("id", None)
-#         resource.pop("close", None)
-#         resource.pop("open", None)
-#         resource.pop("open_hours", None)
-#         resource.pop("close_hours", None)
-
-#         gym_ref = gyms_ref.document(u'{}'.format(resource["name"]))
-#         gym_ref.set(resource)
-
-# def scrape_gym_classes_information(db):
-#     os.chdir(os.pardir)
-#     try:
-#         os.system("python3 scrapers/gyms/gym_classes.py")
-#         shutil.move("gym_class_data.json", "firebase/gym_class_data.json")
-#     except:
-#         print("Error")
-
-#     # Gym Classes Data
-#     data_path = os.path.join(os.path.dirname(os.path.abspath(inspect.stack()[0][1])), "gym_class_data.json")
-
-#     with open(data_path) as handle:
-#         dictdump = json.loads(handle.read())
-
-#         gyms_ref = db.collection("Gyms")
-
-#         day, week_of_day, week_of_mon = helper.get_last_sunday()
-
-#         gym_ref = gyms_ref.document(u'{}'.format("Gym Classes"))
-        
-
-#         for key in dictdump.keys():
-#             gym_day_ref = gym_ref.collection(u'{}'.format(day))
-
-#             index = 0
-#             for c in dictdump[key]:
-#                 gym_day_ref.document(u'{}'.format(index)).set(c)
-#                 index += 1
-
-#             day += datetime.timedelta(days=1)

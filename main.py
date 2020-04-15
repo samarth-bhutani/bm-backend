@@ -3,27 +3,6 @@ import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, datetime
 from firebase_admin import credentials, firestore
 from google.cloud import storage
 
-def scrape_all(request):
-    print(request)
-    cafes = cafe_scraper.scrape()
-    dining_halls = dining_hall_scraper.scrape()
-    libraries = library_scraper.scrape()
-
-    scraped = {}
-    scraped.update(cafes)
-    scraped.update(dining_halls)
-    scraped.update(libraries)
-    print(scraped)
-    
-    '''
-        For logging purposes 
-    '''
-    bucket_name = "bm-backend_scrap"
-    destination_blob_name = "output.json"
-    bucket = client.get_bucket(bucket_name)
-    blob = bucket.blob(destination_blob_name)
-    blob.upload_from_string(str(scraped))
-
 def scrape_and_push(request):
     '''
         Runs all the scrapers and pushes the data to Firebase. 
@@ -50,10 +29,10 @@ def scrape_and_push(request):
     firebase_push.scrape_events_information(db)
     print("Events update complete!")
 
-    # print("Updating gyms...")
-    # firebase_push.scrape_gym_information(db) 
-    # print("Gym update complete!")
+    print("Updating gyms...")
+    firebase_push.scrape_gym_information(db) 
+    print("Gyms update complete!")
 
-    # print("Updating gym classes...")
-    # firebase_push.scrape_gym_information(db) 
-    # print("Gym class update complete!")
+    print("Updating gym classes...")
+    firebase_push.scrape_gym_classes_information(db) 
+    print("Gym classes update complete!")

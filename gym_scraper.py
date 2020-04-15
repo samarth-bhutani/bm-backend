@@ -7,7 +7,6 @@ import pandas as pd
 import helper
 import re
 
-
 def primary_scrapper(url):
     ## This is the primary scrapper for athletic facilites. It is used
     ## when a only a SINGLE facility is loaded per webpage/table.
@@ -176,11 +175,4 @@ def scrape():
     array_of_results.append(grbc_pool_scrapper())
     array_of_results.append(spieker_pool_scrapper())
     array_of_results.append(track_scrapper())
-
     return array_of_results
-
-
-
-print(scrape())
-
- 

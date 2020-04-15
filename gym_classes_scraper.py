@@ -8,7 +8,7 @@ import helper
 import unidecode
 
 
-def scrapper():
+def scrape():
     ## Gym classes scrapper function, extracts data online.
     api_call = "https://widgets.mindbodyonline.com/widgets/schedules/8d3262c705.json?mobile=false&version=0.1"
     page = requests.get(api_call)
@@ -92,38 +92,11 @@ def scrapper():
 
     ## Data Processing: Getting Data into requested schema.
     for i in output:
-        date_key = i.get("date").strftime("%Y %m %d")
+        date_key = i.get("date").strftime("%Y-%m-%d")
         if (date_dictionary.get(date_key) == None):
             date_dictionary[date_key] = [i]
         else:
             date_dictionary[date_key].append(i)
     return date_dictionary
 
-
-    ### Commented Out: Original data processing scheme.
-    # Data Processing: Getting Data into requested schema.
-    # for i in output:
-    #     date_key = i.get("date")
-    #     if (date_dictionary.get(date_key) == None):
-    #         date_dictionary[date_key] = [i]
-    #     else:
-    #         date_dictionary[date_key].append(i)
-    # list_of_keys = date_dictionary.keys()
-    # # Final output dictionary
-    # output_dict = {}
-    # for k in list_of_keys:
-    #     array_of_classes = date_dictionary.get(k)
-    #     date_dict = {}
-    #     for c in array_of_classes:
-    #         class_name_2 = c.get("class")
-    #         date_dict[class_name_2] = c
-    #     output_dict[k] = date_dict
-
-
-
-
-
-if __name__ == "__main__":
-    scrapper()
-
- 
+print(scrape())
