@@ -163,19 +163,39 @@ def scrape_others():
     return campus_rests, conv_stores
 
 def scrape_qual():
-    times = ["7 am", "6 pm", "8 am","5 pm"] 
+    
+    url = "https://www.yaliscafe.com"
+    source = requests.get(url)
+    soup = bs.BeautifulSoup(source.content, features='html.parser')
+    mydivs = soup.findAll("div", {"class": "textwidget"})
+    cur = mydivs[1].p.getText()
+    x1 = cur.split(":")[1][1:8]
+    x2 = cur.split(":")[2][1:8]
+    x11, x12 = x1.split("–")
+    x21, x22 = x2.split("–")
+   
+
+    times = [x11, x12, x21, x22] 
     yali_times = []
     c,d,a,b = helper.standarize_timestring(times[0]),helper.standarize_timestring(times[1]),helper.standarize_timestring(times[2]),helper.standarize_timestring(times[3])
     bam = helper.get_last_sunday()
-    for i in range(6):
+    for i in range(1, 6):
         x = bam + datetime.timedelta(days=i) 
         current = helper.build_time_interval(c,d,x)
         yali_times.append(current)
 
+
     x = bam + datetime.timedelta(days=6) 
     current = helper.build_time_interval(a,b,x)
     yali_times.append(current)
+
+    x = bam + datetime.timedelta(days=0) 
+    current = helper.build_time_interval(a,b,x)
+    yali_times.append(current)
+    
     return yali_times
+
+
 
 #call this to actually return the dictionary"
 def scrape():
@@ -213,6 +233,6 @@ def scrape():
     print(cafes_information["Qualcomm Cafe"])
     return cafes_information
 
-
-
+if __name__ == "__main__":
+    scrape_qual()
 
