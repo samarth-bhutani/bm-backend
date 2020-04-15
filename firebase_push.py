@@ -91,8 +91,8 @@ def scrape_events_information(db):
     '''
     events = events_scraper.scrape()
     event_collection = db.collection(u'Events')
-    for day in events:
-        events_collection.document(day).set(events[day])
+    for day in events.keys():
+        event_collection.document(day).set(events[day])
         
 def log_time(db):
     '''
