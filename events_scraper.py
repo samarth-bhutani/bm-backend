@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 EVENTS_URL = "http://events.berkeley.edu/"
 
 # Number of days of events to fetch
-NUM_DAYS = 28
+NUM_DAYS = 1
 
 def get_date(offset):
     """
@@ -193,14 +193,14 @@ def get_events(url):
     Returns:
         A list of the event JSON objects.
     """
-    events = []
+    events = {}
     search = True
     while search:
         response = requests.get(url)
         html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
         event_rows = html.find_all('div', class_='event row')
-        for event in event_rows:
-            events.append(parse_event(event))
+        for i, event in enumerate(event_rows):
+            events[i] = parse_event(event)
         prev_next_page = html.find('div', class_='previousNextPage')
 
         # If there are more pages, get link of next page
@@ -223,4 +223,4 @@ def scrape():
         result[date.strftime("%Y-%m-%d")] = get_events(get_events_url(date))
     return result
 
-scrape()
+print(scrape())
