@@ -46,6 +46,9 @@ def scrape_details(cafes, cafe_names):
         cafe_dict["address"] = list(data1[data1['name'] == cafe_name]['address'])[0]
         cafe_dict["open_close_array"] = []
 
+def keys_swap(orig_key, new_key, d):
+    d[new_key] = d.pop(orig_key)
+
 def scrape_others():
     '''Objective: Scrape the data on convenience stores and campus restaurants.
        Format: Has 2 dictionaries with arrays appended in the format (Open, Close, DatetimeObject)
@@ -128,7 +131,8 @@ def scrape_others():
                     current = helper.build_time_interval(a,b,x)
                     conv_stores[key].append(current)
                 if (i == 5):
-                    if cols[j] == "Closed":
+                    
+                    if cols[j] == "Closed" or cols[j] == "Closed.":
                         a, b = '0', '0'
                     else:
                         times = cols[j].split(',')
@@ -146,7 +150,7 @@ def scrape_others():
                         else:
                             times2 = times[0].split('–')
                             times3 = times[1].split('–')
-                            c,d,a,b = standarize_timestring(times3[0]),standarize_timestring(times3[1]),standarize_timestring(times2[0]),standarize_timestring(times2[1])
+                            c,d,a,b = helper.standarize_timestring(times3[0]),helper.standarize_timestring(times3[1]),helper.standarize_timestring(times2[0]),helper.standarize_timestring(times2[1])
                             bam = helper.get_last_sunday()
                             x = bam + datetime.timedelta(days=j) #get_last_sunday() +
                             current = helper.build_time_interval(c,d,x)
@@ -155,7 +159,44 @@ def scrape_others():
                     x = bam + datetime.timedelta(days=j) #get_last_sunday() +
                     current = helper.build_time_interval(a,b,x)
                     campus_rests[key].append(current)
-       
+    keys_swap("The Golden Bear Café", "The Golden Bear Cafe", campus_rests)
+    return campus_rests, conv_stores
+
+def scrape_qual():
+    
+    url = "https://www.yaliscafe.com"
+    source = requests.get(url)
+    soup = bs.BeautifulSoup(source.content, features='html.parser')
+    mydivs = soup.findAll("div", {"class": "textwidget"})
+    cur = mydivs[1].p.getText()
+    x1 = cur.split(":")[1][1:8]
+    x2 = cur.split(":")[2][1:8]
+    x11, x12 = x1.split("–")
+    x21, x22 = x2.split("–")
+   
+
+    times = [x11, x12, x21, x22] 
+    yali_times = []
+    c,d,a,b = helper.standarize_timestring(times[0]),helper.standarize_timestring(times[1]),helper.standarize_timestring(times[2]),helper.standarize_timestring(times[3])
+    bam = helper.get_last_sunday()
+    for i in range(1, 6):
+        x = bam + datetime.timedelta(days=i) 
+        current = helper.build_time_interval(c,d,x)
+        yali_times.append(current)
+
+
+    x = bam + datetime.timedelta(days=6) 
+    current = helper.build_time_interval(a,b,x)
+    yali_times.append(current)
+
+    x = bam + datetime.timedelta(days=0) 
+    current = helper.build_time_interval(a,b,x)
+    yali_times.append(current)
+    
+    return yali_times
+
+
+
 #call this to actually return the dictionary"
 def scrape():
     path = os.path.dirname(__file__).split('/')[:-2]
@@ -171,8 +212,27 @@ def scrape():
     for cafe_name in cafe_names:
         cafes_information[cafe_name] = {}
 
+    
     scrape_details(cafes_information, cafe_names)
     scrape_menus(cafes_information, cafe_names, cafe_menus_df)
-    scrape_others()
+    campus_rests, conv_stores = scrape_others()
+    
 
+    #Add another key called the Den from conv_stores, because original keys were set according to website and these keys are set according to the names in the csv.
+    conv_stores["The Den"] = conv_stores["The Den, featuring Peet's Coffee & Tea (Crossroads)"]
+    
+
+    for cafe in cafes_information:
+        if cafe == "Qualcomm Cafe":
+            yali_times = scrape_qual()
+            cafes_information[cafe]["open_close_array"] = yali_times
+        elif cafe in campus_rests:
+            cafes_information[cafe]["open_close_array"] = campus_rests[cafe]
+        else:
+            cafes_information[cafe]["open_close_array"] = conv_stores[cafe]
+    print(cafes_information["Qualcomm Cafe"])
     return cafes_information
+
+if __name__ == "__main__":
+    scrape_qual()
+
