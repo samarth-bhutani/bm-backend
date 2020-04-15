@@ -168,7 +168,7 @@ def track_scrapper():
     output_dictionary.update({"open_close_array":open_close_array})
     return output_dictionary
 
-def run_all_scrapper():
+def scrape():
     array_of_results = []
     array_of_results.append(memorial_scrapper())
     array_of_results.append(rsf_scrapper())
@@ -180,7 +180,7 @@ def run_all_scrapper():
     return array_of_results
 
 
-if __name__ == "__main__":
-    run_all_scrapper()
+
+print(scrape())
 
  
