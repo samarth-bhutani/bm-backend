@@ -135,8 +135,10 @@ def parse_paragraphs(paragraphs, event, link):
                                 event["description"] = clean_str(event_p.text)
                         break
                     else:
-                        print("Attempt {}: Failed to fetch description for {}. Retrying".format(i, event["title"]))
                         i += 1
+                        if i >= NUM_ATTEMPTS:
+                            print("Failed to fetch full description for {}. Using truncated description.".format(event["title"]))
+                            event["description"] = clean_str(p.text)
             else:
                 event["description"] = clean_str(p.text)
 
@@ -212,29 +214,32 @@ def get_events(url):
         A list of the event JSON objects.
     """
     events = {}
-    search = True
-    while search:
-        response = requests.get(url)
-        html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
-        event_rows = html.find_all('div', class_='event row')
-        count = 0
-        for row in event_rows:
-            event = parse_event(row)
-            if event:
-                events[count] = event
-                count += 1
-        prev_next_page = html.find('div', class_='previousNextPage')
+    try:
+        search = True
+        while search:
+            response = requests.get(url)
+            html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
+            event_rows = html.find_all('div', class_='event row')
+            count = 0
+            for row in event_rows:
+                event = parse_event(row)
+                if event:
+                    events[str(count)] = event
+                    count += 1
+            prev_next_page = html.find('div', class_='previousNextPage')
 
-        # If there are more pages, get link of next page
-        if prev_next_page:
-            links = prev_next_page.find_all('a', href=True)
-            if len(links) == 2:
-                url = EVENTS_URL + links[1]["href"]
+            # If there are more pages, get link of next page
+            if prev_next_page:
+                links = prev_next_page.find_all('a', href=True)
+                if len(links) == 2:
+                    url = EVENTS_URL + links[1]["href"]
+                else:
+                    search = False
             else:
                 search = False
-        else:
-            search = False
-
+    except Exception as e:
+        print(e)
+        print("An error occurred scraping " + url)
     return events
 
 
@@ -246,7 +251,7 @@ def scrape():
     p.terminate()
     p.join()
     for i in range(NUM_DAYS):
-        date = get_date(i)
-        result[date.strftime("%Y-%m-%d")] = events[i]
+        if events[i]:
+            date = get_date(i)
+            result[date.strftime("%Y-%m-%d")] = events[i]
     return result
-    
