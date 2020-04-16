@@ -18,13 +18,13 @@ def update_credentials():
         On cloud functions you don't need to call initialize app or use credentials
     '''
     # for local pushing
-#     parent_working_directory = os.path.dirname((abspath(__file__)))
-#     cred = credentials.Certificate(parent_working_directory + "/berkeley-mobile-backend-firebase-key.json")
-#     firebase_admin.initialize_app(cred)
-#     db = firestore.client()
+    parent_working_directory = os.path.dirname((abspath(__file__)))
+    cred = credentials.Certificate(parent_working_directory + "/berkeley-mobile-backend-firebase-key.json")
+    firebase_admin.initialize_app(cred)
+    db = firestore.client()
 
     # for cloud-function pushing 
-    db = firestore.Client()
+    # db = firestore.Client()
     return db 
 
 def scrape_dining_hall_information(db):    
@@ -90,7 +90,7 @@ def scrape_events_information(db):
         Runs the events scraper and updates Firebase with new data
     '''
     events = events_scraper.scrape()
-    event_collection = db.collection(u'Events')
+    events_collection = db.collection(u'Events')
     for day in events:
         events_collection.document(day).set(events[day])
 
@@ -98,7 +98,7 @@ def scrape_gym_information(db):
     '''
         Runs the gym scraper and updates Firebase with new data
     '''
-    gym_classes = gym_scraper.scrape()
+    gyms = gym_scraper.scrape()
     gym_collection = db.collection(u'Gyms')
     for gym in gyms:
         gym_collection.document(gym["name"]).set(gym)
@@ -110,7 +110,7 @@ def scrape_gym_classes_information(db):
     gym_classes = gym_classes_scraper.scrape()
     gym_classes_collection = db.collection(u'Gym Classes')
     for day in gym_classes:
-        gym_collection.document(day).set(gym_classes[day])
+        gym_classes_collection.document(day).set(gym_classes[day])
 
 def log_time(db):
     '''

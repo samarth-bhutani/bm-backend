@@ -88,8 +88,6 @@ def scrape():
         class_dictionary['description'] = class_description
         output.append(class_dictionary)
 
-
-
     ## Data Processing: Getting Data into requested schema.
     for i in output:
         date_key = i.get("date").strftime("%Y-%m-%d")
@@ -98,5 +96,3 @@ def scrape():
         else:
             date_dictionary[date_key].append(i)
     return date_dictionary
-
-print(scrape())
