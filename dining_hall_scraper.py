@@ -1,8 +1,10 @@
-import requests, datetime, os
+import requests
 import bs4 as bs
+import os
 import pandas as pd
+import datetime
 import helper
-from os.path import dirname, abspath
+
 
 def scrape_menus(dining_halls, menu_urls, dining_hall_names):
     def get_late_night_menu(menu):
@@ -95,16 +97,21 @@ def scrape_menus(dining_halls, menu_urls, dining_hall_names):
                         index += 1
 
             get_late_night_menu(menu)
-            dining_halls[dining_hall_name]["menu"][helper.convert_stringdate_to_datetime(date)] = menu
+            dining_halls[dining_hall_name]["menu"][convert_stringdate_to_datetime(date)] = menu
 
 
 '''
 The function scrape_details takes a dictionary in as a parameter, and details about each dining hall location are stored in it
 '''
 def scrape_details(dining_halls, dining_hall_names):
-    parent_working_directory = os.path.dirname((abspath(__file__)))
-    data1 = pd.read_csv(parent_working_directory + "/csv_data/latitude_longitudes.csv")
-    data2 = pd.read_csv(parent_working_directory + "/csv_data/images.csv")
+    path = os.path.dirname(__file__).split('/')[:-2]
+    pathS = ""
+
+    for p in path:
+        pathS += p + '/'
+
+    data1 = pd.read_csv("csv_data/latitude_longitudes.csv")
+    data2 = pd.read_csv(pathS + "csv_data/images.csv")
 
     index = 0
     for dining_hall_name in dining_hall_names:
@@ -119,7 +126,7 @@ def scrape_details(dining_halls, dining_hall_names):
         dining_hall_dict["picture"] = list(data2[data2['name'] == dining_hall_name]['imageurl'])[0]
         dining_hall_dict["description"] = None
         dining_hall_dict["address"] = list(data1[data1['name'] == dining_hall_name]['address'])[0]
-        dining_hall_dict["open_close_array"] = scrape_times(index)
+        dining_hall_dict["open_close_array"] = helper.scrape_times(index)
         dining_hall_dict["menu"] = {}
 
         index += 1
@@ -173,9 +180,9 @@ def scrape_times(index):
                 #Maybe call build_time internval here on (a,b,x)
                 current = (current_time, meal)
                 data.append(current)
-    return data 
+        #print(data, "\n")
+       
 
-#call this to actually return the dictionary"
 def scrape():
     dining_halls = {}
     dining_halls["Crossroads"] = {}
