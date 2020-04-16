@@ -112,7 +112,6 @@ def scrape_gym_classes_information(db):
     for day in gym_classes:
         gym_classes_collection.document(day).set(gym_classes[day])
 
->>>>>>> 73290d28b5ec9900c95e71f0d09e22f656911d2a
 def log_time(db):
     '''
         Logs the last time firebase has been updated
