@@ -232,7 +232,3 @@ def scrape():
             cafes_information[cafe]["open_close_array"] = conv_stores[cafe]
     print(cafes_information["Qualcomm Cafe"])
     return cafes_information
-
-if __name__ == "__main__":
-    scrape_qual()
-
