@@ -106,5 +106,3 @@ def scrape():
     JSON_array.update({"address":"350 Moffitt Library, Berkeley, CA 94720"})
     JSON_array.update({"open_close_array":output_array})
     return JSON_array
- 
-print(scrape())
