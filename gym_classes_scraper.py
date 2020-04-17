@@ -17,7 +17,7 @@ class Date:
         self.month = int(date_array[1])
         self.year = int(date_array[0])
 
-def scrapper():
+def scrape():
     ## Gym classes scrapper function, extracts data online.
     api_call = "https://widgets.mindbodyonline.com/widgets/schedules/8d3262c705.json?mobile=false&version=0.1"
     page = requests.get(api_call)
