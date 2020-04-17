@@ -2,11 +2,18 @@ import re, requests
 from datetime import datetime, timedelta
 import unidecode as u
 from bs4 import BeautifulSoup
+from multiprocessing import Pool
 
 EVENTS_URL = "http://events.berkeley.edu/"
 
 # Number of days of events to fetch
 NUM_DAYS = 28
+
+# Number of worker threads to run
+NUM_WORKERS = 10
+
+# Number of attempts to fetch event description
+NUM_ATTEMPTS = 3
 
 def get_date(offset):
     """
@@ -116,13 +123,22 @@ def parse_paragraphs(paragraphs, event, link):
             links = p.find_all('a', href=True)
             if links and re.search('More >', clean_str(links[-1].text)):
                 # Event description is truncated, query event page for full description
-                response = requests.get(link)
-                html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
-                event_row = html.find('div', class_='event row')
-                event_ps = event_row.find_all('p')
-                for event_p in event_ps:
-                    if not event_p.find('label'):
-                        event["description"] = clean_str(event_p.text)
+                i = 0
+                while i < NUM_ATTEMPTS:
+                    response = requests.get(link)
+                    html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
+                    event_row = html.find('div', class_='event row')
+                    if event_row:
+                        event_ps = event_row.find_all('p')
+                        for event_p in event_ps:
+                            if not event_p.find('label'):
+                                event["description"] = clean_str(event_p.text)
+                        break
+                    else:
+                        i += 1
+                        if i >= NUM_ATTEMPTS:
+                            print("Failed to fetch full description for {}. Using truncated description.".format(event["title"]))
+                            event["description"] = clean_str(p.text)
             else:
                 event["description"] = clean_str(p.text)
 
@@ -167,22 +183,26 @@ def parse_event(event_row):
             - image (str): event image url, if available
     """
     event = initialize_event()
-    title_tag = event_row.find('h3', class_='event-title').find('a', href=True)
-    event["title"] = clean_str(title_tag.text)
-    event["link"] = EVENTS_URL + title_tag["href"]
-    if re.search("CANCELED", event["title"].upper()):
-        event["status"] = "Canceled"
+    try:
+        title_tag = event_row.find('h3', class_='event-title').find('a', href=True)
+        event["title"] = clean_str(title_tag.text)
+        event["link"] = EVENTS_URL + title_tag["href"]
+        if re.search("CANCELED", event["title"].upper()):
+            event["status"] = "Canceled"
 
-    paragraphs = event_row.find_all('p')
-    if paragraphs:
-        parse_paragraphs(paragraphs, event, event["link"])
+        paragraphs = event_row.find_all('p')
+        if paragraphs:
+            parse_paragraphs(paragraphs, event, event["link"])
 
-    img_src = event_row.find('img', class_='cc-image', src=True)
-    if img_src:
-        if re.match('/images/', img_src["src"]):
-            event["image"] = EVENTS_URL + img_src["src"]
-        else:
-            event["image"] = img_src["src"]
+        img_src = event_row.find('img', class_='cc-image', src=True)
+        if img_src:
+            if re.match('/images/', img_src["src"]):
+                event["image"] = EVENTS_URL + img_src["src"]
+            else:
+                event["image"] = img_src["src"]
+    except Exception as e:
+        print(e)
+        print("An error occurred scraping " + event_row.text[:100])
     return event
 
 
@@ -193,33 +213,45 @@ def get_events(url):
     Returns:
         A list of the event JSON objects.
     """
-    events = []
-    search = True
-    while search:
-        response = requests.get(url)
-        html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
-        event_rows = html.find_all('div', class_='event row')
-        for event in event_rows:
-            events.append(parse_event(event))
-        prev_next_page = html.find('div', class_='previousNextPage')
+    events = {}
+    try:
+        search = True
+        while search:
+            response = requests.get(url)
+            html = BeautifulSoup(response.text.encode('utf-8','ignore'), 'html.parser')
+            event_rows = html.find_all('div', class_='event row')
+            count = 0
+            for row in event_rows:
+                event = parse_event(row)
+                if event:
+                    events[str(count)] = event
+                    count += 1
+            prev_next_page = html.find('div', class_='previousNextPage')
 
-        # If there are more pages, get link of next page
-        if prev_next_page:
-            links = prev_next_page.find_all('a', href=True)
-            if len(links) == 2:
-                url = EVENTS_URL + links[1]["href"]
+            # If there are more pages, get link of next page
+            if prev_next_page:
+                links = prev_next_page.find_all('a', href=True)
+                if len(links) == 2:
+                    url = EVENTS_URL + links[1]["href"]
+                else:
+                    search = False
             else:
                 search = False
-        else:
-            search = False
-
+    except Exception as e:
+        print(e)
+        print("An error occurred scraping " + url)
     return events
 
 
 def scrape():
     result = {}
+    p = Pool(NUM_WORKERS)
+    urls = [get_events_url(get_date(i)) for i in range(NUM_DAYS)]
+    events = p.map(get_events, urls)
+    p.terminate()
+    p.join()
     for i in range(NUM_DAYS):
-        date = get_date(i)
-        result[date.strftime("%Y-%m-%d")] = get_events(get_events_url(date))
+        if events[i]:
+            date = get_date(i)
+            result[date.strftime("%Y-%m-%d")] = events[i]
     return result
-    

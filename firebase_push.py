@@ -90,9 +90,9 @@ def scrape_events_information(db):
         Runs the events scraper and updates Firebase with new data
     '''
     events = events_scraper.scrape()
-    events_collection = db.collection(u'Events')
-    for day in events:
-        events_collection.document(day).set(events[day])
+    event_collection = db.collection(u'Events')
+    for day in events.keys():
+        event_collection.document(day).set(events[day])
 
 def scrape_gym_information(db):
     '''
