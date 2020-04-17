@@ -8,7 +8,16 @@ import helper
 import unidecode
 
 
-def scrape():
+class Date:
+    ## Creates date object so correct type is passed into helper functions.
+    def __init__(self,date):
+        self.date = date
+        date_array = self.date.split("-")
+        self.day = int(date_array[2])
+        self.month = int(date_array[1])
+        self.year = int(date_array[0])
+
+def scrapper():
     ## Gym classes scrapper function, extracts data online.
     api_call = "https://widgets.mindbodyonline.com/widgets/schedules/8d3262c705.json?mobile=false&version=0.1"
     page = requests.get(api_call)
@@ -32,10 +41,7 @@ def scrape():
 
         class_content = i.find(class_="mbo_class")
         class_time = i.find(class_="hc_time")
-        day = class_time.find(class_="hc_starttime").get("data-datetime").split("T")[0]
-
-        ##Class date
-        day = datetime.strptime(day,'"%Y-%m-%d').date()
+        day = class_time.find(class_="hc_starttime").get("data-datetime").split("T")[0].replace('"',"")
 
         ##Class Type
         class_type = unidecode.unidecode(i.find(class_="visit_type").get_text())
@@ -65,34 +71,29 @@ def scrape():
         ##Class start time, multiple cases needed due to inconsistent formatting.
         class_time_frame = class_time.get_text()
         class_time_frame = class_time_frame.split("-")
-        try:
-            start_time =  datetime.strptime(class_time_frame[0]," %I:%M %p ").time()
-        except:
-            pass
-        try:
-            start_time = datetime.strptime(class_time_frame[0],"%I:%M %p ").time()
-        except:
-            pass
+        start_time = class_time_frame[0].lower().strip()
+        end_time = class_time_frame[1].lower().strip()
 
-        #Class end time
-        end_time = datetime.strptime(class_time_frame[1],"  %I:%M %p").time()
-        
+        #Build time interval
+        open_close = helper.build_time_interval(start_time,end_time,Date(day))
         
         class_dictionary["trainer"] = class_trainer
         class_dictionary['class'] = class_name
         class_dictionary['location'] = class_location
         class_dictionary['class type'] = class_type
         class_dictionary['date'] = day
-        class_dictionary["start_time"] = start_time
-        class_dictionary["end_time"] = end_time
         class_dictionary['description'] = class_description
+        class_dictionary["open_close_array"] = open_close
         output.append(class_dictionary)
 
-    ## Data Processing: Getting Data into requested schema.
+
+
+    # Data Processing: Getting Data into requested schema.
     for i in output:
-        date_key = i.get("date").strftime("%Y-%m-%d")
+        date_key = i.get("date")
         if (date_dictionary.get(date_key) == None):
-            date_dictionary[date_key] = [i]
+            date_dictionary[date_key] = {i.get('class'):i}
         else:
-            date_dictionary[date_key].append(i)
+            date_dictionary[date_key].update({i.get('class'):i})
+    
     return date_dictionary
