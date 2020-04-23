@@ -109,15 +109,8 @@ def parse_paragraphs(paragraphs, event, link):
     for p in paragraphs[1:]:
         label = p.find('label')
         if label:
-            if re.search('sponsor', label.text.lower()):
-                sponsors = p.find_all('a', href=True)
-                for sponsor in sponsors:
-                    sponsor_name = clean_str(sponsor.text)
-                    event["labels"]["sponsors"][sponsor_name] = sponsor['href']
-            elif re.search('speaker', label.text.lower()):
-                event["labels"]["speakers"] = clean_str(p.find(text=True, recursive=False))
-            else:
-                event["labels"]["other"] = clean_str(p.text)
+            label_type = clean_str(label.text).replace(":", "")
+            event["labels"][label_type] = clean_str(p.text.replace(label.text, ""))
         else:
             # Parse event description
             links = p.find_all('a', href=True)
@@ -152,11 +145,7 @@ def initialize_event():
     event["status"] = None
     event["time"] = event["location"] = event["date"] = None
     event["description"] = event["category"] = None
-    labels = {}
-    labels["other"] = []
-    labels["speakers"] = None
-    labels["sponsors"] = {}
-    event["labels"] = labels
+    event["labels"] = {}
     return event
 
 def parse_event(event_row):
@@ -174,10 +163,7 @@ def parse_event(event_row):
             - location (str): event location
             - status (str): status alert, if available (e.g. canceled)
             - labels: (dict)
-                - sponsors:
-                    - sponsor: link to sponsor details
-                - speakers: string of speakers and performers
-                - other: (list<str>) event details with a label
+                - label: label text (e.g. sponsors: 'BAMPFA, John Green, PhD.')
             - description (str): event details
             - link (str): event detail link
             - image (str): event image url, if available
