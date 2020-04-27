@@ -72,7 +72,7 @@ def twitter_scrape(db, url):
             lon = -122.2585
         
 
-        tweets[tweet_pretty_time] = {"id" : tweet_id, "text" : tweet_text, "lat": lat, "lon": lon}
+        tweets[tweet_pretty_time] = {"time" : tweet_epoch_time, "id" : tweet_id, "text" : tweet_text, "lat": lat, "lon": lon}
 
         
         #tweets_document = db.collection(u'UCPD Tweets').document(tweet_pretty_time)
