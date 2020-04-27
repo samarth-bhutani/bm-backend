@@ -3,31 +3,34 @@
 const puppeteer = require("puppeteer");
 const Promise = require("bluebird");
 const {Storage} = require("@google-cloud/storage");
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
+admin.initializeApp(functions.config().firebase);
 
 /** Google place IDs provided by
  * "https://developers.google.com/places/web-service/place-id".
  */
 const ids = [
-    {name:"Bioscience & Natural Resources Library", id:"ChIJ_____-B-hYARkH8qFkVlQZA"},
-    {name:"Business School Library", id:"ChIJmY7BsDp8hYARfG23CBRdZdU"},
-    {name:"Doe Memorial Library", id:"ChIJAQAAADl8hYARaxyuchGHTCw"},
-    {name:"C. V. Starr East Asian Library", id:"ChIJAQCwhiZ8hYARhe-BsmCY4VI"},
-    {name:"Kresge Engineering Library", id:"ChIJF4BsiyN8hYARLZ1vIPraljI"},
+    {name:"Bioscience, Natural Resources & Public Health Library", id:"ChIJ_____-B-hYARkH8qFkVlQZA"},
+    {name:"Business Library", id:"ChIJmY7BsDp8hYARfG23CBRdZdU"},
+    {name:"Doe Library", id:"ChIJAQAAADl8hYARaxyuchGHTCw"},
+    {name:"East Asian Library", id:"ChIJAQCwhiZ8hYARhe-BsmCY4VI"},
+    {name:"Engineering Library", id:"ChIJF4BsiyN8hYARLZ1vIPraljI"},
     {name:"Environmental Design Library", id:"ChIJLVUAUCV8hYARvXQnG_cbi4w"},
     {name:"Moffitt Library", id:"ChIJxWEsuCZ8hYAR48_Sst45khU"},
-    {name:"Jean Gray Hargrove Music Library", id:"ChIJ__-_ciV8hYARxgPm1ycRiEQ"},
+    {name:"Music Library", id:"ChIJ__-_ciV8hYARxgPm1ycRiEQ"},
     {name:"Recreational Sports Facility", id:"ChIJ6xOXzCd8hYARJdVJ4oZ_ZRM"},
     {name:"Crossroads", id:"ChIJLyHpUS58hYAR-oxYbGr1Apg"},
     {name:"Hearst Gym Pool", id:"ChIJkaIwgCV8hYAREuqCJDO_BQc"},
     {name:"The Golden Bear Cafe", id:"ChIJHeudCiZ8hYARcYHT4f8yWsg"},
     {name:"Spieker Aquatic Complex", id:"ChIJA-r4zCd8hYAR59QrukWWDhc"},
     {name:"Anthropology Library", id:"ChIJl2AF9C98hYARKec1ZTLyN7E"},
-    {name:"The Bancroft Library", id:"ChIJoZpCSCV8hYARAEbWLD-SHhk"},
+    {name:"Bancroft Library and University Archives", id:"ChIJoZpCSCV8hYARAEbWLD-SHhk"},
     {name:"Career Counseling Library", id:"ChIJATeQ7yd8hYARtIL0y4SiJIg"},
     {name:"Earth Sciences & Map Library", id:"ChIJlQ-QyDHsa4cRn5bWMGC7Qfc"},
     {name:"Ethnic Studies Library", id:"ChIJ7_YgsCV8hYARBreZ04Yc3N8"},
     {name:"Northern Regional Library Facility", id:"ChIJfaEr8F54hYARTaAjFURNejA"},
-    {name:"Physics Astronomy Library", id:"ChIJQ4uQWSR8hYAREh0HC7_5oeY"}
+    {name:"Physics-Astronomy Library", id:"ChIJQ4uQWSR8hYAREh0HC7_5oeY"}
 ];
 
 async function getHistogram(url, page) {
@@ -128,9 +131,6 @@ async function getData() {
 exports.scrape = (req, res) => {
     try {
         getData().then((result) => {
-            const admin = require('firebase-admin');
-            const functions = require('firebase-functions');
-            admin.initializeApp(functions.config().firebase);
             const db = admin.firestore();
             const storage = new Storage();
             const bucket = storage.bucket("bm-backend-scrap");
