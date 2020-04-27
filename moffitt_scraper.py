@@ -61,7 +61,6 @@ def scrape():
         end_time = i["day"]["end"]
         date = i["day"]["day"]
         date_converted = Date(date)
-      
         
         #Edge Case 1: When start time is none, '9am - '
         if (start_time == None):
@@ -98,13 +97,12 @@ def scrape():
         output_array.append(output)
 
     JSON_array.update({"name":"Moffitt Library"})
-    JSON_array.update({"latitude":"37.87277"})
-    JSON_array.update({"longitude":"-122.260244"})
+    JSON_array.update({"latitude":float(37.87277)})
+    JSON_array.update({"longitude":float(-122.260244)})
     JSON_array.update({"phone":"510-642-5072"})
-    JSON_array.update({"picture":None})
+    JSON_array.update({"picture":"https://www.lib.berkeley.edu/sites/default/files/moffitt_library_0_0.jpg"})
     JSON_array.update({"phone":"510-642-5072"})
     JSON_array.update({"description": "Moffitt Library, located next to Memorial Glade, is one of the busiest campus libraries with undergraduate course reserves, computer lab, makerspace, media center, copy center, campus classrooms, and convenient access to the research collections in the Main (Gardner) Stacks.  Moffitt floors 4 & 5, accessed through the east entrance are open 24 hours during the fall and spring semester and are snack and drink friendly. Reserved for UC Berkeley students and faculty, Moffitt serves students of all majors and is open the longest hours.  Campus visitors are welcome at the Free Speech Movement (FSM) Café and popular Newspaper Display Wall near the 3rd floor south entrance."})
     JSON_array.update({"address":"350 Moffitt Library, Berkeley, CA 94720"})
     JSON_array.update({"open_close_array":output_array})
     return JSON_array
- 
