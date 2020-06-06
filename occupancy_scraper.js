@@ -23,7 +23,7 @@ const ids = [
     {name:"Crossroads", id:"ChIJLyHpUS58hYAR-oxYbGr1Apg"},
     {name:"Hearst Gym Pool", id:"ChIJkaIwgCV8hYAREuqCJDO_BQc"},
     {name:"The Golden Bear Cafe", id:"ChIJHeudCiZ8hYARcYHT4f8yWsg"},
-    {name:"Spieker Aquatic Complex", id:"ChIJA-r4zCd8hYAR59QrukWWDhc"},
+    {name:"Spieker Pool", id:"ChIJA-r4zCd8hYAR59QrukWWDhc"},
     {name:"Anthropology Library", id:"ChIJl2AF9C98hYARKec1ZTLyN7E"},
     {name:"Bancroft Library and University Archives", id:"ChIJoZpCSCV8hYARAEbWLD-SHhk"},
     {name:"Career Counseling Library", id:"ChIJATeQ7yd8hYARtIL0y4SiJIg"},
