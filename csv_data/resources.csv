@@ -13,8 +13,17 @@ Suicide Prevention Resource Center,Campus Resource,"2222 Bancroft Way, Berkeley,
 Tang Center,Campus Resource,"2222 Bancroft Way, Berkeley, CA 94720",University Health Services,Yes,,37.867913,-122.264275,No,10am-4pm,8am-5pm,8am-5pm,8am-5pm,8am-5pm,8am-5pm,10am-4pm,(510) 642-2000,
 The Center for Student Conduct,Campus Resource,"Barrow Ln, Berkeley, CA 94704",Division of Student Affairs,Yes,,37.869811,-122.258765,Yes,Closed,"9am-12pm,1pm-4pm","9am-12pm,1pm-4pm","9am-12pm,1pm-4pm","9am-12pm,1pm-4pm","9am-12pm,1pm-4pm",Closed,510-643-9069,
 UCPD,Campus Resource,"1 Cross-Sproul Path, Berkeley, CA 94720",UC Police Department Berkeley,,police@berkeley.edu,37.8692,122.2587,Yes,12am-12am,12am-12am,12am-12am,12am-12am,12am-12am,12am-12am,12am-12am,510-642-3333,
+Cal Dining Food Recovery,Basic Needs Services,"2610 Channing Way, Berkeley, CA 94704",Cal Dining has partnered with RePlate to donate overproduced food to people in need. ,no,http://caldining.berkeley.edu/sustainability/waste-reduction,37.8670799,-122.2578648,No,,,,,,,,,
+CalFresh Clinics and Application Assistance,Basic Needs Services,MLK Student Union Bnorth Suite 72,"Learn about and sign up for CalFresh, which provides up to $193 food dollars each month to qualifying individuals.",no,http://calfresh.berkeley.edu/,37.869359,-122.259898,yes,,,,,,,,,
+Event Food Recovery,Basic Needs Services,MLK Student Union Bnorth Suite 72,Learn about how to ensure exess food from meetings and events does not go to waste.,no,https://food.berkeley.edu/programs/community-engagement-edu/food-recovery/,37.869359,-122.259898,yes,,,,,,,,,
+Food Assistance Program,Basic Needs Services,MLK Student Union Bnorth Suite 72,"The Food Assistance Program provides temporary food assistance in the form of meal points or a grocery store gift card, and is available to non-CalFresh eligible students with financial need.",no,http://financialaid.berkeley.edu/food-assistance-program,37.869548,-122.258754,yes,,,,,,,,,
+Garden & Farming Skills,Basic Needs Services,University Hall,"Campus gardens are spaces to learn skills to feed yourself and are a vital part of our Basic Needs community. You can grow food almost anywhere, even in a dorm room window. Many gardens also donate to the Food Pantry throughout the year. Click on the ""Campus Gardens"" layer (leaf icon) to learn about our diverse garden resources.",no,https://food.berkeley.edu/programs/community-engagement-edu/campus-gardens/,37.871674,-122.266268,yes,,,,,,,,,
+"Nutrition, Cooking, Budgeting Workshops and Demos",Basic Needs Services,MLK Student Union Bnorth and various other locations on campus,"Roll up your sleeves for hands-on, interactive cooking classes highlighting student-friendly food skills, tips, and recipes.",no,https://uhs.berkeley.edu/counseling/sos/nutrition/events,37.86771,-122.264297,yes,,,,,,,,,
+Personal Food Security and Wellness (NST 20),Basic Needs Services,Morgan Hall,"This course addresses attitudes, knowledge, skills and barriers in food selection, purchasing and preparation and their intersection with food security.",no,http://guide.berkeley.edu/courses/nusctx/,37.873338,-122.26419,yes,,,,,,,,,
+Student Parent Association (SPARR) Food Donations Progam,Basic Needs Services,100 Cesar Chavez Student Center,Student Parent Association for Recruitment and Retention ,no,https://www.facebook.com/fooddonationsprogram/,37.86958,-122.260313,yes,,,,,,,,,
+UC Berkeley Food Pantry,Basic Needs Services,MLK Student Union Bnorth Suite 68,"The Food Pantry was established to help students in need of emergency food assistance, in collaboration with Campus Catering Food Recovery and Gleaning programs.",no,http://pantry.berkeley.edu/,37.869211,-122.259598,yes,,,,,,,,,
+University Village Bear Pantry & Diaper Bank,Basic Needs Services,"1123 Jackson St, Albany, CA 94706",The Bear Pantry has been a resource for food and diapers for families and student parents at the University Village. The Student Parent Center is collaborating with the University Village Rec Program to provide food resources to residents and families in need at University Village Albany. Apply here: http://tiny.cc/r0f8mz,no,https://www.thebearpantryatberkeley.org/,37.883825,-122.299395,no,,,,,,,,,
 Mental Health Resource 1,Mental Health,Graduate Assembly Wellness Office,444D Eshelman Hall,No,businessoffice@ga.berkeley.edu,,,Yes,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,Closed,510-642-2175,
-, ,,,,,,,,,,,,,,,,
 Mental Health Resource 2,Mental Health,Haas School of Business,"Haas, Room F408
 Haas students only, (510) 642-4853",Yes,dcapone@berkeley.edu,37.871465,-122.253445,Yes,Closed,Closed,8am-5pm,8am-5pm,8am-5pm,Closed,Closed,510-642-4853,
 Mental Health Resource 3,Mental Health,Wurster Hall,"Room 220
@@ -30,96 +39,703 @@ All UC Berkeley students, (510) 642-9494",Yes,,37.8663273,-122.259784,Yes,9am-5p
 Mental Health Resource 8,Mental Health,Boalt Law School,"Law students only, (510) 643-5447",Yes,ctchang@berkeley.ed,37.869909,-122.2550077,Yes,10am-4pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,(510) 642-9494,
 Mental Health Resource 9,Mental Health,Tang Urgent Counseling ,"Floor 3
 All UC Berkeley students",No,,37.8676679,-122.2664745,Yes,Closed,8am-6pm,8am-6pm,8am-6pm,8am-6pm,8am-6pm,10am-4pm,(510) 642-3188,
-Microwave 1,Microwave,GBC,,,,37.869844,-122.259645,Yes,Closed,7:30am-7:30pm,7:30am-7:30pm,7:30am-7:30pm,7:30am-7:30pm,7:30am-5:30pm,9am-4:30pm,,
-Microwave 2,Microwave,RSF Pro Shop,,,,37.868552,-122.262814,Yes,9am-8pm,8am-10:30pm,8am-10:30pm,8am-10:30mpm,8am-10:30pm,8am-10:30pm,9am-8pm,,
-Microwave 3,Microwave,Micro Yali's at VLSB,50 cent cost,,,37.871608,-122.261804,Yes,Closed,7am-6pm,7am-6pm,7am-6pm,7am-6pm,7am-6pm,7am-5pm,,
-Microwave 4,Microwave,Haas,F371,,,37.871465,-122.253445,Yes,12pm-8pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,12pm-5pm,,
-Microwave 5,Microwave,Transfer Center,,,,37.869774,-122.260036,Yes,,,,,,,,,
-Microwave 6,Microwave,Basement of MLK,,,,37.86922,-122.259673,Yes,8am-11pm,7am-12am,7am-12am,7am-12am,7am-12am,7am-12am,7am-12am,,
-Microwave 7,Microwave,Soda Hall,"Rooms 311, 562, 678, 728; Keycard Access Needed",,,37.875594,-122.258786,Yes,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,,
-Microwave 8,Microwave,Cory TeaOne,,,,37.875036,-122.257324,Yes,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,,
-Microwave 9,Microwave,Foothill Dining Center,TV Room,,,37.875178,-122.255851,Yes,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,,
-Microwave 10,Microwave,Terrace Cafe,,,,37.874136,-122.258393,Yes,Closed,7:30am-3pm,7:30am-3pm,7:30am-3pm,7:30am-3pm,7:30am-3pm,Closed,,
-Microwave 11,Microwave,Common Grounds,Top Floor of Dwinelle Hall,,,37.870593,-122.260463,Yes,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,12:00-23:59,,
-Nap Pod 1,Nap Pod,Tang Center,2 Massage Chairs,,,37.867668,-122.264286,,Closed,"8am-12pm, 2pm-5pm",Closed,8am-5pm,9am-12pm,9am-12pm,Closed,,
-Nap Pod 2,Nap Pod,RSF,3 Massage Chairs,,,37.868552,-122.262814,,Closed,Closed,8am-5pm,8am-5pm,8am-5pm,Closed,Closed,,
-Nap Pod 3,Nap Pod,Moffitt Library 5th Floor,"2 Nap Pods, many sleep chairs",,,37.872574,-122.260748,,Closed,12pm-2pm,8am-12pm,Closed,Closed ,Closed,Closed ,,
-Nap Pod 4,Nap Pod,Wurster Library,REST Zone,,,37.870735,-122.254893,,Closed,Closed,2pm-4pm,Closed,Closed ,10am-12pm,Closed ,,
-Nap Pod 5,Nap Pod,Kresge Library First Floor,Sleep Chairs,,,37.874062,-122.258305,,Closed,Closed,2pm-4pm,10am-12pm,Closed ,Closed ,Closed ,,
-Nap Pod 6,Nap Pod,Tolman Hall Tech Lounge,Sleep Chairs,,,37.874104,-122.263891,,Closed,12pm-5pm,11am-6:30pm,"11am-1pm, 2pm-4pm","10:30am-1:30pm, 2pm-6pm","10am-12pm, 3pm-5pm",Closed ,,
-Nap Pod 7,Nap Pod,University Village,2 Massage Chairs,,,37.884926,-122.301081,,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,,
-Nap Pod 8,Nap Pod,College of Chemistry,2 Massage Chairs,,,37.873109,-122.256028,,Closed,8am-5pm,Closed,8am-5pm,Closed,8am-5pm,Closed,,
-Printer 1,Printer,Kroeber Hall ,,,,37.869853,-122.255152,,Closed,10am-5pm,10am-5pm,10am-5pm,10am-5pm,10am-5pm,Closed,,
-Printer 2,Printer,"Bioscience, Natural Resource & Public Health Library, VLSB",,,,37.871608,-122.261804,,1pm-10pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,1pm-5pm,,
-Printer 3,Printer,Haas Library,,,,37.871465,-122.253445,,12pm-8pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,12pm-5pm,,
-Printer 4,Printer,Hildebrand Hall,,,,37.872536,-122.255726,,1pm-5pm,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,1pm-5pm,,
-Printer 5,Printer,Doe Memorial Library,"Floor 2, Main Circulation",,,37.872183,-122.259593,,1pm-9pm,8am-9pm,8am-9pm,8am-9pm,8am-9pm,8am-9pm,9am-5pm,,
-Printer 6,Printer,East Asian Library,,,,37.8711945,-122.2627524,,12pm-8pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,10am-5pm,,
+Tang Center Massage Chairs,Rest,Tang Center,2 Massage Chairs,,,37.867668,-122.264286,,Closed,"8am-12pm, 2pm-5pm",Closed,8am-5pm,9am-12pm,9am-12pm,Closed,,
+RSF Massage Chairs,Rest,RSF,3 Massage Chairs,,,37.868552,-122.262814,,Closed,Closed,8am-5pm,8am-5pm,8am-5pm,Closed,Closed,,
+Moffitt Library Nap Pods,Rest,Moffitt Library 5th Floor,"2 Nap Pods, many sleep chairs",,,37.872574,-122.260748,Yes,Closed,12pm-2pm,8am-12pm,Closed,Closed ,Closed,Closed ,,
+Wurster Library Rest Zone,Rest,Wurster Library,REST Zone,,,37.870735,-122.254893,Yes,Closed,Closed,2pm-4pm,Closed,Closed ,10am-12pm,Closed ,,
+Kresge Library Nap Pod,Rest,Kresge Library First Floor,Sleep Chairs,,,37.874062,-122.258305,yes,Closed,Closed,2pm-4pm,10am-12pm,Closed ,Closed ,Closed ,,
+Tolman Hall Nap Pod,Rest,Tolman Hall Tech Lounge,Sleep Chairs,,,37.874104,-122.263891,yes,Closed,12pm-5pm,11am-6:30pm,"11am-1pm, 2pm-4pm","10:30am-1:30pm, 2pm-6pm","10am-12pm, 3pm-5pm",Closed ,,
+University Village Massage Chairs,Rest,University Village,2 Massage Chairs,,,37.884926,-122.301081,,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,Appointment by phone,,
+College of Chemistry Massage Chairs,Rest,College of Chemistry,2 Massage Chairs,,,37.873109,-122.256028,yes,Closed,8am-5pm,Closed,8am-5pm,Closed,8am-5pm,Closed,,
+Printer 1,Printer,Kroeber Hall ,,,,37.869853,-122.255152,yes,Closed,10am-5pm,10am-5pm,10am-5pm,10am-5pm,10am-5pm,Closed,,
+Printer 2,Printer,"Bioscience, Natural Resource & Public Health Library, VLSB",,,,37.871608,-122.261804,yes,1pm-10pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,1pm-5pm,,
+Printer 3,Printer,Haas Library,,,,37.871465,-122.253445,yes,12pm-8pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,12pm-5pm,,
+Printer 4,Printer,Hildebrand Hall,,,,37.872536,-122.255726,yes,1pm-5pm,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,1pm-5pm,,
+Printer 5,Printer,Doe Memorial Library,"Floor 2, Main Circulation",,,37.872183,-122.259593,yes,1pm-9pm,8am-9pm,8am-9pm,8am-9pm,8am-9pm,8am-9pm,9am-5pm,,
+Printer 6,Printer,East Asian Library,,,,37.8711945,-122.2627524,yes,12pm-8pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,10am-5pm,,
 Printer 7,Printer,"Earth Sciences & Map Library, McCone Hall",,,,37.8691029,-122.2599461,,Closed,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,Closed,,
-Printer 8,Printer,Bechtel Engineering Center,,,,37.874026,-122.258391,,1pm-11pm,9am-12am,9am-12am,9am-12am,9am-12am,9am-7pm,1pm-7pm,,
-Printer 9,Printer,"Environmental Design Library, Wurster Hall",,,,37.870735,-122.254893,,11am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,1pm-6pm,,
-Printer 10,Printer,"Ethnic Studies Library, Stephens Hall",,,,37.871361,-122.257592,,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,11am-5pm,,
-Printer 11,Printer,"Institute of Governmental Studies, Moses Hall",,,,37.870999,-122.257992,,Closed,1pm-5pm,1pm-5pm,1pm-5pm,1pm-5pm,1pm-5pm,Closed,,
-Printer 12,Printer,"Math Library, Evans Hall",,,,37.873685,-122.257854,,Closed,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,Closed,,
-Printer 13,Printer,Moffitt Library,Floors 3-5,,,37.872574,-122.260748,,9am-12am,12am-12am,12am-12am,12am-12am,12am-12am,12am-10pm,9am-10pm,,
-Printer 14,Printer,Hargrove Music Library,,,,37.870444,-122.256187,,1pm-8pm,9am-8am,9am-8am,9am-8am,9am-8am,9am-5pm,1pm-5pm,,
-Printer 15,Printer,"Optometry Library, Minor Hall",,,,37.8691029,-122.2599461,,1pm-4pm,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,1pm-4pm,,
-Printer 16,Printer,"Physics Library, Le Conte Hall",,,,37.872663,-122.257526,,Closed,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,Closed,,
-Printer 17,Printer,"Social Research Library, Haviland Hall",,,,37.873712,-122.261048,,1pm-5pm,9am-6pm,9am-6pm,9am-6pm,9am-6pm,9am-5pm,Closed,,
-Printer 18,Printer,Sproul Hall,,,,37.869565,-122.258786,,Closed,9am-4pm,9am-4pm,9am-4pm,9am-4pm,9am-4pm,Closed,,
-Water Fountain 1,Water Fountain,Barker Hall,Floor 2,,,37.873979,-122.26544,,,,,,,,,,
-Water Fountain 2,Water Fountain,Barrows Hall,Floor 1,,,37.870032,-122.257989,,,,,,,,,,
-Water Fountain 3,Water Fountain,Bechtel Engineering Center,Floor 2,,,37.874026,-122.258391,,,,,,,,,,
-Water Fountain 4,Water Fountain,Birge Hall,Floors 1-5,,,37.8722,-122.257239,,,,,,,,,,
-Water Fountain 5,Water Fountain,Campbell Hall,Floors 1-5,,,37.873011,-122.256964,,,,,,,,,,
-Water Fountain 6,Water Fountain,Cesar E. Chavez Student Center,Floor 2,,,37.869774,-122.260036,,,,,,,,,,
-Water Fountain 7,Water Fountain,Cheit Hall,Floor 2,,,37.871808,-122.254259,,,,,,,,,,
-Water Fountain 8,Water Fountain,Chou Hall,Floors 1-6,,,37.872272,-122.25421,,,,,,,,,,
-Water Fountain 9,Water Fountain,Cory Hall,Floor 1,,,37.875036,-122.257324,,,,,,,,,,
-Water Fountain 10,Water Fountain,Davis Hall,Floor 3,,,37.874633,-122.25812,,,,,,,,,,
-Water Fountain 11,Water Fountain,Doe Memorial Library,Floors 1-2,,,37.872183,-122.259593,,,,,,,,,,
-Water Fountain 12,Water Fountain,Dwinelle Annex,"Floors 1-2, C-D",,,37.87034,-122.261207,,,,,,,,,,
-Water Fountain 13,Water Fountain,Eshleman Hall,Floors 2-4,,,37.868766,-122.260484,,,,,,,,,,
-Water Fountain 14,Water Fountain,Evans Hall,Ground Floor,,,37.873685,-122.257854,,,,,,,,,,
-Water Fountain 15,Water Fountain,Genetics and Plant Biology,Floor 1,,,37.873436,-122.264749,,,,,,,,,,
-Water Fountain 16,Water Fountain,Giannini Hall,Floor 1,,,37.873535,-122.262299,,,,,,,,,,
-Water Fountain 17,Water Fountain,Gilman Hall,Floors 1-2,,,37.872648,-122.256289,,,,,,,,,,
-Water Fountain 18,Water Fountain,Haas Library,Floor 2,,,37.871465,-122.253445,,,,,,,,,,
-Water Fountain 19,Water Fountain,Haas School of Business,Floor 2,,,37.871558,-122.253781,,,,,,,,,,
-Water Fountain 20,Water Fountain,Hargrove Music Library,Floors 1-3,,,37.870444,-122.256187,,,,,,,,,,
-Water Fountain 21,Water Fountain,Haviland Hall,Floors 1-2,,,37.873712,-122.261048,,,,,,,,,,
-Water Fountain 22,Water Fountain,Hildebrand Hall,Level B,,,37.872536,-122.255726,,,,,,,,,,
-Water Fountain 23,Water Fountain,Jacobs Hall,Floor 3,,,37.876022,-122.258802,,,,,,,,,,
-Water Fountain 24,Water Fountain,Kroeber Hall,Floors G-2,,,37.869853,-122.255152,,,,,,,,,,
-Water Fountain 25,Water Fountain,Latimer Hall,Floor 1,,,37.873106,-122.255991,,,,,,,,,,
-Water Fountain 26,Water Fountain,Le Conte Hall,"Floors 1, 3-4",,,37.872663,-122.257526,,,,,,,,,,
-Water Fountain 27,Water Fountain,Li Ka Shing Center,Floors 1-2,,,37.872974,-122.265294,,,,,,,,,,
-Water Fountain 28,Water Fountain,MLK Student Union,"Floors 1, 3-4",,,37.86922,-122.259673,,,,,,,,,,
-Water Fountain 29,Water Fountain,Moffitt Library,Floors 1-5,,,37.872574,-122.260748,,,,,,,,,,
-Water Fountain 30,Water Fountain,Morrison Hall,"Basement, Floor 1",,,37.870892,-122.256391,,,,,,,,,,
-Water Fountain 31,Water Fountain,Moses Hall,Floors 2-3,,,37.870999,-122.257992,,,,,,,,,,
-Water Fountain 32,Water Fountain,Mulford Hall,Floor 1,,,37.87261,-122.264481,,,,,,,,,,
-Water Fountain 33,Water Fountain,North Gate Hall,Floor 1,,,37.875,-122.259668,,,,,,,,,,
-Water Fountain 34,Water Fountain,Pimentel Hall,Floor 1,,,37.873412,-122.256018,,,,,,,,,,
-Water Fountain 35,Water Fountain,Soda Hall,Floors 2-5,,,37.875594,-122.258786,,,,,,,,,,
-Water Fountain 36,Water Fountain,Sproul Hall,"Floors 1,3",,,37.869565,-122.258786,,,,,,,,,,
-Water Fountain 37,Water Fountain,Stanley Hall,Floors B-2,,,37.873978,-122.256127,,,,,,,,,,
-Water Fountain 38,Water Fountain,Stephens Hall,Floor 2,,,37.871361,-122.257592,,,,,,,,,,
-Water Fountain 39,Water Fountain,Sutardja Dai Hall,"Floors 2,6",,,37.874842,-122.258295,,,,,,,,,,
-Water Fountain 40,Water Fountain,Tolman Hall,Floor 3,,,37.874104,-122.263891,,,,,,,,,,
-Water Fountain 41,Water Fountain,Valley Life Sciences Building,Floor 1,,,37.87149,-122.262141,,,,,,,,,,
-Water Fountain 42,Water Fountain,Wellman Hall,Floors 2-4,,,37.873173,-122.262788,,,,,,,,,,
-Water Fountain 43,Water Fountain,Wheeler Hall,Floors 1-3,,,37.871314,-122.259148,,,,,,,,,,
-Water Fountain 44,Water Fountain,Wurster Hall,Floor 1,,,37.870735,-122.254893,,,,,,,,,,
-Ford Go Bike 1,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 2,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 3,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 4,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 5,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 6,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 7,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 8,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 9,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 10,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 11,Ford Go Bike,,,,,,,,,,,,,,,,
-Ford Go Bike 12,Ford Go Bike,,,,,,,,,,,,,,,,
+Printer 8,Printer,Bechtel Engineering Center,,,,37.874026,-122.258391,yes,1pm-11pm,9am-12am,9am-12am,9am-12am,9am-12am,9am-7pm,1pm-7pm,,
+Printer 9,Printer,"Environmental Design Library, Wurster Hall",,,,37.870735,-122.254893,yes,11am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-10pm,9am-5pm,1pm-6pm,,
+Printer 10,Printer,"Ethnic Studies Library, Stephens Hall",,,,37.871361,-122.257592,yes,Closed,9am-5pm,9am-5pm,9am-5pm,9am-5pm,9am-5pm,11am-5pm,,
+Printer 11,Printer,"Institute of Governmental Studies, Moses Hall",,,,37.870999,-122.257992,yes,Closed,1pm-5pm,1pm-5pm,1pm-5pm,1pm-5pm,1pm-5pm,Closed,,
+Printer 12,Printer,"Math Library, Evans Hall",,,,37.873685,-122.257854,yes,Closed,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,Closed,,
+Printer 13,Printer,Moffitt Library,Floors 3-5,,,37.872574,-122.260748,yes,9am-12am,12am-12am,12am-12am,12am-12am,12am-12am,12am-10pm,9am-10pm,,
+Printer 14,Printer,Hargrove Music Library,,,,37.870444,-122.256187,yes,1pm-8pm,9am-8am,9am-8am,9am-8am,9am-8am,9am-5pm,1pm-5pm,,
+Printer 15,Printer,"Optometry Library, Minor Hall",,,,37.8691029,-122.2599461,yes,1pm-4pm,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,1pm-4pm,,
+Printer 16,Printer,"Physics Library, Le Conte Hall",,,,37.872663,-122.257526,yes,Closed,9am-7pm,9am-7pm,9am-7pm,9am-7pm,9am-5pm,Closed,,
+Printer 17,Printer,"Social Research Library, Haviland Hall",,,,37.873712,-122.261048,yes,1pm-5pm,9am-6pm,9am-6pm,9am-6pm,9am-6pm,9am-5pm,Closed,,
+Printer 18,Printer,Sproul Hall,,,,37.869565,-122.258786,yes,Closed,9am-4pm,9am-4pm,9am-4pm,9am-4pm,9am-4pm,Closed,,
+Lyft Bike 1,Lyft Bike,Hearst Ave at Euclid Ave,,,,37.87508,-122.26014,Yes,,,,,,,,,
+Lyft Bike 2,Lyft Bike,Shattuck Ave at Hearst Ave,,,,37.87388,-122.26852,Yes,,,,,,,,,
+Lyft Bike 3,Lyft Bike,University Ave at Oxford St,,,,37.87247,-122.26616,Yes,,,,,,,,,
+Lyft Bike 4,Lyft Bike,MLK Jr Way at University Ave,,,,37.8716,-122.27302,Yes,,,,,,,,,
+Lyft Bike 5,Lyft Bike,Berkeley Civic Center,,,,37.86906,-122.27046,no,,,,,,,,,
+Lyft Bike 6,Lyft Bike,Downtown Berkeley BART,,,,37.8692,-122.26931,Yes,,,,,,,,,
+Lyft Bike 7,Lyft Bike,Channing Way at Shattuck Ave,,,,37.86577,-122.26764,Yes,,,,,,,,,
+Lyft Bike 8,Lyft Bike,Fulton St at Bancroft Way,,,,37.86782,-122.266,Yes,,,,,,,,,
+Lyft Bike 9,Lyft Bike,Haste St at Telegraph Ave,,,,37.86603,-122.25862,Yes,,,,,,,,,
+Lyft Bike 10,Lyft Bike,Haste St at College Ave,,,,37.86657,-122.25408,Yes,,,,,,,,,
+Lyft Bike 11,Lyft Bike,Bancroft Way at Telegraph Ave,,,,37.86871,-122.25919,Yes,,,,,,,,,
+Lyft Bike 12,Lyft Bike,Bancroft Way at College Ave,,,,37.86928,-122.25456,Yes,,,,,,,,,
+Campus Shared Services Lactation Room,Lactation,,,,,37.873235,-122.30227,yes,,,,,,,,,
+Berkeley Way West,Lactation,"Lactation rooms are located on the 5th, 4th, and 3rd floors. To request access to the 5th floor room, contact the Building Manager at agarcia@ngkf.com",,,,37.873355,-122.26799,yes,,,,,,,,,
+Birge Hall Lactation Room,Lactation,,,,,37.872165,-122.257341,yes,,,,,,,,,
+California Hall Lactation Room,Lactation,See building manager for access,,,,37.871901,-122.260359,yes,,,,,,,,,
+Cheit Hall at Haas Lactation Room,Lactation,,,,,37.8718,-122.2543,yes,,,,,,,,,
+Dwinelle Hall Lactation Room,Lactation,,,,,37.87044,-122.260431,yes,,,,,,,,,
+Energy Biosciences Building Lactation Room,Lactation,"For access to the lactation room, please contact Kristy Nordahl at knordahl@berkeley.edu or (510) 664-7110",,,,37.873828,-122.266938,yes,,,,,,,,,
+Eshleman Hall Lactation Room,Lactation,,,,,37.868722,-122.260761,yes,,,,,,,,,
+Evans Hall Lactation Room,Lactation,,,,,37.873761,-122.257867,yes,,,,,,,,,
+Giannini Hall Lactation Room,Lactation,,,,,37.873528,-122.262311,yes,,,,,,,,,
+Haas School of Business Lactation Room,Lactation,,,,,37.871466,-122.25373,yes,,,,,,,,,
+Li Ka Shing Center Lactation Room,Lactation,See building manager for access: lks_help@berkeley.edu or visit building management in 171 Li Ka Shing Center,,,,37.873168,-122.265225,yes,,,,,,,,,
+Life Sciences Addition Lactation Room,Lactation,"See building manager for access: Barbara Duncan, bduncan@berkeley.edu or (510) 643-8121",,,,37.871615,-122.263352,yes,,,,,,,,,
+Moffitt Library Lactation Room,Lactation,,,,,37.872493,-122.260673,yes,,,,,,,,,
+Residential Student Services Building Lactation Room,Lactation,See building manager for access,,,,37.867044,-122.255722,yes,,,,,,,,,
+Simon Hall Lactation Room,Lactation,,,,,37.869857,-122.252633,yes,,,,,,,,,
+Stanley Hall Lactation Room,Lactation,"See building manager for access: Geoff Bingaman, gbingaman@berkeley.edu or (510) 666-3306",,,,37.874108,-122.256191,yes,,,,,,,,,
+Tang Center Lactation Room,Lactation,,,,,37.867649,-122.264661,yes,,,,,,,,,
+UC Berkeley Extension Lactation Room,Lactation,See building manager for access,,,,37.872015,-122.271301,Yes,,,,,,,,,
+University Hall Lactation Room,Lactation,,,,,37.871906,-122.266304,Yes,,,,,,,,,
+Valley Life Sciences Building Lactation Room,Lactation,"See building manager for access: Igor Kligman, ikligman@berkeley.edu or (510) 333-9523",,,,37.871354,-122.262628,Yes,,,,,,,,,
+Warren Hall Lactation Room,Lactation,,,,,37.874395,-122.266994,yes,,,,,,,,,
+Wheeler Hall,Lactation,,,,,37.871401,-122.259085,Yes,,,,,,,,,
+Common Grounds Microwave,Microwave,Top floor of Dwinelle Hall,,,,37.8706313,-122.2607799,Yes,,,,,,,,,
+Cory Hall Microwave,Microwave,In TeaOne Cafe,,,,37.875139,-122.257422,Yes,,,,,,,,,
+Davis Hall Microwave,Microwave,In room 602,,,,37.8746332,-122.2581178,Yes,,,,,,,,,
+Foothill Student Housing 6 Microwave,Microwave,In dining hall TV room,,,,37.8753488,-122.2549742,Yes,,,,,,,,,
+Golden Bear Cafe Microwave,Microwave,Inside Golden Bear Cafe,,,,37.869847,-122.259739,Yes,,,,,,,,,
+Haas School of Business Microwave,Microwave,In room F371,,,,37.8716225,-122.2535004,Yes,,,,,,,,,
+Le Conte Hall Microwaves,Microwave,In lounge/break area next to room 402,,,,37.872817,-122.257466,Yes,,,,,,,,,
+Soda Hall Microwave,Microwave,"In room 311 CSUA (Computer Science Undergraduate Association), room 562 Cafe Diem, room 678 kitchen, and room 728 kitchen",,,,37.8756495,-122.2586918,Yes,,,,,,,,,
+Basic Needs Center Microwave,Microwave,"Basement of MLK Jr. Student Union (bNorth), in kitchen. Need Cal1 ID",,,,37.8692299,-122.2596788,Yes,,,,,,,,,
+Terrace Cafe Microwave,Microwave,Inside Terrace Cafe,,,,37.874203,-122.25842,Yes,,,,,,,,,
+The Pro Shop Microwave,Microwave,Inside the Pro Shop at Recreational Sports Facility,,,,37.868745,-122.2626574,Yes,,,,,,,,,
+Transfer Center Microwave,Microwave,Next to Cal 1 Card Office,,,,37.8696978,-122.2602582,Yes,,,,,,,,,
+Valley Life Sciences Building Microwave,Microwave,In Micro Yali's cafe; pay 50 cents to use,,,,37.871513,-122.261768,Yes,,,,,,,,,
+Station @ Center for the Study of Law and Society,Water,"(By floor):
+1 Brita water dispenser by the kitchen, between fridge and sink",,,,37.870349,-122.252811,,,,,,,,,,
+Station @ 2515 Channing Way (Academic Achievement Program),Water,"(By floor):
+1 Motion-sensor filler/fountain in lobby area",,,,37.8718992,-122.2585399,,,,,,,,,,
+Station @ 2521 Channing Way,Water,"(By floor):
+1 Gooseneck filter and sink by the hallway underneath the spiral staircase to the kitchen",,,,37.8672348,-122.2578788,,,,,,,,,,
+Station @ Alumni House,Water,"(By floor):
+1 Fountain to the right of entrance ",,,,37.8696964,-122.2611015,,,,,,,,,,
+Station @ Andersen Auditorium,Water,"(By floor):
+1 Gooseneck filler/fountain directly to the right of the auditorium doors that face the center Haas courtyard",,,,37.8721306,-122.2538182,,,,,,,,,,
+Station @ Archaeological Research Facility,Water,"(By floor):
+2 Hot/cold water dispenser inside room 201, by the door",,,,37.8701625,-122.253912,,,,,,,,,,
+Station @ Architects and Engineers,Water,"(By floor):
+1 Fountain to the left of the entrance in the hallway",,,,37.8736168,-122.2688665,,,,,,,,,,
+Station @ Bancroft Dance Studio,Water,"(By floor):
+1 Fountain just inside entrance",,,,37.8686842,-122.2611793,,,,,,,,,,
+Station @ Bancroft Library,Water,"(By floor):
+3 Fountain in the hallway: once you go up the stairs it is to the left and straight down, past the restrooms",,,,37.8722923,-122.2588909,,,,,,,,,,
+Station @ Bancroft Parking Structure,Water,"(By floor):
+1 Fountain by the tennis court staircase, behind trashcans",,,,37.8696734,-122.2558612,,,,,,,,,,
+Station @ Banway Building,Water,"(By floor):
+3 Fountain in hallway between the restrooms",,,,37.8678929,-122.266897,,,,,,,,,,
+Station @ Barker Hall,Water,"(By floor):
+G Fountain by room 2
+1 Fountain by room 100
+2 Fountain by room 202
+3 Motion-sensor filler/fountain by restroom (room 324)
+4 Fountain by restroom (room 404)
+5 Fountain by men’s restroom and across from lockers 
+6 Motion-sensor filler/fountain by women’s restroom and across from lockers ",,,,37.8739739,-122.2654445,,,,,,,,,,
+Station @ Barrows Hall,Water,"(By floor):
+G Motion-sensor filler/fountain by elevators and across from room 44
+1 Flowater station by room 127 and motion-sensor filler/fountain by room 190
+2 Fountain by room 202
+3 Fountain by room 399
+4 Fountain by room 499
+5 Fountain by rooms 502 and 550
+6 Fountain by room 698
+7 Motion-sensor filler/fountain by room 798 and Fountain by room 748
+8 Fountain by room 812",,,,37.870345,-122.2581044,,,,,,,,,,
+Station @ Berkeley Geochronology Center,Water,"(By floor):
+1 Fountain by entrance of the building facing Berkeley Student Cooperative 
+3 Hot/cold water dispenser left to the elevator",,,,37.8762288,-122.2610907,,,,,,,,,,
+Station @ Berkeley Way West,Water,"(By floor):
+1 Motion-sensor filler/fountain behind the elevator, by restroom
+3 Motion-sensor filler/fountain by restroom
+4 Motion-sensor filler by restroom
+5 Motion-sensor filler by restroom",,,,37.8733816,-122.2674919,,,,,,,,,,
+Station @ Berkeley Wireless Research Institute,Water,"(By floor):
+2 Motion-sensor filler/fountain to the right of the stairs",,,,37.869197,-122.267441,,,,,,,,,,
+Station @ Betchel Engineering Center,Water,"(By floor):
+1 Fountain outside library by men’s and women’s restrooms
+2 Push-button filler/fountain by men’s and women’s restroom",,,,37.8741858,-122.258188,,,,,,,,,,
+Station @ Birge Hall,Water,"(By floor):
+4 Fountain in hallway across from elevator",,,,37.8722322,-122.2571898,,,,,,,,,,
+Station @ Blum Hall,Water,"(By floor):
+1 Motion-sensor filler by in the kitchen behind the refrigerator",,,,37.8750255,-122.2588054,,,,,,,,,,
+Station @ Boalt Hall,Water,"(By floor):
+G Fountain in alcove between locker walls
+1 Motion-sensor filler/fountain by Bridges Lecture Hall and fountain by Stuart M. Gordon Lecture Hall
+2 Fountain by room 263, in hallway near the staircases on the North Addition side
+3 Fountain by Gregory Faculty Lounge
+4 Push-button filler/fountain by Field Placement Program Office",,,,37.8694689,-122.254074,,,,,,,,,,
+Station @ Botanical Garden,Water,"(By floor):
+1 Push-button filler/fountain by main entrance/garden shop and fountain by conference center",,,,37.875145,-122.2387194,,,,,,,,,,
+Station @ C.V. Starr East Asian Library,Water,"(By floor):
+3 Fountain by women's and men's restrooms, across from the elevator",,,,37.8735334,-122.260478,,,,,,,,,,
+Station @ California Memorial Stadium,Water,"(By floor):
+L1 Fountain by men’s olympic sport lockers
+1 Push-button filler/fountain by restrooms, motion-sensor filler/fountain by gym, and fountain by restrooms 
+2 Fountains by rooms 321, 343, 353, 379, 383, Golden Dragon Concessions Stand, Oski's Cantina, guest services, stair #7, stair #10, and lactation room ",,,,37.8706571,-122.2507783,,,,,,,,,,
+Station @ Calvin Laboratory,Water,"(By floor):
+1 Motion-sensor filler/fountain by room 118",,,,37.8709966,-122.2538012,,,,,,,,,,
+Station @ Campbell Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain in hallway 
+2 Motion-sensor filler/fountain in hallway
+3 Motion-sensor filler/fountain in hallway
+4 Motion-sensor filler/fountain in hallway
+5 Motion-sensor filler/fountain in hallway",,,,37.8731446,-122.2571084,,,,,,,,,,
+Station @ Chavez Student Center,Water,"(By floor):
+1 Fountain in hallway across from the elevators
+2 Push-button filler/fountain in hallway by trash bins",,,,37.8697743,-122.2600361,,,,,,,,,,
+Station @ Cheit Hall,Water,"(By floor):
+1 Gooseneck filler/fountain by C110
+2 Fountain by entrance from courtyard and motion-sensor filler/fountain by back corridor on second floor courtyard ",,,,37.8718177,-122.2542613,,,,,,,,,,
+Station @ Chou Hall,Water,"(By floor):
+1 Push-button filler/fountain by entry
+2 Push-button filler/fountain by stairwell
+3 Push-button filler/fountain by stairwell
+4 Push-button filler/fountain by stairwell
+5 Push-button filler/fountain by stairwell
+6 Push-button filler/fountain by restrooms",,,,37.8722997,-122.2545436,,,,,,,,,,
+Station @ Christian Hall,Water,"(By floor):
+1 Fountain across from entrance, by restrooms",,,,37.8681223,-122.2550086,,,,,,,,,,
+Station @ CITRIS,Water,"(By floor):
+3 Motion-sensor filler/fountain by room 356 ",,,,37.8747581,-122.2586623,,,,,,,,,,
+Station @ Clark Kerr Campus Building 1,Water,"(By floor):
+1 Motion-sensor filler by room 113",,,,37.864236,-122.248935,,,,,,,,,,
+Station @ Clark Kerr Campus Building 12,Water,"(By floor):
+1 Hot/cold water dispenser by main entrance ",,,,37.863235,-122.248955,,,,,,,,,,
+Station @ Clark Kerr Campus Building 14,Water,"(By floor):
+1 Motion-sensor filler/fountain by room 102 and fountain by Joseph Wood Krutch Theatre lobby",,,,37.863576,-122.24989,,,,,,,,,,
+Station @ Clark Kerr Campus Building 3,Water,"(By floor):
+1 Fountain by room 108
+2 Fountain in hall by room 207
+3 Fountain in hallway by room 307",,,,37.864948,-122.248951,,,,,,,,,,
+Station @ Cleary Hall,Water,"(By floor):
+1 Fountain by restrooms, in hall floor lounge and push-button filler/fountain by entrance, near the elevator 
+2 Fountain by restroom, end of hall
+3 Fountain by restroom, end of hall
+4 Fountain by restroom, end of hall",,,,37.8664643,-122.2594918,,,,,,,,,,
+"Station @ Cory Hall, A/B-3",Water,"(By floor):
+1 Gooseneck filler/fountain facing the east side stairs across from room 149
+2 Fountains by Embedded Systems Design Laboratory, Chenming Hu Innovation Lab, Trust and Chess Center
+3 Fountain by bridge to Sutardja Dai Hall stairs
+4 Fountain by Qualcomm Swarm Lab
+5 Fountain by Donald O. Pederson Center",,,,37.8751638,-122.2577979,,,,,,,,,,
+Station @ David Blackwell Hall,Water,"(By floor):
+3 Motion-sensor filler by elevators
+4 Motion-sensor filler by elevators
+5 Motion-sensor filler by elevators
+6 Motion-sensor filler by elevators
+7 Motion-sensor filler by elevators
+8 Motion-sensor filler by elevators",,,,37.8677582,-122.2610623,,,,,,,,,,
+"Station @ Davis Hall, B-3/4",Water,"(By floor):
+3 Hot/cold water dispenser by southside doors, motion-sensor filler/fountain by north side elevators, and fountain by northside exit
+4 Fountain by elevators above northside entrance
+5 Motion-sensor filler/fountain by northside elevators and fountain by northside elevators
+6 Fountain by doors to Citrus Hall
+7 Fountain by northside elevators before glass doors",,,,37.8745656,-122.2580841,,,,,,,,,,
+Station @ Department of Demography,Water,"(By floor):
+1 Fountain in a small tight area near the stairs",,,,37.8707803,-122.2530479,,,,,,,,,,
+Station @ Doe Memorial Library,Water,"(By floor):
+1 Gooseneck filler/fountain in hallway left of main entrance, and fountains by south entrance near elevator and by room 132
+2 Fountains by men’s and women's restrooms
+3 Fountain by Art History/Classics Library
+4 Fountains by elevator and room 423 ",,,,37.8721832,-122.2595929,,,,,,,,,,
+Station @ Donner Lab,Water,"(By floor):
+1 Fountains by room 107, room 155
+2 Fountain by room 260
+3 Fountains by room 315A, room 358",,,,37.8744177,-122.256305,,,,,,,,,,
+Station @ Durant Hall,Water,"(By floor):
+G Fountain by restrooms",,,,37.8712498,-122.2600955,,,,,,,,,,
+Station @ Dwinelle Annex,Water,"(By floor):
+1 Fountain im hallway
+2 Gooseneck filler/fountain right up the stairs",,,,37.8703395,-122.2612068,,,,,,,,,,
+Station @ Dwinelle Hall,Water,"(By floor):
+A Fountain by women's restroom
+B Gooseneck filler/fountain by men's restroom and fountain by Office of Undergraduate Research and Scholarships
+C Motion-sensor filler/fountain by Theater, Dance, and Performance Studies office, gooseneck filler/fountain by History office, and fountain by men's restroom
+D Gooseneck filler/fountains by French and Comparative Literature offices and women's restrooom, motion-sensor filler/fountain left of main entrance
+E Fountains right as you climb the main stairs from D, in hallway, and by offices near men's restroom, and gooseneck filler/fountain by offices in hallway
+F Fountains in hallway by offices, behind double doors, at the classroom wing entrance, and at end of classroom wing hall
+G Fountain by women's restroom",,,,37.8705318,-122.2606042,,,,,,,,,,
+Station @ Eshleman Hall,Water,"(By floor):
+1 Push-button filler/fountain by room 32
+2 Push-button filler/fountain by elevator
+3 Push-button filler/fountain by elevator
+4 Push-button filler/fountain by elevator
+5 Push-button filler/fountain by elevators
+6 Push-button filler/fountain by elevators",,,,37.8687398,-122.2603875,,,,,,,,,,
+Station @ Etcheverry Hall,Water,"(By floor):
+1 Fountain by room 3105
+4 Motion-sensor filler/fountains by north elevator, outside of south elevator, and by Nuclear Engineering office
+5 Fountains by north Elevator and south elevator
+6 Motion-sensor filler/fountains by south elevator, north elevator, and Mechanical Engineering office",,,,37.8756626,-122.2592805,,,,,,,,,,
+Station @ Evans Hall,Water,"(By floor):
+G Fountains by rooms 35, 72, and 85 and motion-sensor filler/fountain by room 2
+2 Fountains by rooms 235, and 291, and Letters and Science undergraduate advising desk
+3 Fountains by central elevators and rooms 335 and 389
+4 Fountains by central elevators and rooms 435 and 491
+5 Fountains by central restrooms and rooms 535 and 591
+6 Fountains by central restrooms and rooms 691A and 631
+7 Fountains by central restrooms and rooms 735 and 794
+8 Fountains by central restrooms and rooms 835 and 893
+9 Fountains by central restrooms and rooms 989 and 935
+10 Fountains by central restrooms and room 1037",,,,37.8736847,-122.2578536,,,,,,,,,,
+Station @ Fall Program for Freshmen,Water,"(By floor):
+1 Fountain by elevator
+2 Fountain across from lockers
+3 Hot/cold water dispenser in main hallway across from the vending machines",,,,37.871937,-122.27163,,,,,,,,,,
+Station @ Genetics and Plant Biology,Water,"(By floor):
+2 Fountain down the hall from the elevator and gooseneck filler/fountain by elevator ",,,,37.8734357,-122.2647492,,,,,,,,,,
+Station @ Giauque Hall,Water,"(By floor):
+B Fountain by entrance",,,,37.8726546,-122.2563024,,,,,,,,,,
+Station @ Gilman Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain by restrooms
+2 Fountain by staircase",,,,37.8726066,-122.2562309,,,,,,,,,,
+Station @ Goldman School of Public Policy,Water,"(By floor):
+B Fountain by entrance to the bottom floor
+1 Motion-sensor filler/fountain by front entrance ",,,,37.8757268,-122.2578583,,,,,,,,,,
+Station @ Haas Clubhouse,Water,"(By floor):
+Men's Locker Fountain in men's locker room to the right as you walk in",,,,37.8724255,-122.2460239,,,,,,,,,,
+Station @ Haas Pavillion,Water,"(By floor):
+B Push-button filler/fountain by room 77A
+1 Fountains by Brian & Jennifer Maxwell Center for Human Performance, Bank of West ATM, and room 121
+2 Fountains by women's restroom, men's restoom, section 17, and section 14-15",,,,37.869187,-122.262193,,,,,,,,,,
+Station @ Haas School of Business,Water,"(By floor):
+2 Gooseneck filler/fountains by Faculty Building, Student Services Building, Business Library, room F289, and restrooms
+3 Fountains by Student Services Building, Business Library, and elevators
+4 Gooseneck filler/fountain by Student Services Building restrooms
+5 Gooseneck filler/fountains by Student Services Building bridge",,,,37.871558,-122.2537809,,,,,,,,,,
+Station @ Hargrove Music Library,Water,"(By floor):
+G Fountain by elevator
+1 Fountain by entrance to building
+2 Fountain by restrooms",,,,37.8704442,-122.2561865,,,,,,,,,,
+Station @ Haviland Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain by main entrance
+2 Motion-sensor filler/fountain by main staircase",,,,37.8737118,-122.2610484,,,,,,,,,,
+Station @ Hearst Memorial Gymnasium,Water,"(By floor):
+1 Fountain by east entrance, women's locker room, shower room, and room 116, and motion-sensor filler/fountains by west entranc and Calveteran Service Center
+2 Gooseneck filler/fountains by rooms 212, 215, 237, 244, and trash cans, and fountain by 230 and pool entrance",,,,37.8695377,-122.256978,,,,,,,,,,
+Station @ Hearst Memorial Mining Bldg,Water,"(By floor):
+2 Motion-sensor filler/fountain by elevator ",,,,37.8744068,-122.2572355,,,,,,,,,,
+Station @ Hellman Tennis Complex,Water,"(By floor):
+G Fountain by track",,,,37.8699713,-122.2651229,,,,,,,,,,
+Station @ Hertz Hall,Water,"(By floor):
+1 Fountain by women’s restroom",,,,37.8710584,-122.2557289,,,,,,,,,,
+Station @ Hesse Hall,Water,"(By floor):
+1 Hot/cold water dispenser by south end of building
+2 Fountain in hallway stairwell",,,,37.8743128,-122.2593508,,,,,,,,,,
+Station @ Hildebrand Hall,Water,"(By floor):
+B Fountains by breezeway restrooms, and rooms B78 and BG5
+D Fountains by rooms D54 and D82
+2 Motion-sensor filler/fountain by elevator
+3 Motion-sensor filler/fountain by room 304",,,,37.8725358,-122.2557257,,,,,,,,,,
+Station @ Hilgard Hall,Water,"(By floor):
+B Fountain by elevator
+1 Fountain by elevator
+2 Fountain by elevator
+3 Fountain by elevator",,,,37.8733109,-122.2634045,,,,,,,,,,
+Station @ Human Rights Center,Water,"(By floor):
+1 Fountain by stairway",,,,37.8709993,-122.2530237,,,,,,,,,,
+Station @ Jacobs Hall,Water,"(By floor):
+1 Motion-sensor filler/fountains by elevator, across from restrooms
+3 Motion-sensor filler/fountain by student lounge ",,,,37.8760227,-122.2588207,,,,,,,,,,
+Station @ Jones Child Study Center,Water,"(By floor):
+1 Fountains by men's restroom and room 7",,,,37.8657878,-122.2641178,,,,,,,,,,
+Station @ Koret Visitor's Center,Water,"(By floor):
+1 Push-button filler/fountain by elevator",,,,37.8708521,-122.2518083,,,,,,,,,,
+Station @ Koshland Hall,Water,"(By floor):
+B Fountains by central stair, west stairs, and breakroom
+E Fountains by west and east stairs
+4 Fountain by east stairs",,,,37.8737143,-122.264834,,,,,,,,,,
+Station @ Kroeber Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain by right of entrance from stairs and vending machine
+2 Motion-sensor filler/fountains by Bancroft entrance and Hearst Museum Directors Office
+3 Fountains by elevator and women's restroom
+4 Fountain by elevator",,,,37.869853,-122.2551518,,,,,,,,,,
+Station @ Latimer Hall,Water,"(By floor):
+B Fountain by central elevators
+1 Gooseneck filler/fountain by central stairwell
+2 Fountain by central stairwell
+3 Fountain by central stairwell and motion-sensor filler/fountain by elevators
+5 Gooseneck filler/fountain by central elevators
+6 Gooseneck filler/fountain by central elevators
+7 Fountain by central elevators
+8 Fountain by central elevators ",,,,37.8731064,-122.2559915,,,,,,,,,,
+Station @ Lawrence Hall of Science,Water,"(By floor):
+A Gooseneck filler/fountains right of Science on a Sphere exhibit, by outdoor park entrance 
+C Fountain by central stairs",,,,37.879787,-122.2461845,,,,,,,,,,
+Station @ Le Conte Hall,Water,"(By floor):
+G Gooseneck filler/fountain by Birge Hall exit and fountain by room 4
+1 Gooseneck filler/fountains by Birge Hall exit and restrooms 
+2 Fountains by west entrance, near northside exit
+3 Gooseneck filler/fountain by men's restroom",,,,37.8726631,-122.2575264,,,,,,,,,,
+Station @ Lewis Hall,Water,"(By floor):
+G Fountain by room 10 
+1 Fountains by elevator and room 20
+2 Motion-sensor filler/fountain by elevator and fountain in hall
+3 Motion-sensor filler/fountain by elevator
+4 Motion-sensor filler/fountain by elevator",,,,37.8730663,-122.255193,,,,,,,,,,
+Station @ Li Ka Shing,Water,"(By floor):
+1 Motion-sensor filler/fountain by restrooms
+2 Motion-sensor filler/fountain by restrooms ",,,,37.8731596,-122.2651666,,,,,,,,,,
+Station @ Life Sciences Addition,Water,"(By floor):
+1 Gooseneck filler/fountain by north entrance and fountain by south lobby ",,,,37.8713948,-122.2632527,,,,,,,,,,
+Station @ Main Stacks,Water,"(By floor):
+B Fountain by restrooms
+C Gooseneck filler/fountain by restrooms
+D Fountain by restrooms ",,,,37.872564,-122.259734,,,,,,,,,,
+Station @ Mathematical Sciences Research Institute,Water,"(By floor):
+1 Motion-sensor filler/fountain by Simons Auditorium entrance
+2 Gooseneck filler/fountain by restrooms
+3 Fountain by restrooms",,,,37.8798329,-122.244342,,,,,,,,,,
+Station @ Maximino Martinez Commons,Water,"(By floor):
+1 Fountains by Channing Way entrance and Haste Street entrance 
+3 Motion-sensor filler by elevator 2/room 2326
+4 Motion-sensor filler by room 426
+5 Motion-sensor filler by room 512
+6 Motion-sensor filler by room 620/Deodar Cedar Lounge",,,,37.8667623,-122.2576087,,,,,,,,,,
+Station @ McCone Hall,Water,"(By floor):
+G Fountain by central elevators
+1 Fountain by central elevators
+2 Fountain by central elevators
+3 Fountain by central elevators
+4 Fountain by central elevators
+5 Motion-sensor filler/fountain by central elevators",,,,37.8741759,-122.2596547,,,,,,,,,,
+Station @ McLaughlin Hall,Water,"(By floor):
+1 Fountain in central hallway
+2 Fountain in central hallway
+3 Fountain in central hallway
+4 Fountain in central hallway",,,,37.8738011,-122.2589949,,,,,,,,,,
+Station @ Minor Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain by east entrance
+3 Fountain by Southwest stairs
+4 Fountain by northwest stairs
+5 Fountain by Southwest stairs ",,,,37.8714283,-122.2547013,,,,,,,,,,
+Station @ Minor Hall Addition,Water,"(By floor):
+1 Fountain in Pediatric Clinic by central stairwell
+2 Fountains by Specialty Clinic F entrance and by front desk and restrooms
+3 Fountain by elevator
+4 Fountain by elevator
+5 Fountain by elevator",,,,37.8713112,-122.2551727,,,,,,,,,,
+Station @ MLK Student Union,Water,"(By floor):
+B Fountains right of the elevators, across from restrooms, and room 61A
+1 Push-button filler/fountain by Student Store 
+2 Motion-sensor filler/fountain by restrooms/1951 Coffee
+3 Push-button filler/fountain right of Pauley ballroom
+4 Push-button filler/fountain right of elevator
+5 Fountain by Tilden Room",,,,37.8692195,-122.2596727,,,,,,,,,,
+Station @ Moffitt Library,Water,"(By floor):
+1 Fountain by elevators
+3 Fountain by women’s restroom, Moffitt Copy Center, and restrooms by Free Speech Movement Cafe
+4 Motion-sensor filler/fountains by restrooms
+5 Motion-sensor filler/fountain by restrooms ",,,,37.872574,-122.260748,,,,,,,,,,
+Station @ Morgan Hall,Water,"(By floor):
+B Fountain by west stairs
+1 Fountain by north elevator
+2 Fountain by west stairs
+3 Fountain by west stairs",,,,37.8733128,-122.2642654,,,,,,,,,,
+Station @ Morrison Hall,Water,"(By floor):
+G Fountains by practice rooms hall and across from elevator
+1 Fountains by room 125 and east entrance
+2 Fountain by hallway elevator",,,,37.870892,-122.2563905,,,,,,,,,,
+Station @ Moses Hall,Water,"(By floor):
+1 Fountain by room 116
+2 Fountain by main entrance 
+3 Fountain by central stairwell",,,,37.8710156,-122.2580873,,,,,,,,,,
+Station @ Mulford Hall,Water,"(By floor):
+1 Fountains by women's restroom and west stairs and gooseneck filler/fountain by east elevator
+2 Fountains by northwest stairs and elevators
+3 Fountains by northwest stairs and elevators
+B Fountain by west entrance",,,,37.8726315,-122.2644907,,,,,,,,,,
+Station @ Natural Resources Laboratory,Water,"(By floor):
+1 Fountain by room 18",,,,37.874789,-122.266905,,,,,,,,,,
+Station @ North Gate Hall,Water,"(By floor):
+1 Hot/cold water dispenser by courtyard
+B Fountain by east entrance",,,,37.8749998,-122.2596684,,,,,,,,,,
+Station @ O'Brien Hall,Water,"(By floor):
+1 Fountain by elevator
+2 Fountain by elevator
+3 Fountain by elevator
+4 Fountain by elevator",,,,37.8742817,-122.259062,,,,,,,,,,
+Station @ Pimentel Hall,Water,"(By floor):
+1 Gooseneck filler/fountain in central hallway",,,,37.8734123,-122.2560176,,,,,,,,,,
+Station @ Recreational Sports Facility,Water,"(By floor):
+LL Push-button filler/fountains by women's basketball locker room and in all-gender lockerroom, and motion-sensor filler/fountain by martial arts room, inside of field house, and weight room",,,,37.8685989,-122.262751,,,,,,,,,,
+Station @ Saturdja Dai Hall,Water,"(By floor):
+1 Fountain by restrooms
+2 Motion-sensor filler/fountain by restrooms and fountain inside of Yali's Cafe by restrooms
+3 Motion-sensor filler/fountain by restrooms 
+6 Fountain by restrooms",,,,37.8750339,-122.2582841,,,,,,,,,,
+Station @ Simon Hall,Water,"(By floor):
+4 Fountain by restroom
+5 Fountain by restroom",,,,37.8699767,-122.2532914,,,,,,,,,,
+Station @ Soda Hall,Water,"(By floor):
+1 Fountain by elevators
+2 Gooseneck filler/fountain by elevators
+3 Fountain in south hallway and gooseneck filler/fountains in central hallway by restrooms and in north hallway
+4 Gooseneck filler/fountains in south hallway and in central hallway by restrooms
+5 Fountain by men's restroom
+6 Fountains by men's restroom, women's restroom, and room 1",,,,37.8755939,-122.2587865,,,,,,,,,,
+Station @ South Hall,Water,"(By floor):
+1 Fountain by elevator
+2 Fountain by elevator
+3 Fountain by elevator and hot/cold water dispenser left of elevator",,,,37.8714319,-122.2584987,,,,,,,,,,
+Station @ Space Sciences Laboratory,Water,"(By floor):
+1 Fountains by central lobby and at end of rear hallway
+2 Gooseneck filler/fountain by main entrance and fountain by end of rear hallway
+3 Fountains by central lobby and at end of rear hallway
+B Fountain by room B25",,,,37.8805941,-122.2447959,,,,,,,,,,
+Station @ Space Sciences Laboratory Addition,Water,"(By floor):
+1 Fountain by men's restroom
+2 Fountain by men's restroom",,,,37.880669,-122.243817,,,,,,,,,,
+Station @ Sproul Hall,Water,"(By floor):
+B Fountains in UCPD waiting room and by men's restroom
+1 Motion-sensor filler/fountain by stairs and gooseneck filler/fountain by northeast stairs
+2 Fountain by southeast stairs
+3 Fountain by exit door and motion-sensor filler/fountain by elevator 
+4 Fountain by exit stair case ",,,,37.869565,-122.2587865,,,,,,,,,,
+Station @ Stanley Hall,Water,"(By floor):
+B1 Motion-sensor filler/fountain by men's restroom
+B2 Fountain by south elevators 
+B3 Fountain by south elevators 
+1 Motion-sensor filler/fountain by south elevators and fountain in north hallway by restrooms
+2 Fountains by central stairwell and east hallway, and motion-sensor filler in east hallway
+3 Motion-sensor filler in north hallway and fountain in west hallway
+4 Fountains in north hallway and by elevators, and motion-sensor filler in north hallway
+5 Fountain by south hallway and motion-sensor filler by north hallway 
+6 Fountain by south elevators and motion-sensor filler by north elevators
+7 Fountain by south elevators",,,,37.8738194,-122.2564463,,,,,,,,,,
+Station @ Stephens Hall,Water,"(By floor):
+1 Fountain by library restrooms 
+2 Hot/cold water dispenser by elevators ",,,,37.8713614,-122.2575925,,,,,,,,,,
+Station @ Tan Hall,Water,"(By floor):
+B Fountain by central stairs
+D Fountain by central stairs
+1 Gooseneck filler/fountain by room 180
+2 Fountain by central stairwell
+3 Fountain by central stairwell
+4 Fountain by central stairwell
+5 Motion-sensor filler/fountain by central stairwell
+6 Fountain by central stairwell",,,,37.8732811,-122.256512,,,,,,,,,,
+Station @ Tang Center,Water,"(By floor):
+1 Motion-sensor filler/fountain by restrooms
+2 Motion-sensor filler/fountains in hallway, by restrooms, and by elevator/south stairs
+3 Motion-sensor filler/fountain in hallway, by restrooms, elevator/south stairs",,,,37.8676679,-122.2642858,,,,,,,,,,
+Station @ UC Berkeley Career Center,Water,"(By floor):
+2 Fountains by women’s bathroom, left of entrance, and Hot/Cold water dispenser by conference room
+3 Fountains by women’s restroom, left of entrance",,,,37.8684538,-122.2603374,,,,,,,,,,
+Station @ UC Berkeley Extension,Water,"(By floor):
+2 Fountain by room 2993
+3 Fountain by restrooms near Parking and Transportation
+4 Fountains by restrooms, room 410, and right of elevator
+5 Fountains by restrooms, room 540, and left of elevator",,,,37.87207,-122.271038,,,,,,,,,,
+Station @ Unit 1 Central Building,Water,"(By floor):
+1 Motion-sensor filler/fountain by exercise room",,,,37.867817,-122.255084,,,,,,,,,,
+Station @ Unit 1 Cheney,Water,"(By floor):
+G Motion-sensor filler/fountain by ground floor lobby
+1 Fountain by restroom
+2 Fountain at end of hallway 
+3 Fountain by restroom
+4 Fountain at end of hallway
+5 Fountain by restroom
+6 Fountain at end of hallway
+7 Fountain by restroom
+8 Fountain at end of hallway",,,,37.868063,-122.255653,,,,,,,,,,
+Station @ Unit 1 Christian,Water,"(By floor):
+G Motion-sensor filler/fountain by kitchenette ",,,,37.868117,-122.255021,,,,,,,,,,
+Station @ Unit 1 Deutsch,Water,"(By floor):
+G Motion-sensor filler/fountain in ground floor lobby
+1 Fountain by restroom
+2 Fountain by elevator
+3 Fountain by restroom
+4 Fountain by elevator
+5 Fountain by restroom
+6 Fountain by elevator 
+7 Fountain by restroom
+8 Fountain by elevator ",,,,37.867604,-122.255761,,,,,,,,,,
+Station @ Unit 1 Freeborn,Water,"(By floor):
+G Motion-sensor filler/fountain in ground floor lobby
+1 Fountain by restroom
+2 Fountain at end of hallway
+3 Fountain by restroom
+4 Fountain at end of hallway 
+5 Fountain by restroom
+6 Fountain at end of hallway
+7 Fountain by elevator
+8 Fountain at end of hallway",,,,37.868035,-122.254568,,,,,,,,,,
+Station @ Unit 1 Putnam,Water,"(By floor):
+G Motion-sensor filler/fountain in ground floor lobby 
+1 Fountain by restroom
+2 Fountain at end of hallway
+3 Fountain by restroom
+4 Fountain at end of hallway 
+5 Fountain by restroom
+6 Fountain at end of hallway
+7 Fountain by restroom
+8 Fountain at end of hallway ",,,,37.867572,-122.254629,,,,,,,,,,
+Station @ Unit 1 Slottman,Water,"(By floor):
+L Fountain by restrooms",,,,37.8675717,-122.2552284,,,,,,,,,,
+Station @ Unit 2 Central Building,Water,"(By floor):
+L Fountains by mailroom near restrooms and motion-sensor filler/fountain by exercise room",,,,37.866078,-122.254722,,,,,,,,,,
+Station @ Unit 2 Cunningham,Water,"(By floor):
+1 Fountain by restroom
+2 Fountain at end of hallway
+3 Fountain by restroom
+4 Fountain at end of hallway
+5 Fountain by restroom
+6 Fountain at end of hallway 
+7 Fountain by restroom
+8 Fountain at end of hallway",,,,37.866282,-122.255314,,,,,,,,,,
+Station @ Unit 2 Davidson,Water,"(By floor):
+G Motion-sensor filler/fountain in ground floor lobby
+1 Fountain by restroom
+2 Fountain at end of hallway
+3 Fountain by restroom
+4 Fountain at end of hallway 
+5 Fountain by restroom
+6 Fountain at end of hallway
+7 Fountain by elevator
+8 Fountain at end of hallway",,,,37.866245,-122.254204,,,,,,,,,,
+Station @ Unit 2 Ehrman,Water,"(By floor):
+G Motion-sensor filler/fountain in ground floor lobby
+1 Fountain by restroom
+2 Fountain at end of hallway
+3 Fountain by restroom
+4 Fountain at end of hallway 
+5 Fountain by restroom
+6 Fountain at end of hallway
+7 Fountain by elevator
+8 Fountain at end of hallway",,,,37.8658163,-122.2553216,,,,,,,,,,
+Station @ Unit 2 Griffiths,Water,"(By floor):
+G Motion-sensor filler/fountain in ground floor lobby
+1 Fountain by restroom
+2 Fountain at end of hallway
+3 Fountain by restroom
+4 Fountain at end of hallway 
+5 Fountain by restroom
+6 Fountain at end of hallway
+7 Fountain by elevator
+8 Fountain at end of hallway",,,,37.8658305,-122.2542822,,,,,,,,,,
+Station @ Unit 2 Towle,Water,"(By floor):
+G Motion-sensor filler/fountain by kitchenette",,,,37.8663608,-122.2547613,,,,,,,,,,
+Station @ Unit 3 Central Building,Water,"(By floor):
+1 Motion-sensor filler by restrooms",,,,37.8671639,-122.2603673,,,,,,,,,,
+Station @ Unit 3 Ida Sproul Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain inside entrance",,,,37.8669358,-122.260879,,,,,,,,,,
+Station @ Unit 3 Norton Hall,Water,"(By floor):
+1 Fountain inside entrance",,,,37.867415,-122.260838,,,,,,,,,,
+Station @ Unit 3 Priestley Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain inside entrance",,,,37.866918,-122.259836,,,,,,,,,,
+Station @ Unit 3 Spens-Black Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain inside entrance ",,,,37.867502,-122.26,,,,,,,,,,
+Station @ University Hall,Water,"(By floor):
+G Gooseneck filler/fountain by restrooms
+1 Motion-sensor filler/fountain by restrooms
+2 Fountains by restrooms and room 225
+3 Gooseneck filler/fountain by restrooms
+4 Fountains by south stairs and restrooms
+5 Fountain by restrooms and gooseneck filler/fountain by south stairs
+6 Motion-sensor filler/fountain by south stairs
+7 Fountain by restrooms",,,,37.8722049,-122.2662639,,,,,,,,,,
+Station @ Valley Life Sciences Building,Water,"(By floor):
+1 Fountain by room 4 and gooseneck filler/fountain by central elevators
+2 Fountain by courtyard door and gooseneck filler/fountain in central elevator lobby
+3 Fountain by central stairwell and gooseneck filler/fountain in central elevator lobby
+4 Gooseneck filler/fountain in central elevator lobby
+5 Gooseneck filler/fountain in central elevator lobby",,,,37.8714023,-122.2622038,,,,,,,,,,
+Station @ Wellman Hall,Water,"(By floor):
+2 Gooseneck filler/fountain in central hallway
+3 Fountain in central hallway
+4 Fountain in central hallway",,,,37.873023,-122.262785,,,,,,,,,,
+Station @ Wheeler Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain in hallway by South Drive 
+2 Motion-sensor filler/fountain in hallway stairway by South Drive 
+3 Motion-sensor filler/fountain by main two stairwells ",,,,37.8713136,-122.2591478,,,,,,,,,,
+Station @ Wurster Hall,Water,"(By floor):
+1 Motion-sensor filler/fountain underneath stairwell by restrooms",,,,37.8707352,-122.2548935,,,,,,,,,,
+Bin @ Berkeley Way (Offsite),Waste,,,,,37.8707352,-122.2548935,,,,,,,,,,
+Bin @ California Hall,Waste,,,,,37.87219201,-122.260056,,,,,,,,,,
+Bin @ North Entrance Memorial Glade,Waste,,,,,37.87326917,-122.2599746,,,,,,,,,,
+Bin @ University Library,Waste,,,,,37.87284757,-122.2593365,,,,,,,,,,
+Bin @ North Gate Entrance,Waste,,,,,37.87456175,-122.2601911,,,,,,,,,,
+Bin @ V&A Cafe/Etcheverry,Waste,,,,,37.87561717,-122.2589365,,,,,,,,,,
+Bin @ Sutardja Dali Hall/Yali's 1,Waste,,,,,37.87487324,-122.2589027,,,,,,,,,,
+Bin @ Sutardja Dai Hall/Yali's 2,Waste,,,,,37.87457207,-122.2587756,,,,,,,,,,
+Bin @ Cory Hall,Waste,,,,,37.87533585,-122.2575532,,,,,,,,,,
+Bin @ Betchel Terrace Cafe,Waste,,,,,37.87410601,-122.2584779,,,,,,,,,,
+Bin @ Bechtel/Evans,Waste,,,,,37.87396522,-122.258146,,,,,,,,,,
+Bin @ Hearst Mining Main Entrance,Waste,,,,,37.87408696,-122.2571321,,,,,,,,,,
+Bin @ Evans Hall Bus Stop,Waste,,,,,37.87342347,-122.2573839,,,,,,,,,,
+Bin @ Stanley Hall,Waste,,,,,37.87386121,-122.2565279,,,,,,,,,,
+Bin @ Le Conte Hall,Waste,,,,,37.8726991,-122.257871,,,,,,,,,,
+Bin @ Bancroft Library,Waste,,,,,37.87239289,-122.2585805,,,,,,,,,,
+Bin @ Campanile,Waste,,,,,37.87225447,-122.2578241,,,,,,,,,,
+Bin @ Tan/Campbell,Waste,,,,,37.87296058,-122.2566258,,,,,,,,,,
+Bin @ Latimer Courtyard,Waste,,,,,37.87290024,-122.2559794,,,,,,,,,,
+Bin @ South Path Drive,Waste,,,,,37.87219254,-122.2564236,,,,,,,,,,
+Bin @ Chou Hall,Waste,,,,,37.87204794,-122.2546778,,,,,,,,,,
+Bin @ Cafe Think,Waste,,,,,37.87191478,-122.254318,,,,,,,,,,
+Bin @ May Morrison Hall,Waste,,,,,37.8709555,-122.2563492,,,,,,,,,,
+Bin @ Glade Path,Waste,,,,,37.87315167,-122.2587112,,,,,,,,,,
+Bin @ Chiet Hall,Waste,,,,,37.87143743,-122.2539268,,,,,,,,,,
+Bin @ Cronk Gate,Waste,,,,,37.87171932,-122.2530092,,,,,,,,,,
+Bin @ Coffee Lab,Waste,,,,,37.87281634,-122.2558252,,,,,,,,,,
+Bin @ Library/Campanile Way,Waste,,,,,37.87172752,-122.258903,,,,,,,,,,
+Bin @ Campanili East,Waste,,,,,37.87179078,-122.258332,,,,,,,,,,
+Bin @ South Hall Rd. Near Clocktower,Waste,,,,,37.87166667,-122.2580556,,,,,,,,,,
+Bin @ Spieker Plaza Center,Waste,,,,,37.86953238,-122.2616335,,,,,,,,,,
+Bin @ Grade Street,Waste,,,,,37.86992118,-122.2608047,,,,,,,,,,
+Bin @ Zellerbach,Waste,,,,,37.86941328,-122.2606173,,,,,,,,,,
+Bin @ Cesar Chavez,Waste,,,,,37.86956494,-122.2603454,,,,,,,,,,
+Bin @ Bear's Lair,Waste,,,,,37.86881354,-122.2600959,,,,,,,,,,
+Bin @ Cal Book Store,Waste,,,,,37.86891517,-122.2599068,,,,,,,,,,
+Bin @ MLK Courtyard,Waste,,,,,37.86908535,-122.2600034,,,,,,,,,,
+Bin @ MLK Ramp,Waste,,,,,37.8693532,-122.2600175,,,,,,,,,,
+Bin @ Golden Bear Cafe Walkway,Waste,,,,,37.86984999,-122.2594767,,,,,,,,,,
+Bin @ Golden Bear Cafe Entry,Waste,,,,,37.86990345,-122.2596078,,,,,,,,,,
+Bin @ Upper MLK Union,Waste,,,,,37.86917323,-122.2593479,,,,,,,,,,
+Bin @ Bancroft Way,Waste,,,,,37.86908138,-122.2590717,,,,,,,,,,
+Bin @ Sproul Hall Steps,Waste,,,,,37.8697735,-122.2592276,,,,,,,,,,
+Bin @ Sather Gate,Waste,,,,,37.87014324,-122.2593613,,,,,,,,,,
+Bin @ Durant Hall,Waste,,,,,37.87115904,-122.2602948,,,,,,,,,,
+Bin @ Dwinelle Plaza Entry,Waste,,,,,37.87077474,-122.2600607,,,,,,,,,,
+Bin @ Dwinelle Walkway,Waste,,,,,37.87094333,-122.2597415,,,,,,,,,,
+Bin @ Wheeler Walkway,Waste,,,,,37.87086234,-122.2592014,,,,,,,,,,
+Bin @ Sproul Hall UCPD,Waste,,,,,37.86912003,-122.2586402,,,,,,,,,,
+Bin @ Barrows Hall,Waste,,,,,37.86990239,-122.2576018,,,,,,,,,,
+Bin @ Boalt Law,Waste,,,,,37.87002679,-122.2542849,,,,,,,,,,
+"Bin @ Rice & Bones, Wurster",Waste,,,,,37.87061064,-122.2550685,,,,,,,,,,
+Bin @ Kroeber Hall,Waste,,,,,37.86956426,-122.2549899,,,,,,,,,,
+Bin @ A&E Sproul,Waste,,,,,37.87008475,-122.2589982,,,,,,,,,,
+Bin @ Anthony Hall,Waste,,,,,37.87054315,-122.2582432,,,,,,,,,,
+Bin @ Wheeler,Waste,,,,,37.87104231,-122.2586915,,,,,,,,,,
+Bin @ Birge Path,Waste,,,,,37.87041373,-122.2554668,,,,,,,,,,
+Bin @ Hearst Gym - East Side,Waste,,,,,37.86965969,-122.2563127,,,,,,,,,,
+Bin @ HFA / Hearst Gym - West Side,Waste,,,,,37.86944213,-122.2574918,,,,,,,,,,
+Bin @ Spieker Plaza,Waste,,,,,37.86893449,-122.2616218,,,,,,,,,,
+Bin @ Lower Crescent,Waste,,,,,37.87060588,-122.2655592,,,,,,,,,,
+Bin @ Crescent,Waste,,,,,37.87182387,-122.2651391,,,,,,,,,,
+Bin @ Li Ka Shing Hall,Waste,,,,,37.87285419,-122.2650493,,,,,,,,,,
+Bin @ Morgan Hall,Waste,,,,,37.8732218,-122.2639308,,,,,,,,,,
+Bin @ Brown's Cafe,Waste,,,,,37.87314554,-122.2649696,,,,,,,,,,
+Bin @ West Circle,Waste,,,,,37.87207741,-122.2633246,,,,,,,,,,
+Bin @ University Drive,Waste,,,,,37.87277664,-122.2624248,,,,,,,,,,
+Bin @ Moffitt Library @ Cafe Patio,Waste,,,,,37.87230989,-122.261057,,,,,,,,,,
+Bin @ Moffitt Library @ Free Speech Entrance,Waste,,,,,37.87230723,-122.2606441,,,,,,,,,,
+Bin @ Moffitt Library @ Press,Waste,,,,,37.87280822,-122.2603347,,,,,,,,,,
+Bin @ VLSB/Campanile Way,Waste,,,,,37.871163,-122.2619255,,,,,,,,,,
+Bin @ Recreational Sports Facility,Waste,,,,,37.86863539,-122.2623865,,,,,,,,,,
+Bin @ Koshland,Waste,,,,,37.87354759,-122.2651391,,,,,,,,,,
+Bin @ VLSB Northside,Waste,,,,,37.87221662,-122.2618555,,,,,,,,,,
+Bin @ Mulford Hall,Waste,,,,,37.87294788,-122.2644441,,,,,,,,,,
+Bin @ Campanile Way West Entrance,Waste,,,,,37.87077315,-122.2632331,,,,,,,,,,
