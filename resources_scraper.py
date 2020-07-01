@@ -10,7 +10,7 @@ def scrape():
     #Read data from file "resources.csv"
     parent_working_directory = os.path.dirname((abspath(__file__)))
 
-    data =  pd.read_csv(parent_working_directory + "/csv_data/resources.csv")
+    data =  pd.read_csv(parent_working_directory + "/csv_data/resources.csv", engine='python')
 
     #Extract column names
     fields = data.columns.values
@@ -28,7 +28,7 @@ def scrape():
             new_resource = {}
 
             #Loop through each column for each row.
-            for i in range(18):
+            for i in range(20):
                 new_resource[fields[i]] = row[1][i]
 
             # Collapsing monday_hours .... sunday_hours and converting to interval
@@ -36,7 +36,7 @@ def scrape():
             dates = helper.get_this_week_dates()
             hours_df_key = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
 
-            for day, date in zip(hours_df_key, dates): 
+            for day, date in zip(hours_df_key, dates):
                 csv_read = new_resource["{}_hours".format(day)]
                 if str(csv_read) != "nan":                    
                     for time in csv_read.split(","):
