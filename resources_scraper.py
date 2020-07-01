@@ -58,6 +58,16 @@ def scrape():
                 elif isinstance(new_resource["on_campus"], str):
                     new_resource["on_campus"] = False
 
+                if isinstance(new_resource["Cal1Card_Accepted"], str) and "Yes" in new_resource["Cal1Card_Accepted"]:
+                    new_resource["Cal1Card_Accepted"] = True
+                elif isinstance(new_resource["EatWell_Accepted"], str):
+                    new_resource["Cal1Card_Accepted"] = False
+
+                if isinstance(new_resource["EatWell_Accepted"], str) and "Yes" in new_resource["EatWell_Accepted"]:
+                    new_resource["EatWell_Accepted"] = True
+                elif isinstance(new_resource["EatWell_Accepted"], str):
+                    new_resource["EatWell_Accepted"] = False
+
                 del new_resource["{}_hours".format(day)]
             
             new_resource["open_close_array"] = intervals
