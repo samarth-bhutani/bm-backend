@@ -11,6 +11,7 @@ def scrape():
     parent_working_directory = os.path.dirname((abspath(__file__)))
 
     data =  pd.read_csv(parent_working_directory + "/csv_data/resources.csv", engine='python')
+    data = data.fillna("Not Available")
 
     #Extract column names
     fields = data.columns.values
@@ -28,7 +29,7 @@ def scrape():
             new_resource = {}
 
             #Loop through each column for each row.
-            for i in range(20):
+            for i in range(21):
                 new_resource[fields[i]] = row[1][i]
 
             # Collapsing monday_hours .... sunday_hours and converting to interval
@@ -67,6 +68,10 @@ def scrape():
                     new_resource["EatWell_Accepted"] = True
                 elif isinstance(new_resource["EatWell_Accepted"], str):
                     new_resource["EatWell_Accepted"] = False
+
+
+                if "@" in new_resource["email"] and "mailto:" not in new_resource["email"]:
+                    new_resource["email"] = "mailto:"+new_resource["email"]
 
                 del new_resource["{}_hours".format(day)]
             

@@ -18,14 +18,16 @@ def update_credentials():
         On cloud functions you don't need to call initialize app or use credentials
     '''
     # for local pushing
-    # parent_working_directory = os.path.dirname((abspath(__file__)))
-    # cred = credentials.Certificate(parent_working_directory + "/berkeley-mobile-backend-firebase-key.json")
-    # firebase_admin.initialize_app(cred)
-    # db = firestore.client()
+    parent_working_directory = os.path.dirname((abspath(__file__)))
+    cred = credentials.Certificate(parent_working_directory + "/keys/berkeley-mobile-backend-firebase-key.json")
+    firebase_admin.initialize_app(cred)
+    db = firestore.client()
 
-    # for cloud-function pushing 
-    db = firestore.Client()
-    return db 
+    # # for cloud-function pushing
+    # db = firestore.Client()
+
+
+    return db
 
 def scrape_dining_hall_information(db):    
     dining_halls = dining_hall_scraper.scrape()
@@ -80,6 +82,7 @@ def scrape_resources_information(db):
         Run the resources scraper and updates Firebase with new data
     '''
     resources = resources_scraper.scrape()
+
     for resource_types in resources:
         resource_collection = db.collection(str(resource_types))
         for resource in resources[resource_types]:
