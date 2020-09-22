@@ -1,7 +1,7 @@
 import firebase_admin, os, sys, shutil, inspect, json, pandas as pd, datetime
 from os.path import dirname, abspath
 from firebase_admin import credentials, firestore
-import cafe_scraper, dining_hall_scraper, events_scraper, library_scraper, moffitt_scraper, resources_scraper, gym_scraper, gym_classes_scraper, helper
+import cafe_scraper, dining_hall_scraper, academic_calendar_events_scraper, library_scraper, moffitt_scraper, resources_scraper, gym_scraper, covid_gym_classes_scraper, helper
 from datetime import datetime
 import pytz
 # from post_processing import post_processor
@@ -92,8 +92,8 @@ def scrape_events_information(db):
     '''
         Runs the events scraper and updates Firebase with new data
     '''
-    events = events_scraper.scrape()
-    event_collection = db.collection(u'Events')
+    events = academic_calendar_events_scraper.scrape()
+    event_collection = db.collection(u'Academic Calendar Events')
     for day in events.keys():
         event_collection.document(day).set(events[day])
 
@@ -110,7 +110,7 @@ def scrape_gym_classes_information(db):
     '''
         Runs the gym classes scraper and updates Firebase with new data
     '''
-    gym_classes = gym_classes_scraper.scrape()
+    gym_classes = covid_gym_classes_scraper.scrape()
     gym_classes_collection = db.collection(u'Gym Classes')
     for day in gym_classes:
         gym_classes_collection.document(day).set(gym_classes[day])

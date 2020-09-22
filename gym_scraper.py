@@ -6,6 +6,9 @@ from dateutil.parser import parse
 import pandas as pd
 import helper
 import re
+from os.path import dirname, abspath
+import os, json, pandas as pd, re
+import helper
 
 def primary_scrapper(url):
     ## This is the primary scrapper for athletic facilites. It is used
@@ -83,8 +86,8 @@ def memorial_scrapper():
     output_dictionary = {}
     open_close_array = primary_scrapper("https://recsports.berkeley.edu/stadium-fitness-center-hours/")
     output_dictionary.update({"name":"Memorial Stadium Fitness Center"})
-    output_dictionary.update({"latitude":"37.8703831"})
-    output_dictionary.update({"longitude":"-122.2513493"})
+    output_dictionary.update({"latitude":37.8703831})
+    output_dictionary.update({"longitude":-122.2513493})
     output_dictionary.update({"picture":None})
     output_dictionary.update({"phone":"510-642-7796"})
     output_dictionary.update({"description": "The Rec Sports Stadium Fitness Center at Memorial Stadium is a 5,000 square foot workout space located on the west side of the stadium, between Gates 2 and 5. "})
@@ -98,8 +101,8 @@ def rsf_scrapper():
     output_dictionary = {}
     open_close_array = primary_scrapper("https://recsports.berkeley.edu/stadium-fitness-center-hours/")
     output_dictionary.update({"name":"RSF"})
-    output_dictionary.update({"latitude":"37.8685702"})
-    output_dictionary.update({"longitude":"-122.2627233"})
+    output_dictionary.update({"latitude":37.8685702})
+    output_dictionary.update({"longitude":-122.2627233})
     output_dictionary.update({"phone":"510-642-5072"})
     output_dictionary.update({"picture":None})
     output_dictionary.update({"description": "The Recreational Sports Facility (RSF) is the University’s largest, most complete fitness center with over 100,000 square feet of activity space, including an Olympic-sized swimming pool, 3 weight rooms, seven basketball courts, seven racquetball/handball courts, six squash courts, treadmills, elliptical trainers, stairmasters, rowing machines and stationary bikes. "})
@@ -113,8 +116,8 @@ def hearst_pool_scrapper():
     location = 'Hearst North Pool'
     open_close_array = secondary_scrapper(location,url_pool)
     output_dictionary.update({"name":"Hearst North Pool"})
-    output_dictionary.update({"latitude":"37.8697646"})
-    output_dictionary.update({"longitude":"-122.256941"})
+    output_dictionary.update({"latitude":37.8697646})
+    output_dictionary.update({"longitude":-122.256941})
     output_dictionary.update({"phone":"(510)-642-3894"})
     output_dictionary.update({"picture":None})
     output_dictionary.update({"description": "Hearst Pool offers regular lap swim hours and includes amenities such as locker rooms, hot showers, day locks, swim suit spinners, and towel service."})
@@ -128,8 +131,8 @@ def grbc_pool_scrapper():
     location = 'GBRC'
     open_close_array = secondary_scrapper(location,url_pool)
     output_dictionary.update({"name":"GRBC Pool"})
-    output_dictionary.update({"latitude":"37.86865280"})
-    output_dictionary.update({"longitude":"-122.247158"})
+    output_dictionary.update({"latitude":37.86865280})
+    output_dictionary.update({"longitude":-122.247158})
     output_dictionary.update({"phone":"(510)-643-9021"})
     output_dictionary.update({"picture":None})
     output_dictionary.update({"description": "The pool includes six lanes that are 25 yards in length with water temperature kept at 80-81 degrees F. The shallow end is three and a half feet deep and the deep end is ten feet deep. Open recreation lap swim only. Amenities include locker rooms, hot showers, lockers (bring your own lock), swimsuit spinners, and kickboards. No towel service is available."})
@@ -143,8 +146,8 @@ def spieker_pool_scrapper():
     location = 'Spieker Pool'
     open_close_array = secondary_scrapper(location,url_pool)
     output_dictionary.update({"name":"Spieker Pool"})
-    output_dictionary.update({"latitude":"37.869229"})
-    output_dictionary.update({"longitude":"-122.262111"})
+    output_dictionary.update({"latitude":37.869229})
+    output_dictionary.update({"longitude":-122.262111})
     output_dictionary.update({"phone":"(510)-643-8038"})
     output_dictionary.update({"picture":None})
     output_dictionary.update({"description": "Spieker is used for lap swimming, team practice, swim meets and water polo matches. Amenities include locker rooms, hot showers, day locks, swimsuit spinners, kickboards, a pool lift for those needing assistance getting into the pool, wheelchair access to locker rooms, and towel service."})
@@ -158,8 +161,8 @@ def track_scrapper():
     location = 'Edwards Track'
     open_close_array = secondary_scrapper(location,url_track)
     output_dictionary.update({"name":"Edwards Track"})
-    output_dictionary.update({"latitude":"37.869495"})
-    output_dictionary.update({"longitude":"-122.264633"})
+    output_dictionary.update({"latitude":37.869495})
+    output_dictionary.update({"longitude":-122.264633})
     output_dictionary.update({"phone":"(510)-643-8038"})
     output_dictionary.update({"picture":None})
     output_dictionary.update({"description": "Edwards Track is an eight-lane running track that is open for recreational use by Rec Sports members when not being used by the Track & Field team."})
@@ -167,12 +170,57 @@ def track_scrapper():
     output_dictionary.update({"open_close_array":open_close_array})
     return output_dictionary
 
+
+def virtual_5k_scraper():
+    output_dictionary = {}
+    output_dictionary.update({"name":"Virtual 5K Run and Walk"})
+    output_dictionary.update({"latitude":37.8685702})
+    output_dictionary.update({"longitude":-122.2627233})
+    output_dictionary.update({"description": "Get moving, have fun, and connect with friends when you join our campus community for virtual 5K events every Saturday. To participate just download the free Strava app and join the Berkeley Rec Sports 5K Club. Complete your 5K at any time during each designated event day. Your choice: Go outside to run or walk (six feet apart!) or stay inside on a treadmill. If you use a treadmill for your 5K you will need to manually enter your participation information onto the app. Check the app messaging posts for event updates and fun fitness tips."})
+    output_dictionary.update({"link":"https://www.strava.com/clubs/berkeley-rec-sports-virtual-5k-club-633847"})
+    output_dictionary.update({"app":"https://www.strava.com/mobile"})
+    
+    return output_dictionary
+
+def adventures_scraper():
+    
+    #name	 description	 link	 address	phone	picture
+
+    parent_working_directory = os.path.dirname((abspath(__file__)))
+
+    data =  pd.read_csv(parent_working_directory + "/csv_data/outdoor_excursions.csv", engine='python')
+    data = data.fillna("Not Available")
+
+    #Extract column names
+    fields = data.columns.values
+
+    #Loop through each row in csv
+    adventures = []
+    for row in data.iterrows():
+        adventure = {}
+
+        #Loop through each column for each row.
+        for i in range(len(data.T)):
+            adventure[fields[i]] = row[1][i]
+
+        adventures.append(adventure)
+    
+    return adventures
+
+
+
 def scrape():
     array_of_results = []
+
+    # NOTE: Due to COVID, suspending gyms
     array_of_results.append(memorial_scrapper())
     array_of_results.append(rsf_scrapper())
     array_of_results.append(hearst_pool_scrapper())
     array_of_results.append(grbc_pool_scrapper())
     array_of_results.append(spieker_pool_scrapper())
     array_of_results.append(track_scrapper())
+    array_of_results.append(virtual_5k_scraper())
+    for adventure in adventures_scraper():
+        array_of_results.append(adventure)
+
     return array_of_results

@@ -30,6 +30,14 @@ def get_next_sunday():
     sun = today + datetime.timedelta(7 - idx)
     return sun
 
+def get_next_monday():
+    import datetime
+
+    today = datetime.date.today()
+    idx = (today.weekday() + 1) % 7  # MON = 0, SUN = 6 -> SUN = 0 .. SAT = 6
+    sun = today + datetime.timedelta(8 - idx)
+    return sun
+
 
 '''
 Gets the entire week's worth of dates starting from get_last_sunday()
