@@ -88,7 +88,8 @@ def scrape():
 
         class_dictionary["trainer"] = class_trainer
         class_dictionary['class'] = class_name
-        class_dictionary['location'] = zoom_link
+        class_dictionary['location'] = "\nSee recsports.berkeley.edu/online"
+        class_dictionary['link'] = zoom_link
         class_dictionary['class type'] = class_types[class_name] if class_name in class_types else "ALL-AROUND WORKOUT"
         class_dictionary['date'] = event["start"]["dateTime"].split("T")[0]
         class_dictionary['description'] = class_description
